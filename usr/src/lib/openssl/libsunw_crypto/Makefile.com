@@ -742,138 +742,183 @@ include $(SRC)/lib/Makefile.targ
 
 pics/%.o:	../%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../aes/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../asn1/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../bf/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../bio/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../bn/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../buffer/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../camellia/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../cast/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../cmac/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../cms/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../comp/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../conf/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../des/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../dh/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../dsa/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../dso/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../engine/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../err/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../evp/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../hmac/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../krb5/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../lhash/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../md4/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../md5/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../modes/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../objects/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../ocsp/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../pem/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../pkcs12/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../pkcs7/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../pqueue/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../rand/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../rc2/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../rc4/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../ripemd/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../rsa/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../sha/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../srp/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../stack/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../ts/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../txt_db/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../ui/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../x509/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	../x509v3/%.c
 	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
 
 pics/%.o:	%.s
 	$(COMPILE.c) -o $@ $<

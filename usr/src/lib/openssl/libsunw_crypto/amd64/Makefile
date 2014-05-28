@@ -68,9 +68,6 @@ CPPFLAGS += -DPK11_LIB_LOCATION=\"/usr/lib/64/libpkcs11.so.1\"
 # OpenSSL interface is a mess
 MAPFILES =
 
-# Workaround ERROR: ctfmerge: Input file pics/a_bitstr.o was partially built from C sources, but no CTF data was present
-CTFMERGE_LIB =
-
 all:  $(ROOTLIBDIR64) $(LIBS) $(LIBLINKS)
 
 $(LIBLINKS):    FRC

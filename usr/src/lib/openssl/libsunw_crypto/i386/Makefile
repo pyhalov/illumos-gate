@@ -64,9 +64,6 @@ PERL_CPPFLAGS += -fPIC
 # OpenSSL interface is a mess
 MAPFILES =
 
-# Workaround ERROR: ctfmerge: Input file pics/a_bitstr.o was partially built from C sources, but no CTF data was present
-CTFMERGE_LIB =
-
 .KEEP_STATE:
 
 all:  $(ROOTLIBDIR) $(LIBS) $(LIBLINKS)
