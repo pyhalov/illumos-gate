@@ -335,6 +335,8 @@ ENGINE_OBJECTS =	eng_all.o	\
 			eng_rdrand.o	\
 			eng_rsax.o	\
 			eng_table.o	\
+			hw_pk11.o	\
+			hw_pk11_pub.o	\
 			tb_asnmth.o	\
 			tb_cipher.o	\
 			tb_dh.o	\
@@ -721,6 +723,8 @@ CPPFLAGS += 	-DVPAES_ASM
 CPPFLAGS +=	-DOPENSSL_BN_ASM_MONT
 
 CFLAGS +=	$(CCVERBOSE)
+
+CERRWARN +=	-_gcc=-Wno-switch
 
 $(LINTLIB) :=	LINTFLAGS = -nvx -I..
 $(LINTLIB) :=	LINTFLAGS64 = -nvx -m64 -I..
