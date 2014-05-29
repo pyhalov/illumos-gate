@@ -434,6 +434,11 @@ LHASH_OBJECTS =	lh_stats.o	\
 		lhash.o
 OBJECTS += $(LHASH_OBJECTS)
 
+# md2/*
+MD2_OBJECTS =	md2_dgst.o	\
+		md2_one.o
+OBJECTS += $(MD2_OBJECTS)
+
 # md4/*
 MD4_OBJECTS =	md4_dgst.o	\
 		md4_one.o
@@ -829,6 +834,10 @@ pics/%.o:	../krb5/%.c
 	$(POST_PROCESS_O)
 
 pics/%.o:	../lhash/%.c
+	$(COMPILE.c) -o $@ $<
+	$(POST_PROCESS_O)
+
+pics/%.o:	../md2/%.c
 	$(COMPILE.c) -o $@ $<
 	$(POST_PROCESS_O)
 
