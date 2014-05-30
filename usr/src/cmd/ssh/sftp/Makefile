@@ -35,7 +35,10 @@ SRCS =		$(OBJS:.o=.c)
 include ../../Makefile.cmd
 include ../Makefile.ssh-common
 
-LDLIBS +=	$(SSH_COMMON_LDLIBS) -lsocket -lcrypto -ltecla
+LDLIBS +=	$(SSH_COMMON_LDLIBS) -lsocket -ltecla
+
+# libsunw_crypto has no lint library, so we can only use it when building
+$(PROG) := LDLIBS += -lsunw_crypto
 
 POFILE_DIR =	..
 

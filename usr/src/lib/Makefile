@@ -178,6 +178,7 @@ SUBDIRS += \
 	libdhcputil	\
 	libxnet		\
 	libipsecutil	\
+	openssl		\
 	nsswitch	\
 	print		\
 	libuutil	\
@@ -562,6 +563,7 @@ _dc:			$(DCSUBDIRS:%=%-nodepend)
 #
 auditd_plugins: libbsm libnsl libsecdb
 gss_mechs/mech_krb5:	libgss libnsl libsocket libresolv pkcs11
+krb5:		openssl
 libadt_jni:	libbsm
 libast: 	libsocket
 libadutils: 	libldap5 libresolv libsocket libnsl
@@ -591,7 +593,7 @@ libidmap:	libadutils libldap5 libavl libsldap libuutil
 libipadm:	libnsl libinetutil libsocket libdlpi libnvpair libdhcpagent \
 		libdladm libsecdb
 libiscsit:	libc libnvpair libstmf libuuid libnsl
-libkmf:		libcryptoutil pkcs11
+libkmf:		libcryptoutil pkcs11 openssl
 libnsl:		libmd5
 libmapid:	libresolv
 librdc:		libsocket libnsl libnsctl libunistat libdscfg
@@ -599,7 +601,7 @@ libuuid:	libdlpi
 libinetutil:	libsocket
 libipsecutil:	libtecla libsocket
 libinstzones:	libzonecfg libcontract
-libpkg:		libwanboot libscf libadm
+libpkg:		libwanboot libscf libadm openssl
 libnwam:	libscf
 libsecdb:	libnsl
 libsasl:	libgss libsocket pkcs11 libmd
@@ -624,7 +626,7 @@ libtermcap:	libcurses
 libtsnet:	libnsl libtsol libsecdb
 libwrap:	libnsl libsocket
 libwanboot:	libnvpair libresolv libnsl libsocket libdevinfo libinetutil \
-		libdhcputil
+		libdhcputil openssl
 libwanbootutil:	libnsl
 pam_modules:	libproject passwdutil smbsrv
 libscf:		libuutil libmd libgen libsmbios libnsl
@@ -633,7 +635,7 @@ librestart:	libuutil libscf
 libsaveargs:	libdisasm
 ../cmd/sgs/libdl:	../cmd/sgs/libconv
 ../cmd/sgs/libelf:	../cmd/sgs/libconv
-pkcs11:		libcryptoutil
+pkcs11:		libcryptoutil openssl
 print:		libldap5
 udapl/udapl_tavor:	udapl/libdat
 libzfs:		libdevid libgen libnvpair libuutil \
@@ -666,6 +668,7 @@ libreparse:	libnvpair
 libhotplug:	libnvpair
 cfgadm_plugins:	libhotplug
 libilb:		libsocket
+openssl:	libnsl libc libsocket
 $(INTEL_BUILD)libdiskmgt:libfdisk
 
 #

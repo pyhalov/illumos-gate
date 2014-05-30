@@ -1,0 +1,36 @@
+This is a private copy of OpenSSL library, used by illumos.
+Libraries are renamed to libsunw_crypto.so.1 and libsunw_ssl.so.1.
+All global symbols are prefixed by "sunw_" to avoid conflicts
+with OpenSSL library provided by distributions.
+To use this library with your code you should ensure that it
+includes opensslconf.h so that global symbols are transparently
+renamed.
+
+Compared to the original OpenSSL version the code is
+organized in the following way.
+Only files which are used in illumos i386/amd64 build are present.
+All private include files are moved to usr/src/lib/openssl/include.
+All public include files are moved to usr/src/lib/openssl/include/openssl.
+C files from ssl/ are moved to usr/src/lib/openssl/libsunw_ssl,
+C files from crypto/ are moved to usr/src/lib/openssl/sunw_crypto,
+subdirectory structure  is preserved.
+All Perl files used to generate assembler are moved from crypto/perlasm
+and crypto/*/asm to usr/src/lib/openssl/libsunw_crypto/pl/.
+No plain asm files are used.
+Scripts form https://github.com/joyent/illumos-extra/tree/master/openssl1x/tools
+were used to generate initial sunw_prefix.h and mapfiles.
+
+The easiest way to update OpenSSL to the next minor version (i.e. form 1.0.1X to
+1.0.1X+1) would be just make diff between 1.0.1X and 1.0.1X+1 and manually apply
+it to usr/src/lib/openssl.
+While doing this, take into consideration the following:
+- only diff for files in ssl,crypto and include subdirectories is necessary;
+- some files are not present in this copy of OpenSSL, so remove from diff changes
+to the files which are not present in usr/src/lib/openssl;
+- some header files in original OpenSSL version are present in both include
+directory and ssl or crypto directories, for such files only diff for files in
+include directory is necessary.
+
+You can use check_symbols target to list new unprefixed function symbols which
+could be introduced by update. You likely want to add them to mapfile-vers and
+sunw_prefix.h files

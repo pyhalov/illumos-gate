@@ -36,7 +36,10 @@ include ../Makefile.ssh-common
 
 FILEMODE= 04555
 
-LDLIBS += $(SSH_COMMON_LDLIBS) -lsocket -lnsl -lz -lcrypto
+LDLIBS += $(SSH_COMMON_LDLIBS) -lsocket -lnsl -lz
+
+# libsunw_crypto has no lint library, so we can only use it when building
+$(PROG) := LDLIBS += -lsunw_crypto
 
 POFILE_DIR= ..
 

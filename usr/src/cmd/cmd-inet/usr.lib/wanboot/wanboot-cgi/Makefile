@@ -25,8 +25,13 @@
 include ../Makefile.com
 
 PROG =		wanboot-cgi
-LDLIBS +=	-lgen -lnsl -lwanbootutil -lnvpair -lwanboot -lcrypto
+LDLIBS +=	-lgen -lnsl -lwanbootutil -lnvpair -lwanboot
 CPPFLAGS +=	-I$(CMNCRYPTDIR)
+
+# libsunw_crypto has no lint library, so we can only include this while building
+$(PROG) := LDLIBS += -lsunw_crypto
+
+LINTFLAGS +=	-erroff=E_NAME_USED_NOT_DEF2
 
 all:		$(PROG)
 
