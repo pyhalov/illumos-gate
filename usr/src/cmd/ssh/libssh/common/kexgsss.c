@@ -32,6 +32,7 @@
 
 #ifdef GSSAPI
 
+#include <openssl/opensslconf.h>
 #include <openssl/crypto.h>
 #include <openssl/bn.h>
 

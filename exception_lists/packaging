@@ -993,3 +993,12 @@ usr/lib/sparcv9/llib-lpcidb.ln		sparc
 usr/lib/libpcidb.so
 usr/lib/llib-lpcidb
 usr/lib/llib-lpcidb.ln
+
+#
+# Private OpenSSL library
+#
+usr/include/openssl
+usr/lib/amd64/libsunw_crypto.so		i386
+usr/lib/amd64/libsunw_ssl.so		i386
+usr/lib/libsunw_crypto.so
+usr/lib/libsunw_ssl.so

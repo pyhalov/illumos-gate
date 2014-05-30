@@ -697,7 +697,7 @@ CLOBBERFILES += $(LIBLINKS)
 
 LIBS =		$(DYNLIB)
 
-LDLIBS += -lsocket -lnsl -ldl -lc
+LDLIBS += -lsocket -lnsl -lc
 
 LINTFLAGS =	-uxn
 LINTFLAGS64 =	$(LINTFLAGS) -m64

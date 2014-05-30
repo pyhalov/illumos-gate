@@ -36,6 +36,7 @@ RCSID("$OpenBSD: key.c,v 1.49 2002/09/09 14:54:14 markus Exp $");
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
+#include <openssl/opensslconf.h>
 #include <openssl/evp.h>
 
 #include "xmalloc.h"

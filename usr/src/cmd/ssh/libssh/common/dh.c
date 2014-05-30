@@ -27,6 +27,7 @@ RCSID("$OpenBSD: dh.c,v 1.22 2002/06/27 08:49:44 markus Exp $");
 
 #include "xmalloc.h"
 
+#include <openssl/opensslconf.h>
 #include <openssl/bn.h>
 #include <openssl/dh.h>
 #include <openssl/evp.h>

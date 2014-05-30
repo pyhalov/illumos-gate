@@ -31,6 +31,7 @@ extern "C" {
 #endif
 
 #include "includes.h"
+#include <openssl/opensslconf.h>
 #include <openssl/engine.h>
 
 ENGINE *pkcs11_engine_load(int use_engine);

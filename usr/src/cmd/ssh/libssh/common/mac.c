@@ -25,6 +25,7 @@
 #include "includes.h"
 RCSID("$OpenBSD: mac.c,v 1.5 2002/05/16 22:02:50 markus Exp $");
 
+#include <openssl/opensslconf.h>
 #include <openssl/hmac.h>
 
 #include "xmalloc.h"

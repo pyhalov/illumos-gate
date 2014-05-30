@@ -35,6 +35,7 @@ RCSID("$Id: bsd-arc4random.c,v 1.5 2002/05/08 22:57:18 tim Exp $");
 
 #ifndef HAVE_ARC4RANDOM
 
+#include <openssl/opensslconf.h>
 #include <openssl/rand.h>
 #include <openssl/rc4.h>
 #include <openssl/err.h>

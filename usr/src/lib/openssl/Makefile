@@ -50,13 +50,15 @@ CHECKHDRS=      $(HDRS:%.h=%.check)
 
 all install clean clobber lint: $(SUBDIRS)
 
+$(ROOTHDRS):	$(ROOTHDRDIR)
+
 $(ROOTHDRDIR):
 	$(INS.dir)
 
 $(ROOTHDRDIR)/%: $(HDRDIR)/%
 	$(INS.file)
 
-install_h:	$(ROOTHDRS)
+install install_h:	$(ROOTHDRS)
 
 $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)

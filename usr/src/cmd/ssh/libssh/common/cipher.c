@@ -46,6 +46,7 @@ RCSID("$OpenBSD: cipher.c,v 1.61 2002/07/12 15:50:17 markus Exp $");
 #include "log.h"
 #include "cipher.h"
 
+#include <openssl/opensslconf.h>
 #include <openssl/md5.h>
 
 /*
