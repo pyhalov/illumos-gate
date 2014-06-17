@@ -27,7 +27,6 @@ RCSID("$OpenBSD: kexdh.c,v 1.18 2002/03/18 17:50:31 provos Exp $");
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
-#include <openssl/opensslconf.h>
 #include <openssl/crypto.h>
 #include <openssl/bn.h>
 

@@ -28,7 +28,6 @@ RCSID("$OpenBSD: kexgex.c,v 1.22 2002/03/24 17:27:03 stevesk Exp $");
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
-#include <openssl/opensslconf.h>
 #include <openssl/bn.h>
 
 #include "xmalloc.h"

@@ -41,7 +41,6 @@
 
 #include "includes.h"
 
-#include <openssl/opensslconf.h>
 #include <openssl/hmac.h>
 #include <openssl/sha.h>
 

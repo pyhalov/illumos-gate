@@ -17,7 +17,6 @@ RCSID("$OpenBSD: mpaux.c,v 1.16 2001/02/08 19:30:52 itojun Exp $");
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
-#include <openssl/opensslconf.h>
 #include <openssl/bn.h>
 #include "getput.h"
 #include "xmalloc.h"

@@ -21,7 +21,6 @@
 #include "includes.h"
 RCSID("$OpenBSD: cipher-ctr.c,v 1.4 2004/02/06 23:41:13 dtucker Exp $");
 
-#include <openssl/opensslconf.h>
 #include <openssl/evp.h>
 
 #include "log.h"

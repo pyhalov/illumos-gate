@@ -24,7 +24,6 @@
 
 #include "includes.h"
 
-#include <openssl/opensslconf.h>
 #include <openssl/rand.h>
 #include <openssl/crypto.h>
 

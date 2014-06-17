@@ -27,7 +27,6 @@ RCSID("$OpenBSD: ssh-rsa.c,v 1.26 2002/08/27 17:13:56 stevesk Exp $");
 
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 
-#include <openssl/opensslconf.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
 

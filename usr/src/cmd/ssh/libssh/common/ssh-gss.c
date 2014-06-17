@@ -36,7 +36,6 @@
 #include "bufaux.h"
 #include "packet.h"
 #include "compat.h"
-#include <openssl/opensslconf.h>
 #include <openssl/evp.h>
 #include "cipher.h"
 #include "kex.h"

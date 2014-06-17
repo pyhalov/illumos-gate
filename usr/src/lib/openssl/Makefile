@@ -20,6 +20,7 @@
 #
 #
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2014 Alexander Pyhalov
 # Use is subject to license terms.
 #
 # lib/openssl/Makefile
@@ -39,8 +40,76 @@ _msg :=         TARGET= _msg
 
 .KEEP_STATE:
 
-HDRS.cmd=	ls include/openssl/
-HDRS=		$(HDRS.cmd:sh)
+HDRS=    aes.h \
+         asn1.h \
+         asn1_mac.h \
+         asn1t.h \
+         bio.h \
+         blowfish.h \
+         bn.h \
+         buffer.h \
+         camellia.h \
+         cast.h \
+         cmac.h \
+         cms.h \
+         comp.h \
+         conf.h \
+         conf_api.h \
+         crypto.h \
+         des.h \
+         des_old.h \
+         dh.h \
+         dsa.h \
+         dso.h \
+         dtls1.h \
+         e_os2.h \
+         ebcdic.h \
+         engine.h \
+         err.h \
+         evp.h \
+         hmac.h \
+         krb5_asn.h \
+         kssl.h \
+         lhash.h \
+         md2.h \
+         md4.h \
+         md5.h \
+         modes.h \
+         obj_mac.h \
+         objects.h \
+         ocsp.h \
+         opensslconf.h \
+         opensslv.h \
+         ossl_typ.h \
+         pem.h \
+         pem2.h \
+         pkcs12.h \
+         pkcs7.h \
+         pqueue.h \
+         rand.h \
+         rc2.h \
+         rc4.h \
+         ripemd.h \
+         rsa.h \
+         safestack.h \
+         sha.h \
+         srp.h \
+         srtp.h \
+         ssl.h \
+         ssl2.h \
+         ssl23.h \
+         ssl3.h \
+         stack.h \
+         sunw_prefix.h \
+         symhacks.h \
+         tls1.h \
+         ts.h \
+         txt_db.h \
+         ui.h \
+         ui_compat.h \
+         x509.h \
+         x509_vfy.h \
+         x509v3.h
 
 HDRDIR=		include/openssl
 ROOTHDRDIR=     $(ROOT)/usr/include/openssl

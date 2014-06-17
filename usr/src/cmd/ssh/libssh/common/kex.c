@@ -30,7 +30,6 @@ RCSID("$OpenBSD: kex.c,v 1.51 2002/06/24 14:55:38 markus Exp $");
 
 #include <locale.h>
 
-#include <openssl/opensslconf.h>
 #include <openssl/crypto.h>
 
 #include "ssh2.h"
