@@ -36,20 +36,14 @@ clobber :=      TARGET= clobber
 lint :=         TARGET= lint
 _msg :=         TARGET= _msg
 
-sparc_HDRS=
-sparcv9_HDRS=
-i386_HDRS=
-HDRS=	$($(MACH)_HDRS)
+HDRS=
 ROOTHDRDIR=     $(ROOT)/usr/include
 ROOTHDRS=       $(HDRS:%=$(ROOTHDRDIR)/%)
 CHECKHDRS=      $(HDRS:%.h=%.check)
 
 .KEEP_STATE:
 
-all install clean clobber lint: $(SUBDIRS)
-
-_msg:	$(MACH) $(MACH64)
-
+all install clean clobber lint _msg: $(SUBDIRS)
 
 $(ROOTHDRDIR)/%: %
 	$(INS.file)

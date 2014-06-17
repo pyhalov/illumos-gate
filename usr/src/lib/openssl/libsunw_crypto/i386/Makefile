@@ -61,9 +61,6 @@ CPPFLAGS += -DPK11_LIB_LOCATION=\"/usr/lib/libpkcs11.so.1\"
 PERL_CPPFLAGS += -DOPENSSL_IA32_SSE2
 PERL_CPPFLAGS += -fPIC
 
-# OpenSSL interface is a mess
-MAPFILES =
-
 .KEEP_STATE:
 
 all:  $(ROOTLIBDIR) $(LIBS) $(LIBLINKS)

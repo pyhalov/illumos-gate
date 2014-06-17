@@ -38,10 +38,7 @@ _msg :=         TARGET= _msg
 
 .KEEP_STATE:
 
-all install clean clobber lint: $(SUBDIRS)
-
-_msg:	$(MACH) $(MACH64)
-
+all install clean clobber lint _msg: $(SUBDIRS)
 
 $(ROOTHDRDIR)/%: %
 	$(INS.file)

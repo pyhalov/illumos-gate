@@ -65,9 +65,6 @@ CPPFLAGS += -DOPENSSL_BN_ASM_MONT5
 CPPFLAGS += -DBSAES_ASM
 CPPFLAGS += -DPK11_LIB_LOCATION=\"/usr/lib/64/libpkcs11.so.1\"
 
-# OpenSSL interface is a mess
-MAPFILES =
-
 all:  $(ROOTLIBDIR64) $(LIBS) $(LIBLINKS)
 
 $(LIBLINKS):    FRC
