@@ -35,7 +35,6 @@
 #include <pwd.h>
 #include <syslog.h>
 
-#include <openssl/opensslconf.h>
 #include <openssl/rsa.h>
 
 #include <tss/platform.h>
