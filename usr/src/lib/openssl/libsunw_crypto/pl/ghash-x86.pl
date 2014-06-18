@@ -119,7 +119,6 @@ require "x86asm.pl";
 
 &asm_init($ARGV[0],"ghash-x86.pl",$x86only = $ARGV[$#ARGV] eq "386");
 
-# OpenSSL defaults to sse2=0, but it breaks it
 $sse2=0;
 for (@ARGV) { $sse2=1 if (/-DOPENSSL_IA32_SSE2/); }
 
