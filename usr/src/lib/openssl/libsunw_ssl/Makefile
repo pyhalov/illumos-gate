@@ -20,6 +20,7 @@
 #
 #
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2014 Alexander Pyhalov
 # Use is subject to license terms.
 #
 #
@@ -37,21 +38,12 @@ lint :=         TARGET= lint
 _msg :=         TARGET= _msg
 
 HDRS=
-ROOTHDRDIR=     $(ROOT)/usr/include
-ROOTHDRS=       $(HDRS:%=$(ROOTHDRDIR)/%)
-CHECKHDRS=      $(HDRS:%.h=%.check)
 
 .KEEP_STATE:
 
-all install clean clobber lint _msg: $(SUBDIRS)
+all install clean clobber lint: $(SUBDIRS)
 
-$(ROOTHDRDIR)/%: %
-	$(INS.file)
-
-$(ROOTHDRDIR):
-	$(INS.dir)
-
-check: $(CHECKHDRS)
+_msg check:
 
 $(MACH) $(MACH64): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)

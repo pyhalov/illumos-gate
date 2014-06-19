@@ -38,15 +38,9 @@ _msg :=         TARGET= _msg
 
 .KEEP_STATE:
 
-all install clean clobber lint _msg: $(SUBDIRS)
+all install clean clobber lint: $(SUBDIRS)
 
-$(ROOTHDRDIR)/%: %
-	$(INS.file)
-
-$(ROOTHDRDIR):
-	$(INS.dir)
-
-check: $(CHECKHDRS)
+_msg check:
 
 $(MACH) $(MACH64): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
