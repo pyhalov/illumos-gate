@@ -207,7 +207,7 @@
 
 #if !(defined(VMS) || defined(__VMS)) /* VMS uses logical names instead */
 #if defined(HEADER_CRYPTLIB_H) && !defined(OPENSSLDIR)
-#if defined(__sparcv9) || defined(__x86_64)
+#if defined(__x86_64)
 #define ENGINESDIR "/usr/lib/openssl/engines/64"
 #else
 #define ENGINESDIR "/usr/lib/openssl/engines"
@@ -250,7 +250,11 @@
  * This enables code handling data aligned at natural CPU word
  * boundary. See crypto/rc4/rc4_enc.c for further details.
  */
+#if defined(__x86_64)
 #define RC4_CHUNK unsigned long
+#else
+#undef RC4_CHUNK
+#endif  /* __x86_64 */
 #endif
 #endif
 
@@ -258,7 +262,7 @@
 /* If this is set to 'unsigned int' on a DEC Alpha, this gives about a
  * %20 speed up (longs are 8 bytes, int's are 4). */
 #ifndef DES_LONG
-#if defined(__sparcv9) || defined(__x86_64)
+#if defined(__x86_64)
 #define DES_LONG unsigned int
 #else
 #define DES_LONG unsigned long
@@ -268,10 +272,6 @@
 
 #if defined(HEADER_BN_H) && !defined(CONFIG_HEADER_BN_H)
 #define CONFIG_HEADER_BN_H
-/*
- * OpenSSL revision 1.521 from 2005-12-15 in OpenSSL_1_0_0-stable branch changed
- * 64 bit sparcv9 configuration from SIXTY_FOUR_BIT_LONG to BN_LLONG.
- */
 #if defined(__x86_64)
 #undef BN_LLONG
 #else
@@ -296,7 +296,11 @@
 #define CONFIG_HEADER_RC4_LOCL_H
 /* if this is defined data[i] is used instead of *data, this is a %20
  * speedup on x86 */
-#define RC4_INDEX
+#if defined(__x86_64)
+#undef	RC4_INDEX
+#else
+#define	RC4_INDEX
+#endif /* __x86_64 */
 #endif
 
 #if defined(HEADER_BF_LOCL_H) && !defined(CONFIG_HEADER_BF_LOCL_H)
@@ -310,14 +314,22 @@
 /* the following is tweaked from a config script, that is why it is a
  * protected undef/define */
 #ifndef DES_PTR
-#define DES_PTR
+#if defined(__x86_64)
+#undef DES_PTR
+#else
+#define	DES_PTR
+#endif /* __x86_64 */
 #endif
 
 /* This helps C compiler generate the correct code for multiple functional
  * units.  It reduces register dependancies at the expense of 2 more
  * registers */
 #ifndef DES_RISC1
-#define DES_RISC1
+#if defined(__x86_64)
+#undef DES_RISC1
+#else
+#define        DES_RISC1
+#endif /* __x86_64 */
 #endif
 
 #ifndef DES_RISC2
@@ -343,7 +355,7 @@ YOU SHOULD NOT HAVE BOTH DES_RISC1 AND DES_RISC2 DEFINED!!!!!
    even newer MIPS CPU's, but at the moment one size fits all for
    optimization options.  Older Sparc's work better with only UNROLL, but
    there's no way to tell at compile time what it is you're running on */
-
+ 
 #if defined( sun )		/* Newer Sparc's */
 #  define DES_PTR
 #  define DES_RISC1
