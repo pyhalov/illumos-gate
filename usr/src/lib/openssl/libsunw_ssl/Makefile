@@ -32,16 +32,17 @@ SUBDIRS = .WAIT $(MACH) $(BUILD64) $(MACH64)
 # conditional assignments
 all :=      	TARGET= all
 install :=      TARGET= install
+check_symbols := TARGET= check_symbols
 clean :=        TARGET= clean
 clobber :=      TARGET= clobber
 lint :=         TARGET= lint
 _msg :=         TARGET= _msg
 
-HDRS=
+HDRS=	
 
 .KEEP_STATE:
 
-all install clean clobber lint: $(SUBDIRS)
+all install clean clobber lint check_symbols: $(SUBDIRS)
 
 _msg check:
 
@@ -49,3 +50,4 @@ $(MACH) $(MACH64): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:
+
