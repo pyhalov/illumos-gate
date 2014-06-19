@@ -208,9 +208,9 @@
 #if !(defined(VMS) || defined(__VMS)) /* VMS uses logical names instead */
 #if defined(HEADER_CRYPTLIB_H) && !defined(OPENSSLDIR)
 #if defined(__sparcv9) || defined(__x86_64)
-#define ENGINESDIR "/lib/openssl/engines/64"
+#define ENGINESDIR "/usr/lib/openssl/engines/64"
 #else
-#define ENGINESDIR "/lib/openssl/engines"
+#define ENGINESDIR "/usr/lib/openssl/engines"
 #endif
 #define OPENSSLDIR "/etc/openssl"
 #endif
