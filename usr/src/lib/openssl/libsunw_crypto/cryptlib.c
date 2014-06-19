@@ -182,7 +182,7 @@ static STACK_OF(OPENSSL_STRING) *app_locks=NULL;
    numbers.  */
 static STACK_OF(CRYPTO_dynlock) *dyn_locks=NULL;
 
-static pthread_mutex_t *solaris_openssl_locks;
+static pthread_mutex_t *illumos_openssl_locks;
 
 static void (MS_FAR *locking_callback)(int mode,int type,
 	const char *file,int line)=0;
@@ -412,16 +412,16 @@ int (*CRYPTO_get_add_lock_callback(void))(int *num,int mount,int type,
  * This is the locking callback function which all applications will be
  * using when CRYPTO_lock() is called.
  */
-static void solaris_locking_callback(int mode, int type, const char *file,
+static void illumos_locking_callback(int mode, int type, const char *file,
     int line)
 	{
 	if (mode & CRYPTO_LOCK)
 		{
-		pthread_mutex_lock(&solaris_openssl_locks[type]);
+		pthread_mutex_lock(&illumos_openssl_locks[type]);
 		}
 	else
 		{
-		pthread_mutex_unlock(&solaris_openssl_locks[type]);
+		pthread_mutex_unlock(&illumos_openssl_locks[type]);
 		}
 	}
 
@@ -430,21 +430,21 @@ static void solaris_locking_callback(int mode, int type, const char *file,
  * This function is called when a child process is forked to setup its own
  * global locking callback function ptr and mutexes.
  */
-static void solaris_fork_child(void)
+static void illumos_fork_child(void)
 	{
 		/*
 		 * clear locking_callback to indicate that locks should
 		 * be reinitialized.
 		 */
 		locking_callback = NULL;
-		solaris_locking_setup();
+		illumos_locking_setup();
 	}
 
 /*
  * This function allocates and initializes the global mutex array, and
  * sets the locking callback.
  */
-void solaris_locking_setup()
+void illumos_locking_setup()
 	{
 	int i;
 	int num_locks;
@@ -459,25 +459,25 @@ void solaris_locking_setup()
 	 * Set atfork handler so that child can setup its own mutexes and
 	 * locking callbacks when it is forked
 	 */
-	(void) pthread_atfork(NULL, NULL, solaris_fork_child);
+	(void) pthread_atfork(NULL, NULL, illumos_fork_child);
 
 	/* allocate locks needed by OpenSSL  */
 	num_locks = CRYPTO_num_locks();
-	solaris_openssl_locks =
+	illumos_openssl_locks =
 	    OPENSSL_malloc(sizeof (pthread_mutex_t) * num_locks);
-	if (solaris_openssl_locks == NULL)
+	if (illumos_openssl_locks == NULL)
 		{
 		fprintf(stderr,
-			"solaris_locking_setup: memory allocation failure.\n");
+			"illumos_locking_setup: memory allocation failure.\n");
 		abort();
 		}
 
 	/* initialize openssl mutexes */
 	for (i = 0; i < num_locks; i++)
 		{
-		pthread_mutex_init(&solaris_openssl_locks[i], NULL);
+		pthread_mutex_init(&illumos_openssl_locks[i], NULL);
 		}
-	locking_callback = solaris_locking_callback;
+	locking_callback = illumos_locking_callback;
 
 	}
 

@@ -353,10 +353,10 @@ for (@ARGV) { $sse2=1 if (/-DOPENSSL_IA32_SSE2/); }
 	&ret	();
 &function_end_B("OPENSSL_ia32_rdrand");
 
-&initseg("solaris_locking_setup");
+&initseg("illumos_locking_setup");
 &initseg("OPENSSL_cpuid_setup");
 
-&hidden("solaris_locking_setup");
+&hidden("illumos_locking_setup");
 &hidden("OPENSSL_cpuid_setup");
 &hidden("OPENSSL_ia32cap_P");
 

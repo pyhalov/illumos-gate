@@ -104,7 +104,7 @@ void OPENSSL_showfatal(const char *fmta,...);
 void *OPENSSL_stderr(void);
 extern int OPENSSL_NONPIC_relocated;
 
-void solaris_locking_setup();
+void illumos_locking_setup();
 
 #ifdef  __cplusplus
 }

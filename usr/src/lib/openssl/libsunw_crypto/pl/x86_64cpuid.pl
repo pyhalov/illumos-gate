@@ -20,10 +20,10 @@ open OUT,"| \"$^X\" $xlate $flavour $output";
 print<<___;
 .extern		OPENSSL_cpuid_setup
 .hidden		OPENSSL_cpuid_setup
-.extern		solaris_locking_setup
-.hidden		solaris_locking_setup
+.extern		illumos_locking_setup
+.hidden		illumos_locking_setup
 .section	.init
-	call	solaris_locking_setup
+	call	illumos_locking_setup
 	call	OPENSSL_cpuid_setup
 
 .hidden	OPENSSL_ia32cap_P
