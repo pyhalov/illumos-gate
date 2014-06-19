@@ -1,6 +1,6 @@
 /* crypto/srp/srp_vfy.c */
-/* Written by Christophe Renou (christophe.renou@edelweb.fr) with
- * the precious help of Peter Sylvester (peter.sylvester@edelweb.fr)
+/* Written by Christophe Renou (christophe.renou@edelweb.fr) with 
+ * the precious help of Peter Sylvester (peter.sylvester@edelweb.fr) 
  * for the EdelKey project and contributed to the OpenSSL project 2004.
  */
 /* ====================================================================
@@ -11,7 +11,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
+ *    notice, this list of conditions and the following disclaimer. 
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -71,7 +71,7 @@
 static char b64table[] =
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./";
 
-/* the following two conversion routines have been inspired by code from Stanford */
+/* the following two conversion routines have been inspired by code from Stanford */ 
 
 /*
  * Convert a base64 string into raw byte array representation.
@@ -93,6 +93,9 @@ static int t_fromb64(unsigned char *a, const char *src)
 		else a[i] = loc - b64table;
 		++i;
 		}
+	/* if nothing valid to process we have a zero length response */
+	if (i == 0)
+		return 0;
 	size = i;
 	i = size - 1;
 	j = size;
@@ -181,7 +184,7 @@ static char *t_tob64(char *dst, const unsigned char *src, int size)
 
 static void SRP_user_pwd_free(SRP_user_pwd *user_pwd)
 	{
-	if (user_pwd == NULL)
+	if (user_pwd == NULL) 
 		return;
 	BN_free(user_pwd->s);
 	BN_clear_free(user_pwd->v);
@@ -194,9 +197,9 @@ static SRP_user_pwd *SRP_user_pwd_new()
 	{
 	SRP_user_pwd *ret = OPENSSL_malloc(sizeof(SRP_user_pwd));
 	if (ret == NULL)
-		return NULL;
+		return NULL;								
 	ret->N = NULL;
-	ret->g = NULL;
+	ret->g = NULL;	
 	ret->s = NULL;
 	ret->v = NULL;
 	ret->id = NULL ;
@@ -208,7 +211,7 @@ static void SRP_user_pwd_set_gN(SRP_user_pwd *vinfo, const BIGNUM *g,
 				const BIGNUM *N)
 	{
 	vinfo->N = N;
-	vinfo->g = g;
+	vinfo->g = g;	
 	}
 
 static int SRP_user_pwd_set_ids(SRP_user_pwd *vinfo, const char *id,
@@ -225,8 +228,8 @@ static int SRP_user_pwd_set_sv(SRP_user_pwd *vinfo, const char *s,
 	unsigned char tmp[MAX_LEN];
 	int len;
 
-	if (strlen(s) > MAX_LEN || strlen(v) > MAX_LEN)
-		return 0;
+	if (strlen(s) > MAX_LEN || strlen(v) > MAX_LEN) 
+		return 0; 
 	len = t_fromb64(tmp, v);
 	if (NULL == (vinfo->v = BN_bin2bn(tmp, len, NULL)) )
 		return 0;
@@ -256,7 +259,7 @@ SRP_VBASE *SRP_VBASE_new(char *seed_key)
 	vb->default_g = NULL;
 	vb->default_N = NULL;
 	vb->seed_key = NULL;
-	if ((seed_key != NULL) &&
+	if ((seed_key != NULL) && 
 		(vb->seed_key = BUF_strdup(seed_key)) == NULL)
 		{
 		sk_SRP_user_pwd_free(vb->users_pwd);
@@ -315,14 +318,14 @@ static SRP_gN *SRP_get_gN_by_id(const char *id, STACK_OF(SRP_gN) *gN_tab)
 	int i;
 
 	SRP_gN *gN;
-	if (gN_tab != NULL)
+	if (gN_tab != NULL) 
 	for(i = 0; i < sk_SRP_gN_num(gN_tab); i++)
 		{
 		gN = sk_SRP_gN_value(gN_tab, i);
 		if (gN && (id == NULL || strcmp(gN->id,id)==0))
 			return gN;
 		}
-
+	
 	return SRP_get_default_gN(id);
 	}
 
@@ -395,8 +398,8 @@ int SRP_VBASE_init(SRP_VBASE *vb, char *verifier_file)
 			{
 			/*we add this couple in the internal Stack */
 
-			if ((gN = (SRP_gN *)OPENSSL_malloc(sizeof(SRP_gN))) == NULL)
-				goto err;
+			if ((gN = (SRP_gN *)OPENSSL_malloc(sizeof(SRP_gN))) == NULL) 
+ 				goto err;
 
 			if  (!(gN->id = BUF_strdup(pp[DB_srpid]))
 	                ||  !(gN->N = SRP_gN_place_bn(vb->gN_cache,pp[DB_srpverifier]))
@@ -418,13 +421,13 @@ int SRP_VBASE_init(SRP_VBASE *vb, char *verifier_file)
 			if ((lgN = SRP_get_gN_by_id(pp[DB_srpgN],SRP_gN_tab))!=NULL)
 				{
 				error_code = SRP_ERR_MEMORY;
-				if ((user_pwd = SRP_user_pwd_new()) == NULL)
+				if ((user_pwd = SRP_user_pwd_new()) == NULL) 
 					goto err;
-
+				
 				SRP_user_pwd_set_gN(user_pwd,lgN->g,lgN->N);
 				if (!SRP_user_pwd_set_ids(user_pwd, pp[DB_srpid],pp[DB_srpinfo]))
 					goto err;
-
+				
 				error_code = SRP_ERR_VBASE_BN_LIB;
 				if (!SRP_user_pwd_set_sv(user_pwd, pp[DB_srpsalt],pp[DB_srpverifier]))
 					goto err;
@@ -435,7 +438,7 @@ int SRP_VBASE_init(SRP_VBASE *vb, char *verifier_file)
 				}
 			}
 		}
-
+	
 	if (last_index != NULL)
 		{
 		/* this means that we want to simulate a default user */
@@ -495,14 +498,14 @@ SRP_user_pwd *SRP_VBASE_get_by_user(SRP_VBASE *vb, char *username)
 
 /* if the user is unknown we set parameters as well if we have a seed_key */
 
-	if ((user = SRP_user_pwd_new()) == NULL)
+	if ((user = SRP_user_pwd_new()) == NULL) 
 		return NULL;
 
 	SRP_user_pwd_set_gN(user,vb->default_g,vb->default_N);
-
+				
 	if (!SRP_user_pwd_set_ids(user,username,NULL))
 		goto err;
-
+		
 	RAND_pseudo_bytes(digv, SHA_DIGEST_LENGTH);
 	EVP_MD_CTX_init(&ctxt);
 	EVP_DigestInit_ex(&ctxt, EVP_sha1(), NULL);
@@ -510,7 +513,7 @@ SRP_user_pwd *SRP_VBASE_get_by_user(SRP_VBASE *vb, char *username)
 	EVP_DigestUpdate(&ctxt, username, strlen(username));
 	EVP_DigestFinal_ex(&ctxt, digs, NULL);
 	EVP_MD_CTX_cleanup(&ctxt);
-	if (SRP_user_pwd_set_sv_BN(user, BN_bin2bn(digs,SHA_DIGEST_LENGTH,NULL), BN_bin2bn(digv,SHA_DIGEST_LENGTH, NULL)))
+	if (SRP_user_pwd_set_sv_BN(user, BN_bin2bn(digs,SHA_DIGEST_LENGTH,NULL), BN_bin2bn(digv,SHA_DIGEST_LENGTH, NULL))) 
 		return user;
 
 err:    SRP_user_pwd_free(user);
@@ -547,7 +550,7 @@ char *SRP_create_verifier(const char *user, const char *pass, char **salt,
 		defgNid = "*";
 		}
 	else
-		{
+		{ 
 		SRP_gN * gN = SRP_get_gN_by_id(g, NULL) ;
 		if (gN == NULL)
 			goto err;

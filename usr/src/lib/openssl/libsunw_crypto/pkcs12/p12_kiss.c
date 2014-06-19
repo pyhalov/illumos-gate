@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
+ *    notice, this list of conditions and the following disclaimer. 
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -197,7 +197,7 @@ static int parse_pk12(PKCS12 *p12, const char *pass, int passlen,
 			sk_PKCS7_pop_free(asafes, PKCS7_free);
 			return 0;
 		}
-		if (!parse_bags(bags, pass, passlen, pkey, ocerts)) {
+	    	if (!parse_bags(bags, pass, passlen, pkey, ocerts)) {
 			sk_PKCS12_SAFEBAG_pop_free(bags, PKCS12_SAFEBAG_free);
 			sk_PKCS7_pop_free(asafes, PKCS7_free);
 			return 0;
@@ -240,14 +240,14 @@ static int parse_bag(PKCS12_SAFEBAG *bag, const char *pass, int passlen,
 	{
 	case NID_keyBag:
 		if (!pkey || *pkey)
-			return 1;
+			return 1;	
 		if (!(*pkey = EVP_PKCS82PKEY(bag->value.keybag)))
 			return 0;
 	break;
 
 	case NID_pkcs8ShroudedKeyBag:
 		if (!pkey || *pkey)
-			return 1;
+			return 1;	
 		if (!(p8 = PKCS12_decrypt_skey(bag, pass, passlen)))
 				return 0;
 		*pkey = EVP_PKCS82PKEY(p8);
@@ -269,7 +269,7 @@ static int parse_bag(PKCS12_SAFEBAG *bag, const char *pass, int passlen,
 			int len, r;
 			unsigned char *data;
 			len = ASN1_STRING_to_UTF8(&data, fname);
-			if(len > 0) {
+			if(len >= 0) {
 				r = X509_alias_set1(x509, data, len);
 				OPENSSL_free(data);
 				if (!r)
@@ -290,7 +290,7 @@ static int parse_bag(PKCS12_SAFEBAG *bag, const char *pass, int passlen,
 
 	case NID_safeContentsBag:
 		return parse_bags(bag->value.safes, pass, passlen,
-					pkey, ocerts);
+			 		pkey, ocerts);
 	break;
 
 	default:
@@ -299,3 +299,4 @@ static int parse_bag(PKCS12_SAFEBAG *bag, const char *pass, int passlen,
 	}
 	return 1;
 }
+

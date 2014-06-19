@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
+ *    notice, this list of conditions and the following disclaimer. 
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -282,7 +282,7 @@ static RSA_PSS_PARAMS *rsa_pss_decode(const X509_ALGOR *alg,
 
 	if (!pss)
 		return NULL;
-
+	
 	if (pss->maskGenAlgorithm)
 		{
 		ASN1_TYPE *param = pss->maskGenAlgorithm->parameter;
@@ -298,7 +298,7 @@ static RSA_PSS_PARAMS *rsa_pss_decode(const X509_ALGOR *alg,
 	return pss;
 	}
 
-static int rsa_pss_param_print(BIO *bp, RSA_PSS_PARAMS *pss,
+static int rsa_pss_param_print(BIO *bp, RSA_PSS_PARAMS *pss, 
 				X509_ALGOR *maskHash, int indent)
 	{
 	int rv = 0;
@@ -358,7 +358,7 @@ static int rsa_pss_param_print(BIO *bp, RSA_PSS_PARAMS *pss,
 		if (i2a_ASN1_INTEGER(bp, pss->saltLength) <= 0)
 			goto err;
 		}
-	else if (BIO_puts(bp, "0x14 (default)") <= 0)
+	else if (BIO_puts(bp, "14 (default)") <= 0)
 		goto err;
 	BIO_puts(bp, "\n");
 
@@ -374,7 +374,7 @@ static int rsa_pss_param_print(BIO *bp, RSA_PSS_PARAMS *pss,
 	else if (BIO_puts(bp, "BC (default)") <= 0)
 		goto err;
 	BIO_puts(bp, "\n");
-
+	
 	rv = 1;
 
 	err:
@@ -451,8 +451,8 @@ static int rsa_pkey_ctrl(EVP_PKEY *pkey, int op, long arg1, void *arg2)
 
 	}
 
-/* Customised RSA item verification routine. This is called
- * when a signature is encountered requiring special handling. We
+/* Customised RSA item verification routine. This is called 
+ * when a signature is encountered requiring special handling. We 
  * currently only handle PSS.
  */
 
@@ -565,7 +565,7 @@ static int rsa_item_verify(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn,
 	}
 
 static int rsa_item_sign(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn,
-				X509_ALGOR *alg1, X509_ALGOR *alg2,
+				X509_ALGOR *alg1, X509_ALGOR *alg2, 
 				ASN1_BIT_STRING *sig)
 	{
 	int pad_mode;
@@ -652,12 +652,12 @@ static int rsa_item_sign(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *asn,
 		if (os1)
 			ASN1_STRING_free(os1);
 		return rv;
-
+		
 		}
 	return 2;
 	}
 
-const EVP_PKEY_ASN1_METHOD rsa_asn1_meths[] =
+const EVP_PKEY_ASN1_METHOD rsa_asn1_meths[] = 
 	{
 		{
 		EVP_PKEY_RSA,

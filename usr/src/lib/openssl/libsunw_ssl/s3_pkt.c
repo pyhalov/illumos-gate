@@ -5,21 +5,21 @@
  * This package is an SSL implementation written
  * by Eric Young (eay@cryptsoft.com).
  * The implementation was written so as to conform with Netscapes SSL.
- *
+ * 
  * This library is free for commercial and non-commercial use as long as
  * the following conditions are aheared to.  The following conditions
  * apply to all code found in this distribution, be it the RC4, RSA,
  * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
  * included with this distribution is covered by the same copyright terms
  * except that the holder is Tim Hudson (tjh@cryptsoft.com).
- *
+ * 
  * Copyright remains Eric Young's, and as such any Copyright notices in
  * the code are not to be removed.
  * If this package is used in a product, Eric Young should be given attribution
  * as the author of the parts of the library used.
  * This can be in the form of a textual message at program startup or
  * in documentation (online or textual) provided with the package.
- *
+ * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -34,10 +34,10 @@
  *     Eric Young (eay@cryptsoft.com)"
  *    The word 'cryptographic' can be left out if the rouines from the library
  *    being used are not cryptographic related :-).
- * 4. If you include any Windows specific code (or a derivative thereof) from
+ * 4. If you include any Windows specific code (or a derivative thereof) from 
  *    the apps directory (application code) you must include an acknowledgement:
  *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
- *
+ * 
  * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -49,7 +49,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- *
+ * 
  * The licence and distribution terms for any publically available version or
  * derivative of this code cannot be changed.  i.e. this code cannot simply be
  * copied and put under another distribution licence
@@ -63,7 +63,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
+ *    notice, this list of conditions and the following disclaimer. 
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -110,6 +110,7 @@
  */
 
 #include <stdio.h>
+#include <limits.h>
 #include <errno.h>
 #define USE_SOCKETS
 #include "ssl_locl.h"
@@ -311,7 +312,7 @@ static int ssl3_get_record(SSL *s)
 again:
 	/* check if we have the header */
 	if (	(s->rstate != SSL_ST_READ_BODY) ||
-		(s->packet_length < SSL3_RT_HEADER_LENGTH))
+		(s->packet_length < SSL3_RT_HEADER_LENGTH)) 
 		{
 		n=ssl3_read_n(s, SSL3_RT_HEADER_LENGTH, s->s3->rbuf.len, 0);
 		if (n <= 0) return(n); /* error or non-blocking */
@@ -336,7 +337,7 @@ fprintf(stderr, "Record type=%d, Length=%d\n", rr->type, rr->length);
 				{
 				SSLerr(SSL_F_SSL3_GET_RECORD,SSL_R_WRONG_VERSION_NUMBER);
                                 if ((s->version & 0xFF00) == (version & 0xFF00) && !s->enc_write_ctx && !s->write_hash)
-					/* Send back error using their minor version number :-) */
+                                	/* Send back error using their minor version number :-) */
 					s->version = (unsigned short)version;
 				al=SSL_AD_PROTOCOL_VERSION;
 				goto f_err;
@@ -383,7 +384,7 @@ fprintf(stderr, "Record type=%d, Length=%d\n", rr->type, rr->length);
 	 * need to be copied into rr->data by either
 	 * the decryption or by the decompression
 	 * When the data is 'copied' into the rr->data buffer,
-	 * rr->input will be pointed at the new buffer */
+	 * rr->input will be pointed at the new buffer */ 
 
 	/* We now have - encrypted [ MAC [ compressed [ plain ] ] ]
 	 * rr->length bytes of encrypted compressed stuff. */
@@ -580,10 +581,11 @@ int ssl3_do_compress(SSL *ssl)
 int ssl3_write_bytes(SSL *s, int type, const void *buf_, int len)
 	{
 	const unsigned char *buf=buf_;
-	unsigned int tot,n,nw;
-	int i;
+	unsigned int n,nw;
+	int i,tot;
 
 	s->rwstate=SSL_NOTHING;
+	OPENSSL_assert(s->s3->wnum <= INT_MAX);
 	tot=s->s3->wnum;
 	s->s3->wnum=0;
 
@@ -597,6 +599,22 @@ int ssl3_write_bytes(SSL *s, int type, const void *buf_, int len)
 			return -1;
 			}
 		}
+
+	/* ensure that if we end up with a smaller value of data to write
+	 * out than the the original len from a write which didn't complete
+	 * for non-blocking I/O and also somehow ended up avoiding
+	 * the check for this in ssl3_write_pending/SSL_R_BAD_WRITE_RETRY as
+	 * it must never be possible to end up with (len-tot) as a large
+	 * number that will then promptly send beyond the end of the users
+	 * buffer ... so we trap and report the error in a way the user
+	 * will notice
+	 */
+	if (len < tot)
+		{
+		SSLerr(SSL_F_SSL3_WRITE_BYTES,SSL_R_BAD_LENGTH);
+		return(-1);
+		}
+
 
 	n=(len-tot);
 	for (;;)
@@ -620,7 +638,7 @@ int ssl3_write_bytes(SSL *s, int type, const void *buf_, int len)
 			/* next chunk of data should get another prepended empty fragment
 			 * in ciphersuites with known-IV weakness: */
 			s->s3->empty_fragment_done = 0;
-
+			
 			return tot+i;
 			}
 
@@ -641,9 +659,6 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 	SSL3_BUFFER *wb=&(s->s3->wbuf);
 	SSL_SESSION *sess;
 
-	if (wb->buf == NULL)
-		if (!ssl3_setup_write_buffer(s))
-			return -1;
 
 	/* first check if there is a SSL3_BUFFER still being written
 	 * out.  This will happen with non blocking IO */
@@ -658,6 +673,10 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 			return(i);
 		/* if it went, fall through and send more stuff */
 		}
+
+	if (wb->buf == NULL)
+		if (!ssl3_setup_write_buffer(s))
+			return -1;
 
 	if (len == 0 && !create_empty_fragment)
 		return 0;
@@ -707,7 +726,7 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 				goto err;
 				}
 			}
-
+		
 		s->s3->empty_fragment_done = 1;
 		}
 
@@ -755,7 +774,7 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 		*(p++)=s->version&0xff;
 
 	/* field where we are to write out packet length */
-	plen=p;
+	plen=p; 
 	p+=2;
 	/* Explicit IV length, block ciphers and TLS version 1.1 or later */
 	if (s->enc_write_ctx && s->version >= TLS1_1_VERSION)
@@ -773,7 +792,7 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 		else
 			eivlen = 0;
 		}
-	else
+	else 
 		eivlen = 0;
 
 	/* lets setup the record stuff. */
@@ -1055,7 +1074,7 @@ start:
 				{
 				s->rstate=SSL_ST_READ_HEADER;
 				rr->off=0;
-				if (s->mode & SSL_MODE_RELEASE_BUFFERS)
+				if (s->mode & SSL_MODE_RELEASE_BUFFERS && s->s3->rbuf.left == 0)
 					ssl3_release_read_buffer(s);
 				}
 			}
@@ -1185,13 +1204,13 @@ start:
 	 */
 	if (s->server &&
 		SSL_is_init_finished(s) &&
-		!s->s3->send_connection_binding &&
+    		!s->s3->send_connection_binding &&
 		(s->version > SSL3_VERSION) &&
 		(s->s3->handshake_fragment_len >= 4) &&
 		(s->s3->handshake_fragment[0] == SSL3_MT_CLIENT_HELLO) &&
 		(s->session != NULL) && (s->session->cipher != NULL) &&
 		!(s->ctx->options & SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION))
-
+		
 		{
 		/*s->s3->handshake_fragment_len = 0;*/
 		rr->length = 0;
@@ -1296,6 +1315,7 @@ start:
 			SSLerr(SSL_F_SSL3_READ_BYTES,SSL_R_CCS_RECEIVED_EARLY);
 			goto f_err;
 			}
+
 		if (!(s->s3->flags & SSL3_FLAGS_CCS_OK))
 			{
 			al=SSL_AD_UNEXPECTED_MESSAGE;

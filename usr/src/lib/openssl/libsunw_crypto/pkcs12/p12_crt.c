@@ -10,7 +10,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
+ *    notice, this list of conditions and the following disclaimer. 
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -96,7 +96,11 @@ PKCS12 *PKCS12_create(char *pass, char *name, EVP_PKEY *pkey, X509 *cert,
 			nid_cert = NID_pbe_WithSHA1And3_Key_TripleDES_CBC;
 		else
 #endif
+#ifdef OPENSSL_NO_RC2
+		nid_cert = NID_pbe_WithSHA1And3_Key_TripleDES_CBC;
+#else
 		nid_cert = NID_pbe_WithSHA1And40BitRC2_CBC;
+#endif
 		}
 	if (!nid_key)
 		nid_key = NID_pbe_WithSHA1And3_Key_TripleDES_CBC;
@@ -286,7 +290,11 @@ int PKCS12_add_safe(STACK_OF(PKCS7) **psafes, STACK_OF(PKCS12_SAFEBAG) *bags,
 		free_safes = 0;
 
 	if (nid_safe == 0)
+#ifdef OPENSSL_NO_RC2
+		nid_safe = NID_pbe_WithSHA1And3_Key_TripleDES_CBC;
+#else
 		nid_safe = NID_pbe_WithSHA1And40BitRC2_CBC;
+#endif
 
 	if (nid_safe == -1)
 		p7 = PKCS12_pack_p7data(bags);
@@ -327,7 +335,7 @@ static int pkcs12_add_bag(STACK_OF(PKCS12_SAFEBAG) **pbags, PKCS12_SAFEBAG *bag)
 			return 0;
 		free_bags = 1;
 		}
-	else
+	else 
 		free_bags = 0;
 
 	if (!sk_PKCS12_SAFEBAG_push(*pbags, bag))
@@ -343,7 +351,7 @@ static int pkcs12_add_bag(STACK_OF(PKCS12_SAFEBAG) **pbags, PKCS12_SAFEBAG *bag)
 	return 1;
 
 	}
-
+		
 
 PKCS12 *PKCS12_add_safes(STACK_OF(PKCS7) *safes, int nid_p7)
 	{

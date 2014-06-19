@@ -5,21 +5,21 @@
  * This package is an SSL implementation written
  * by Eric Young (eay@cryptsoft.com).
  * The implementation was written so as to conform with Netscapes SSL.
- *
+ * 
  * This library is free for commercial and non-commercial use as long as
  * the following conditions are aheared to.  The following conditions
  * apply to all code found in this distribution, be it the RC4, RSA,
  * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
  * included with this distribution is covered by the same copyright terms
  * except that the holder is Tim Hudson (tjh@cryptsoft.com).
- *
+ * 
  * Copyright remains Eric Young's, and as such any Copyright notices in
  * the code are not to be removed.
  * If this package is used in a product, Eric Young should be given attribution
  * as the author of the parts of the library used.
  * This can be in the form of a textual message at program startup or
  * in documentation (online or textual) provided with the package.
- *
+ * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -34,10 +34,10 @@
  *     Eric Young (eay@cryptsoft.com)"
  *    The word 'cryptographic' can be left out if the rouines from the library
  *    being used are not cryptographic related :-).
- * 4. If you include any Windows specific code (or a derivative thereof) from
+ * 4. If you include any Windows specific code (or a derivative thereof) from 
  *    the apps directory (application code) you must include an acknowledgement:
  *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
- *
+ * 
  * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -49,7 +49,7 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- *
+ * 
  * The licence and distribution terms for any publically available version or
  * derivative of this code cannot be changed.  i.e. this code cannot simply be
  * copied and put under another distribution licence
@@ -289,7 +289,7 @@ int i2d_SSL_SESSION(SSL_SESSION *in, unsigned char **pp)
 	M_ASN1_I2D_len(&(a.master_key),		i2d_ASN1_OCTET_STRING);
 #ifndef OPENSSL_NO_KRB5
 	if (in->krb5_client_princ_len)
-		M_ASN1_I2D_len(&(a.krb5_princ),	i2d_ASN1_OCTET_STRING);
+        	M_ASN1_I2D_len(&(a.krb5_princ),	i2d_ASN1_OCTET_STRING);
 #endif /* OPENSSL_NO_KRB5 */
 	if (in->key_arg_length > 0)
 		M_ASN1_I2D_len_IMP_opt(&(a.key_arg),i2d_ASN1_OCTET_STRING);
@@ -305,25 +305,25 @@ int i2d_SSL_SESSION(SSL_SESSION *in, unsigned char **pp)
 
 #ifndef OPENSSL_NO_TLSEXT
 	if (in->tlsext_tick_lifetime_hint > 0)
-		M_ASN1_I2D_len_EXP_opt(&a.tlsext_tick_lifetime, i2d_ASN1_INTEGER,9,v9);
+      	 	M_ASN1_I2D_len_EXP_opt(&a.tlsext_tick_lifetime, i2d_ASN1_INTEGER,9,v9);
 	if (in->tlsext_tick)
-		M_ASN1_I2D_len_EXP_opt(&(a.tlsext_tick), i2d_ASN1_OCTET_STRING,10,v10);
+        	M_ASN1_I2D_len_EXP_opt(&(a.tlsext_tick), i2d_ASN1_OCTET_STRING,10,v10);
 	if (in->tlsext_hostname)
-		M_ASN1_I2D_len_EXP_opt(&(a.tlsext_hostname), i2d_ASN1_OCTET_STRING,6,v6);
+        	M_ASN1_I2D_len_EXP_opt(&(a.tlsext_hostname), i2d_ASN1_OCTET_STRING,6,v6);
 #ifndef OPENSSL_NO_COMP
 	if (in->compress_meth)
-		M_ASN1_I2D_len_EXP_opt(&(a.comp_id), i2d_ASN1_OCTET_STRING,11,v11);
+        	M_ASN1_I2D_len_EXP_opt(&(a.comp_id), i2d_ASN1_OCTET_STRING,11,v11);
 #endif
 #endif /* OPENSSL_NO_TLSEXT */
 #ifndef OPENSSL_NO_PSK
 	if (in->psk_identity_hint)
-		M_ASN1_I2D_len_EXP_opt(&(a.psk_identity_hint), i2d_ASN1_OCTET_STRING,7,v7);
+        	M_ASN1_I2D_len_EXP_opt(&(a.psk_identity_hint), i2d_ASN1_OCTET_STRING,7,v7);
 	if (in->psk_identity)
-		M_ASN1_I2D_len_EXP_opt(&(a.psk_identity), i2d_ASN1_OCTET_STRING,8,v8);
+        	M_ASN1_I2D_len_EXP_opt(&(a.psk_identity), i2d_ASN1_OCTET_STRING,8,v8);
 #endif /* OPENSSL_NO_PSK */
 #ifndef OPENSSL_NO_SRP
 	if (in->srp_username)
-		M_ASN1_I2D_len_EXP_opt(&(a.srp_username), i2d_ASN1_OCTET_STRING,12,v12);
+        	M_ASN1_I2D_len_EXP_opt(&(a.srp_username), i2d_ASN1_OCTET_STRING,12,v12);
 #endif /* OPENSSL_NO_SRP */
 
 	M_ASN1_I2D_seq_total();
@@ -335,7 +335,7 @@ int i2d_SSL_SESSION(SSL_SESSION *in, unsigned char **pp)
 	M_ASN1_I2D_put(&(a.master_key),		i2d_ASN1_OCTET_STRING);
 #ifndef OPENSSL_NO_KRB5
 	if (in->krb5_client_princ_len)
-		M_ASN1_I2D_put(&(a.krb5_princ),	i2d_ASN1_OCTET_STRING);
+        	M_ASN1_I2D_put(&(a.krb5_princ),	i2d_ASN1_OCTET_STRING);
 #endif /* OPENSSL_NO_KRB5 */
 	if (in->key_arg_length > 0)
 		M_ASN1_I2D_put_IMP_opt(&(a.key_arg),i2d_ASN1_OCTET_STRING,0);
@@ -351,7 +351,7 @@ int i2d_SSL_SESSION(SSL_SESSION *in, unsigned char **pp)
 		M_ASN1_I2D_put_EXP_opt(&a.verify_result,i2d_ASN1_INTEGER,5,v5);
 #ifndef OPENSSL_NO_TLSEXT
 	if (in->tlsext_hostname)
-		M_ASN1_I2D_put_EXP_opt(&(a.tlsext_hostname), i2d_ASN1_OCTET_STRING,6,v6);
+        	M_ASN1_I2D_put_EXP_opt(&(a.tlsext_hostname), i2d_ASN1_OCTET_STRING,6,v6);
 #endif /* OPENSSL_NO_TLSEXT */
 #ifndef OPENSSL_NO_PSK
 	if (in->psk_identity_hint)
@@ -361,13 +361,13 @@ int i2d_SSL_SESSION(SSL_SESSION *in, unsigned char **pp)
 #endif /* OPENSSL_NO_PSK */
 #ifndef OPENSSL_NO_TLSEXT
 	if (in->tlsext_tick_lifetime_hint > 0)
-		M_ASN1_I2D_put_EXP_opt(&a.tlsext_tick_lifetime, i2d_ASN1_INTEGER,9,v9);
+      	 	M_ASN1_I2D_put_EXP_opt(&a.tlsext_tick_lifetime, i2d_ASN1_INTEGER,9,v9);
 	if (in->tlsext_tick)
-		M_ASN1_I2D_put_EXP_opt(&(a.tlsext_tick), i2d_ASN1_OCTET_STRING,10,v10);
+        	M_ASN1_I2D_put_EXP_opt(&(a.tlsext_tick), i2d_ASN1_OCTET_STRING,10,v10);
 #endif /* OPENSSL_NO_TLSEXT */
 #ifndef OPENSSL_NO_COMP
 	if (in->compress_meth)
-		M_ASN1_I2D_put_EXP_opt(&(a.comp_id), i2d_ASN1_OCTET_STRING,11,v11);
+        	M_ASN1_I2D_put_EXP_opt(&(a.comp_id), i2d_ASN1_OCTET_STRING,11,v11);
 #endif
 #ifndef OPENSSL_NO_SRP
 	if (in->srp_username)
@@ -408,6 +408,7 @@ SSL_SESSION *d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp,
 		if (os.length != 3)
 			{
 			c.error=SSL_R_CIPHER_CODE_WRONG_LENGTH;
+			c.line=__LINE__;
 			goto err;
 			}
 		id=0x02000000L|
@@ -420,6 +421,7 @@ SSL_SESSION *d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp,
 		if (os.length != 2)
 			{
 			c.error=SSL_R_CIPHER_CODE_WRONG_LENGTH;
+			c.line=__LINE__;
 			goto err;
 			}
 		id=0x03000000L|
@@ -429,9 +431,10 @@ SSL_SESSION *d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp,
 	else
 		{
 		c.error=SSL_R_UNKNOWN_SSL_VERSION;
+		c.line=__LINE__;
 		goto err;
 		}
-
+	
 	ret->cipher=NULL;
 	ret->cipher_id=id;
 
@@ -464,8 +467,8 @@ SSL_SESSION *d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp,
 	M_ASN1_D2I_get_opt(osp,d2i_ASN1_OCTET_STRING,V_ASN1_OCTET_STRING);
 	if (os.data)
 		{
-		if (os.length > SSL_MAX_KRB5_PRINCIPAL_LENGTH)
-			ret->krb5_client_princ_len=0;
+        	if (os.length > SSL_MAX_KRB5_PRINCIPAL_LENGTH)
+            		ret->krb5_client_princ_len=0;
 		else
 			ret->krb5_client_princ_len=os.length;
 		memcpy(ret->krb5_client_princ,os.data,ret->krb5_client_princ_len);
@@ -521,6 +524,7 @@ SSL_SESSION *d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp,
 	    if (os.length > SSL_MAX_SID_CTX_LENGTH)
 		{
 		c.error=SSL_R_BAD_LENGTH;
+		c.line=__LINE__;
 		goto err;
 		}
 	    else

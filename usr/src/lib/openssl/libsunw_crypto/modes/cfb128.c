@@ -6,7 +6,7 @@
  * are met:
  *
  * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
+ *    notice, this list of conditions and the following disclaimer. 
  *
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in
@@ -127,7 +127,7 @@ void CRYPTO_cfb128_encrypt(const unsigned char *in, unsigned char *out,
 			*(out++) = ivec[n] ^ (c = *(in++)); ivec[n] = c;
 			--len;
 			n = (n+1) % 16;
-		}
+ 		}
 #if defined(STRICT_ALIGNMENT)
 		if (((size_t)in|(size_t)out|(size_t)ivec)%sizeof(size_t) != 0)
 			break;
@@ -151,7 +151,7 @@ void CRYPTO_cfb128_encrypt(const unsigned char *in, unsigned char *out,
 				out[n] = ivec[n] ^ (c = in[n]); ivec[n] = c;
 				++n;
 			}
-		}
+ 		}
 		*num = n;
 		return;
 	} while (0);
@@ -207,7 +207,7 @@ static void cfbr_encrypt_block(const unsigned char *in,unsigned char *out,
 
 /* N.B. This expects the input to be packed, MS bit first */
 void CRYPTO_cfb128_1_encrypt(const unsigned char *in, unsigned char *out,
-			size_t bits, const void *key,
+		 	size_t bits, const void *key,
 			unsigned char ivec[16], int *num,
 			int enc, block128_f block)
 {
@@ -239,3 +239,4 @@ void CRYPTO_cfb128_8_encrypt(const unsigned char *in, unsigned char *out,
     for(n=0 ; n<length ; ++n)
 	cfbr_encrypt_block(&in[n],&out[n],8,key,ivec,enc,block);
 }
+
