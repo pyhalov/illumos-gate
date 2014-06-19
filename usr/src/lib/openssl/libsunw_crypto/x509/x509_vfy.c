@@ -150,33 +150,6 @@ static int x509_subject_cmp(X509 **a, X509 **b)
 	}
 #endif
 
-/* Given a certificate try and find an exact match in the store */
-
-static X509 *lookup_cert_match(X509_STORE_CTX *ctx, X509 *x)
-	{
-	STACK_OF(X509) *certs;
-	X509 *xtmp = NULL;
-	int i;
-	/* Lookup all certs with matching subject name */
-	certs = ctx->lookup_certs(ctx, X509_get_subject_name(x));
-	if (certs == NULL)
-		return NULL;
-	/* Look for exact match */
-	for (i = 0; i < sk_X509_num(certs); i++)
-		{
-		xtmp = sk_X509_value(certs, i);
-		if (!X509_cmp(xtmp, x))
-			break;
-		}
-	if (i < sk_X509_num(certs))
-		CRYPTO_add(&xtmp->references,1,CRYPTO_LOCK_X509);
-	else
-		xtmp = NULL;
-	sk_X509_pop_free(certs, X509_free);
-	return xtmp;
-	}
-
-
 int X509_verify_cert(X509_STORE_CTX *ctx)
 	{
 	X509 *x,*xtmp,*chain_ss=NULL;
@@ -334,13 +307,8 @@ int X509_verify_cert(X509_STORE_CTX *ctx)
 
 	/* we now have our chain, lets check it... */
 
-	i = check_trust(ctx);
-
-	/* If explicitly rejected error */
-	if (i == X509_TRUST_REJECTED)
-		goto end;
-	/* If not explicitly trusted then indicate error */
-	if (i != X509_TRUST_TRUSTED)
+	/* Is last certificate looked up self signed? */
+	if (!ctx->check_issued(ctx,x,x))
 		{
 		if ((chain_ss == NULL) || !ctx->check_issued(ctx, x, chain_ss))
 			{
@@ -375,6 +343,12 @@ int X509_verify_cert(X509_STORE_CTX *ctx)
 	/* Check name constraints */
 
 	ok = check_name_constraints(ctx);
+
+	if (!ok) goto end;
+
+	/* The chain extensions are OK: check trust */
+
+	if (param->trust > 0) ok = check_trust(ctx);
 
 	if (!ok) goto end;
 
@@ -668,54 +642,28 @@ static int check_name_constraints(X509_STORE_CTX *ctx)
 
 static int check_trust(X509_STORE_CTX *ctx)
 {
+#ifdef OPENSSL_NO_CHAIN_VERIFY
+	return 1;
+#else
 	int i, ok;
-	X509 *x = NULL;
+	X509 *x;
 	int (*cb)(int xok,X509_STORE_CTX *xctx);
 	cb=ctx->verify_cb;
-	/* Check all trusted certificates in chain */
-	for (i = ctx->last_untrusted; i < sk_X509_num(ctx->chain); i++)
-		{
-		x = sk_X509_value(ctx->chain, i);
-		ok = X509_check_trust(x, ctx->param->trust, 0);
-		/* If explicitly trusted return trusted */
-		if (ok == X509_TRUST_TRUSTED)
-			return X509_TRUST_TRUSTED;
-		/* If explicitly rejected notify callback and reject if
-		 * not overridden.
-		 */
-		if (ok == X509_TRUST_REJECTED)
-			{
-			ctx->error_depth = i;
-			ctx->current_cert = x;
-			ctx->error = X509_V_ERR_CERT_REJECTED;
-			ok = cb(0, ctx);
-			if (!ok)
-				return X509_TRUST_REJECTED;
-			}
-		}
-	/* If we accept partial chains and have at least one trusted
-	 * certificate return success.
-	 */
-	if (ctx->param->flags & X509_V_FLAG_PARTIAL_CHAIN)
-		{
-		X509 *mx;
-		if (ctx->last_untrusted < sk_X509_num(ctx->chain))
-			return X509_TRUST_TRUSTED;
-		x = sk_X509_value(ctx->chain, 0);
-		mx = lookup_cert_match(ctx, x);
-		if (mx)
-			{
-			(void)sk_X509_set(ctx->chain, 0, mx);
-			X509_free(x);
-			ctx->last_untrusted = 0;
-			return X509_TRUST_TRUSTED;
-			}
-		}
-
-	/* If no trusted certs in chain at all return untrusted and
-	 * allow standard (no issuer cert) etc errors to be indicated.
-	 */
-	return X509_TRUST_UNTRUSTED;
+/* For now just check the last certificate in the chain */
+	i = sk_X509_num(ctx->chain) - 1;
+	x = sk_X509_value(ctx->chain, i);
+	ok = X509_check_trust(x, ctx->param->trust, 0);
+	if (ok == X509_TRUST_TRUSTED)
+		return 1;
+	ctx->error_depth = i;
+	ctx->current_cert = x;
+	if (ok == X509_TRUST_REJECTED)
+		ctx->error = X509_V_ERR_CERT_REJECTED;
+	else
+		ctx->error = X509_V_ERR_CERT_UNTRUSTED;
+	ok = cb(0, ctx);
+	return ok;
+#endif
 }
 
 static int check_revocation(X509_STORE_CTX *ctx)
@@ -1653,8 +1601,6 @@ static int internal_verify(X509_STORE_CTX *ctx)
 		xs=xi;
 	else
 		{
-		if (ctx->param->flags & X509_V_FLAG_PARTIAL_CHAIN && n == 0)
-			return check_cert_time(ctx, xi);
 		if (n <= 0)
 			{
 			ctx->error=X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE;
