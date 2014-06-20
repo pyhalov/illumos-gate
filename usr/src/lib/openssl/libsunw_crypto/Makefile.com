@@ -20,6 +20,7 @@
 #
 #
 # Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2014 Alexander Pyhalov
 # Use is subject to license terms.
 #
 
