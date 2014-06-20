@@ -746,7 +746,7 @@ all : $(LIBS)
 check_symbols: $(LIBS)
 	$(ELFDUMP) $(LIBS) | \
 		$(NAWK) '$$4=="FUNC" && $$5=="LOCL" && $$6=="H" && $$9!="_init" && $$9!="_fini" \
-			{ if (!match($$9,"sunw_*")) print $$9; }'
+			{ if (!match($$9,"^sunw_")) print $$9; }'
 
 lint :	lintcheck
 
