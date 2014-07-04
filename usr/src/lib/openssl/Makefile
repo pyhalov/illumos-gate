@@ -131,7 +131,7 @@ install install_h:	$(ROOTHDRS)
 $(SUBDIRS): FRC
 	@cd $@; pwd; $(MAKE) $(TARGET)
 
-check check_symbols: 
+check: 
 	@cd libsunw_ssl; pwd; $(MAKE) $@
 	@cd libsunw_crypto; pwd; $(MAKE) $@
 
