@@ -32,7 +32,7 @@ include ../../Makefile.lib
 
 LIBLINKS = 
 SRCDIR =	../common
-ROOTLIBDIR=	$(ROOT)/usr/lib/python2.6/vendor-packages/solaris
+ROOTLIBDIR=	$(ROOT)/usr/lib/python$(PYTHON_VERSION)/vendor-packages/solaris
 PYOBJS=		$(PYSRCS:%.py=$(SRCDIR)/%.pyc)
 PYFILES=	$(PYSRCS) $(PYSRCS:%.py=%.pyc)
 ROOTPYSOLFILES= $(PYFILES:%=$(ROOTLIBDIR)/%)
@@ -42,10 +42,10 @@ C99MODE=        -xc99=%all
 C99LMODE=       -Xc99=%all
 
 LIBS =		$(DYNLIB)
-LDLIBS +=	-lc -lsec -lidmap -lpython2.6
+LDLIBS +=	-lc -lsec -lidmap -lpython$(PYTHON_VERSION)
 CFLAGS +=	$(CCVERBOSE)
 CERRWARN +=	-_gcc=-Wno-unused-variable
-CPPFLAGS +=	-I$(ADJUNCT_PROTO)/usr/include/python2.6
+CPPFLAGS +=	-I$(ADJUNCT_PROTO)/usr/include/python$(PYTHON_VERSION)
 
 .KEEP_STATE:
 

@@ -1,4 +1,4 @@
-#! /usr/bin/python2.6 -S
+#! PYTHON
 #
 # CDDL HEADER START
 #

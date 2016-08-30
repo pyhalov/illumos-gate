@@ -23,17 +23,18 @@
 # Use is subject to license terms.
 #
 
-MODULE = libpython2.6.so
+MODULE = libpython$(PYTHON_VERSION).so
 MDBTGT = proc
 
-MODSRCS_DIR = ../../../common/modules/libpython2.6
+MODSRCS_DIR = ../../../common/modules/libpython
 
-MODSRCS = libpython26.c
+MODSRCS = libpython.c
 
 include ../../../../Makefile.cmd
-include ../../../../Makefile.cmd.64
-include ../../Makefile.sparcv9
+include ../../Makefile.ia32
 include ../../../Makefile.module
+
+%.o := CPPFLAGS +=	-_gcc=-isystem -_gcc=$(ADJUNCT_PROTO)/usr/include
 
 dmod/$(MODULE) := LDLIBS += -lproc
 

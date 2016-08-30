@@ -13,7 +13,7 @@
 # When distributing Covered Code, include this CDDL HEADER in each
 # file and include the License file at usr/src/OPENSOLARIS.LICENSE.
 # If applicable, add the following below this CDDL HEADER, with the
-# fields enclosed by brackets "[]" replaced with your own identifying
+# fields enclosed by brackets "7]" replaced with your own identifying
 # information: Portions Copyright [yyyy] [name of copyright owner]
 #
 # CDDL HEADER END
@@ -139,8 +139,8 @@ UNUSED_RPATH	/usr/postgres/8.3/lib.*\ from\ .*libpq\.so\.5
 UNUSED_RPATH	/usr/sfw/lib.*\ from\ .*libpq\.so\.5
 UNUSED_RPATH	/usr/lib.*\ from\ .*/usr/lib/mps
 UNUSED_RPATH	/usr/ccs/lib.*\ from\ .*/usr/lib/mps
-UNUSED_RPATH	/usr/gnu/lib.*\ from\ .*/usr/lib/libpython2\.6
-UNUSED_RPATH	/usr/gnu/lib.*\ from\ .*/usr/lib/64/libpython2\.6
+UNUSED_RPATH	/usr/gnu/lib.*\ from\ .*/usr/lib/libpython2\..
+UNUSED_RPATH	/usr/gnu/lib.*\ from\ .*/usr/lib/64/libpython2\..
 UNUSED_RPATH	/usr/snadm/lib.*\ from\ .*/usr/snadm/lib/libspmicommon\.so\.1
 
 
