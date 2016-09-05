@@ -119,7 +119,7 @@ EXCEPTFILES= \
 CLEANFILES = $(SHFILES) $(PERLFILES) $(PYFILES) bldenv.1onbld onu.sh
 
 onu.sh:	onu.sh.in
-	$(SED) -e "s:PYTHON_VERSION:$(PYTHON_VERSION):g" $< > $@
+	$(SED) -e "s:PYTHON_VERSION:$(PYTHON_VERSION):g" < onu.sh.in > $@
 
 include ../Makefile.tools
 
