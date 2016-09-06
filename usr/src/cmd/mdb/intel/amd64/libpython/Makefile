@@ -23,8 +23,11 @@
 # Use is subject to license terms.
 #
 
+include $(SRC)/Makefile.master
+
 MODULE = libpython$(PYTHON_VERSION).so
 MDBTGT = proc
+MODULE_NAME = libpython
 
 MODSRCS_DIR = ../../../common/modules/libpython
 
