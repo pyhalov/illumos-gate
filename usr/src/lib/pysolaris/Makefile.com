@@ -36,7 +36,6 @@ ROOTLIBDIR=	$(ROOT)/usr/lib/python$(PYTHON_VERSION)/vendor-packages/solaris
 PYOBJS=		$(PYSRCS:%.py=$(SRCDIR)/%.pyc)
 PYFILES=	$(PYSRCS) $(PYSRCS:%.py=%.pyc)
 ROOTPYSOLFILES= $(PYFILES:%=$(ROOTLIBDIR)/%)
-PYTHON=		$(PYTHON_26)
 
 C99MODE=        -xc99=%all
 C99LMODE=       -Xc99=%all
