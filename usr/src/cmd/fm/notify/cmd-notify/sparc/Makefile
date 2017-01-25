@@ -23,10 +23,5 @@
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
-SUBDIRS = \
-	smtp-notify \
-	snmp-notify \
-	cmd-notify
-
-include ./Makefile.subdirs
-include ../../Makefile.cmd
+include ../../../../Makefile.cmd
+include ../Makefile.com

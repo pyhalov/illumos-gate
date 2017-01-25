@@ -23,10 +23,6 @@
 # Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
 #
 
-SUBDIRS = \
-	smtp-notify \
-	snmp-notify \
-	cmd-notify
+SUBDIRS = $(MACH)
 
-include ./Makefile.subdirs
-include ../../Makefile.cmd
+include ../Makefile.subdirs

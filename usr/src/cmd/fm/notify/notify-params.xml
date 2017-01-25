@@ -68,6 +68,11 @@
 
 		<notification_parameters>
 			<event value='problem-diagnosed' />
+			<type name='cmd' active='true'>
+				<paramval name='script'
+				    value='/usr/lib/fm/notify/notify-script.sh' />
+				<paramval name='user' value='nobody' />
+			</type>
 			<type name='smtp' active='true'>
 				<paramval name='to' value='root@localhost' />
 				<paramval name='reply-to'
