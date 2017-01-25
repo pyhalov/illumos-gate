@@ -29,17 +29,12 @@
 #include <fm/libfmevent.h>
 #include <pwd.h>
 #include <errno.h>
-#include <locale.h>
-#include <netdb.h>
 #include <signal.h>
 #include <strings.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
-#include <alloca.h>
-#include <priv_utils.h>
 #include <unistd.h>
-#include <zone.h>
 #include "libfmnotify.h"
 
 #define TIMEOUT 30000
