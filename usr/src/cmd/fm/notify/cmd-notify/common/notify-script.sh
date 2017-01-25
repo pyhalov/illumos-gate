@@ -15,4 +15,5 @@
 # Copyright 2017 Alexander Pyhalov
 #
 
-
+# Supported variables:
+# MSGID, DESC, FMRI, FROM_STATE, TO_STATE, REASON, URL, TIMESTAMP
