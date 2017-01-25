@@ -48,8 +48,7 @@ $(NOT_RELEASE_BUILD)CPPFLAGS += -DDEBUG
 CPPFLAGS += -I. -I../common -I../../../../../lib/fm/libfmnotify/common
 C99MODE	= $(C99_ENABLE)
 CFLAGS += $(CTF_FLAGS) $(CCVERBOSE) $(XSTRCONST)
-LDLIBS += -L$(ROOT)/usr/lib/fm -lnvpair -lfmevent -lfmd_msg -lfmnotify \
-	-lumem
+LDLIBS += -L$(ROOT)/usr/lib/fm -lnvpair -lfmevent -lfmnotify -lumem
 LDFLAGS += -R/usr/lib/fm
 LINTFLAGS += -mnu
 
