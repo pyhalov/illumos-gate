@@ -416,6 +416,10 @@ main(int argc, char *argv[])
 		nd_abort(nhdl, "failed to initialize libfmevent: %s",
 		    fmev_strerror(fmev_errno));
 	}
+	
+	nhdl->nh_msghdl = fmd_msg_init(nhdl->nh_rootdir, FMD_MSG_VERSION);
+	if (nhdl->nh_msghdl == NULL)
+		nd_abort(nhdl, "failed to initialize libfmd_msg");
 
 	/*
 	 * Set up our event subscriptions.  We subscribe to everything and then
