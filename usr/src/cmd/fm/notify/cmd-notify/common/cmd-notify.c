@@ -37,9 +37,9 @@
 #include <unistd.h>
 #include "libfmnotify.h"
 
-#define TIMEOUT 30000
-#define MAXTIMESIZE 21
-#define TIMEFORMAT "%Y-%m-%d %H:%M:%S"
+#define	TIMEOUT	30000
+#define	MAXTIMESIZE	21
+#define	TIMEFORMAT	"%Y-%m-%d %H:%M:%S"
 
 /*
  * Debug messages can be enabled by setting the debug property to true
@@ -69,7 +69,8 @@ static char user[LOGIN_NAME_MAX + 1];
 static int
 usage(const char *pname)
 {
-	(void) fprintf(stderr, "Usage: %s [-df] [-R <altroot>] [-S <script>]\n", pname);
+	(void) fprintf(stderr,
+	    "Usage: %s [-df] [-R <altroot>] [-S <script>]\n", pname);
 
 	(void) fprintf(stderr,
 	    "\t-d  enable debug mode\n"
@@ -114,28 +115,31 @@ get_cmd_prefs(nd_hdl_t *nhdl, nvlist_t **pref_nvl, uint_t npref)
 {
 	boolean_t *a1, *a2;
 	uint_t n, n1, n2;
-        char **u, **s;
+	char **u, **s;
 	int r;
 
 	/*
 	 * For SMF state transition events, pref_nvl contain two sets of
 	 * preferences, which will have to be merged.
-	 * 
 	 * The "cmd" nvlist currently only supports:
-         * -  a single boolean member, "active" which will be set to true,
-         *    if it is true in either set;
-         * -  "user" property, determining what user id should be used to
-         *    run script;
-         * -  "script" property, a path to script to be run.
-         * "active" will be set to true, if it is true in either set;
-         * other properties will be taken from the first set.
+	 *
+	 * 1) "active" property, which will be set to true,
+	 * if it is true in either set;
+	 *
+	 * 2) "user" property, determining what user id should be used to
+	 * run script;
+	 *
+	 * 3) "script" property, a path to script to be run.
+	 *
+	 * "active" will be set to true, if it is true in either set;
+	 * other properties will be taken from the first set.
 	 */
-	
+
 	r = nvlist_lookup_boolean_array(pref_nvl[0], "active", &a1, &n);
-        if (npref == 2) {
+	if (npref == 2) {
 		r += nvlist_lookup_boolean_array(pref_nvl[1], "active", &a2,
 		    &n);
-        }
+	}
 
 	r += nvlist_lookup_string_array(pref_nvl[0], "user", &u, &n1);
 	r += nvlist_lookup_string_array(pref_nvl[0], "script", &s, &n2);
@@ -150,8 +154,8 @@ get_cmd_prefs(nd_hdl_t *nhdl, nvlist_t **pref_nvl, uint_t npref)
 		return (-1);
 	}
 
-	(void) strncpy(user,u[0],LOGIN_NAME_MAX);
-	(void) strncpy(script,s[0],PATH_MAX);
+	(void) strncpy(user, u[0], LOGIN_NAME_MAX);
+	(void) strncpy(script, s[0], PATH_MAX);
 	return (0);
 }
 
@@ -159,7 +163,7 @@ static void
 call_handler_script(notify_env_t *t)
 {
 	pid_t pid;
-	
+
 	pid = fork();
 	if (pid == 0) {
 		char tstamp[MAXTIMESIZE];
@@ -168,14 +172,15 @@ call_handler_script(notify_env_t *t)
 		struct passwd *pw;
 
 		if (!(pw = getpwnam(user))) {
-			nd_debug(nhdl, "failed to get user properties for %s", user);
-			return ;
+			nd_debug(nhdl, "failed to get user properties for %s",
+			    user);
+			return;
 		}
 
 		uid = pw->pw_uid;
 		gid = pw->pw_uid;
-		
-		 if (setgid(gid)) {
+
+		if (setgid(gid)) {
 			nd_debug(nhdl, "Couldn't set gid to %d", gid);
 			return;
 		}
@@ -184,25 +189,27 @@ call_handler_script(notify_env_t *t)
 			nd_debug(nhdl, "Couldn't set uid to %d", uid);
 			return;
 		}
-		
+
 		(void) setenv("CLASS", t->class ? t->class: "", 1);
 		(void) setenv("MSGID", t->msgid ? t->msgid: "", 1);
 		(void) setenv("SEVERITY", t->severity ? t->severity: "", 1);
 		(void) setenv("DESC", t->desc ? t->desc: "", 1);
 		(void) setenv("FMRI", t->fmri ? t->fmri: "", 1);
-		(void) setenv("FROM_STATE", t->from_state ? t->from_state: "", 1);
+		(void) setenv("FROM_STATE",
+		    t->from_state ? t->from_state: "", 1);
 		(void) setenv("TO_STATE", t->to_state ? t->to_state: "", 1);
 		(void) setenv("REASON", t->reason ? t->reason: "", 1);
 		(void) setenv("URL", t->url ? t->url: "", 1);
 
-		(void) strftime(tstamp, MAXTIMESIZE, TIMEFORMAT, localtime(&(t->tstamp)));
+		(void) strftime(tstamp, MAXTIMESIZE, TIMEFORMAT,
+		    localtime(&(t->tstamp)));
 		(void) setenv("TIMESTAMP", tstamp, 1);
 		(void) execl(script, script, NULL);
 		nd_debug(nhdl, "Couldn't exec sctipt");
-	} else if (pid>0) {
+	} else if (pid > 0) {
 		int ret;
 		time_t t, cur;
-		
+
 		(void) time(&t);
 		(void) time(&cur);
 		while (waitpid(pid, &ret, WNOHANG) != pid &&
@@ -259,8 +266,8 @@ ireport_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 
 	if (strncmp(class, "ireport.os.smf", 14) == 0) {
 		nenv.fmri = ev_info->ei_fmri;
-		nenv.from_state=ev_info->ei_from_state;
-		nenv.to_state=ev_info->ei_to_state;
+		nenv.from_state = ev_info->ei_from_state;
+		nenv.to_state = ev_info->ei_to_state;
 		nenv.reason = ev_info->ei_reason;
 	}
 	call_handler_script(&nenv);
@@ -331,7 +338,7 @@ list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 		nenv.msgid = ev_info->ei_diagcode;
 		nenv.desc = ev_info->ei_descr;
 		nenv.tstamp = (time_t)fmev_time_sec(ev);
-		nenv.url=ev_info->ei_url;
+		nenv.url = ev_info->ei_url;
 		call_handler_script(&nenv);
 	} else
 		nd_error(nhdl, "failed to format url for %s", uuid);
@@ -421,7 +428,7 @@ main(int argc, char *argv[])
 		nd_abort(nhdl, "failed to initialize libfmevent: %s",
 		    fmev_strerror(fmev_errno));
 	}
-	
+
 	nhdl->nh_msghdl = fmd_msg_init(nhdl->nh_rootdir, FMD_MSG_VERSION);
 	if (nhdl->nh_msghdl == NULL)
 		nd_abort(nhdl, "failed to initialize libfmd_msg");
