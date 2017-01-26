@@ -339,7 +339,9 @@ list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 		nenv.class = (char *) ev_info->ei_class;
 		nenv.severity = (char *)ev_info->ei_severity;
 		nenv.msgid = ev_info->ei_diagcode;
-		nenv.desc = ev_info->ei_descr;
+		if ((nenv.desc = fmd_msg_decode_tokens(ev_info->ei_payload,
+		    ev_info->ei_descr, ev_info->ei_url)) == NULL)
+			nenv.desc = ev_info->ei_descr;
 		nenv.tstamp = (time_t)fmev_time_sec(ev);
 		nenv.url = ev_info->ei_url;
 		call_handler_script(&nenv);
