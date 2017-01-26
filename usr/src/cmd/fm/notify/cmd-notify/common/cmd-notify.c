@@ -49,6 +49,7 @@
 #define	SVCNAME		"system/fm/cmd-notify"
 
 typedef struct notify_env {
+	char *uuid;
 	char *class;
 	char *severity;
 	char *msgid;
@@ -190,6 +191,7 @@ call_handler_script(notify_env_t *t)
 			return;
 		}
 
+		(void) setenv("UUID", t->uuid ? t->uuid: "", 1);
 		(void) setenv("CLASS", t->class ? t->class: "", 1);
 		(void) setenv("MSGID", t->msgid ? t->msgid: "", 1);
 		(void) setenv("SEVERITY", t->severity ? t->severity: "", 1);
@@ -262,6 +264,7 @@ ireport_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 	nenv.severity = (char *)ev_info->ei_severity;
 	nenv.msgid = ev_info->ei_diagcode;
 	nenv.desc = ev_info->ei_descr;
+	nenv.uuid = ev_info->ei_uuid;
 	nenv.tstamp = (time_t)fmev_time_sec(ev);
 	if (strcmp(ev_info->ei_url, ND_UNKNOWN) != 0) {
 		nenv.url = ev_info->ei_url;
@@ -284,7 +287,6 @@ irpt_done:
 static void
 list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 {
-	char *uuid;
 	uint8_t version;
 	nd_ev_info_t *ev_info = NULL;
 	nvlist_t **pref_nvl = NULL;
@@ -330,9 +332,6 @@ list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 		goto listcb_done;
 	}
 
-	(void) nvlist_lookup_string(ev_info->ei_payload, FM_SUSPECT_UUID,
-	    &uuid);
-
 	if (strcmp(ev_info->ei_url, ND_UNKNOWN) != 0) {
 		bzero(&nenv, sizeof (struct notify_env));
 
@@ -344,9 +343,10 @@ list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 			nenv.desc = ev_info->ei_descr;
 		nenv.tstamp = (time_t)fmev_time_sec(ev);
 		nenv.url = ev_info->ei_url;
+		nenv.uuid = ev_info->ei_uuid;
 		call_handler_script(&nenv);
 	} else
-		nd_error(nhdl, "failed to format url for %s", uuid);
+		nd_error(nhdl, "failed to format url for %s", ev_info->ei_uuid);
 listcb_done:
 	nd_free_nvlarray(pref_nvl, npref);
 	if (ev_info)
