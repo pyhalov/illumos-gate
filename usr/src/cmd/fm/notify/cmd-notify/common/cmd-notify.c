@@ -50,6 +50,7 @@
 
 typedef struct notify_env {
 	char *class;
+	char *severity;
 	char *msgid;
 	char *desc;
 	time_t tstamp;
@@ -186,6 +187,7 @@ call_handler_script(notify_env_t *t)
 		
 		(void) setenv("CLASS", t->class ? t->class: "", 1);
 		(void) setenv("MSGID", t->msgid ? t->msgid: "", 1);
+		(void) setenv("SEVERITY", t->severity ? t->severity: "", 1);
 		(void) setenv("DESC", t->desc ? t->desc: "", 1);
 		(void) setenv("FMRI", t->fmri ? t->fmri: "", 1);
 		(void) setenv("FROM_STATE", t->from_state ? t->from_state: "", 1);
@@ -250,6 +252,7 @@ ireport_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 	bzero(&nenv, sizeof (struct notify_env));
 
 	nenv.class = (char *)ev_info->ei_class;
+	nenv.severity = (char *)ev_info->ei_severity;
 	nenv.msgid = ev_info->ei_diagcode;
 	nenv.desc = ev_info->ei_descr;
 	nenv.tstamp = (time_t)fmev_time_sec(ev);
@@ -324,6 +327,7 @@ list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 		bzero(&nenv, sizeof (struct notify_env));
 
 		nenv.class = (char *) ev_info->ei_class;
+		nenv.severity = (char *)ev_info->ei_severity;
 		nenv.msgid = ev_info->ei_diagcode;
 		nenv.desc = ev_info->ei_descr;
 		nenv.tstamp = (time_t)fmev_time_sec(ev);
