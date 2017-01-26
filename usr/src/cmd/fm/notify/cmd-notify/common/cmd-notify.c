@@ -263,6 +263,9 @@ ireport_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 	nenv.msgid = ev_info->ei_diagcode;
 	nenv.desc = ev_info->ei_descr;
 	nenv.tstamp = (time_t)fmev_time_sec(ev);
+	if (strcmp(ev_info->ei_url, ND_UNKNOWN) != 0) {
+		nenv.url = ev_info->ei_url;
+	}
 
 	if (strncmp(class, "ireport.os.smf", 14) == 0) {
 		nenv.fmri = ev_info->ei_fmri;
