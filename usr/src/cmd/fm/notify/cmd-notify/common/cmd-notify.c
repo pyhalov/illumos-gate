@@ -39,6 +39,7 @@
 
 #define TIMEOUT 30000
 #define MAXTIMESIZE 21
+#define TIMEFORMAT "%Y-%m-%d %H:%M:%S"
 
 /*
  * Debug messages can be enabled by setting the debug property to true
@@ -51,7 +52,7 @@ typedef struct notify_env {
 	char *class;
 	char *msgid;
 	char *desc;
-	long long tstamp;
+	time_t tstamp;
 	char *fmri;
 	char *from_state;
 	char *to_state;
@@ -192,7 +193,7 @@ call_handler_script(notify_env_t *t)
 		(void) setenv("REASON", t->reason ? t->reason: "", 1);
 		(void) setenv("URL", t->url ? t->url: "", 1);
 
-		(void) lltostr(t->tstamp, tstamp);
+		(void) strftime(tstamp, MAXTIMESIZE, TIMEFORMAT, localtime(&(t->tstamp)));
 		(void) setenv("TIMESTAMP", tstamp, 1);
 		(void) execl(script, script, NULL);
 		nd_debug(nhdl, "Couldn't exec sctipt");
