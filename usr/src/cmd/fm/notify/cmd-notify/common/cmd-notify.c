@@ -37,7 +37,8 @@
 #include <unistd.h>
 #include "libfmnotify.h"
 
-#define	TIMEOUT	30000
+#define	DEFAULT_TIMEOUT	30
+#define	DEFAULT_USER	"nobody"
 #define	MAXTIMESIZE	21
 #define	TIMEFORMAT	"%Y-%m-%d %H:%M:%S"
 
@@ -66,6 +67,7 @@ static nd_hdl_t *nhdl;
 static const char optstr[] = "dfR:";
 static char script[PATH_MAX + 1];
 static char user[LOGIN_NAME_MAX + 1];
+static long timeout;
 
 static int
 usage(const char *pname)
@@ -115,8 +117,8 @@ static int
 get_cmd_prefs(nd_hdl_t *nhdl, nvlist_t **pref_nvl, uint_t npref)
 {
 	boolean_t *a1, *a2;
-	uint_t n, n1, n2;
-	char **u, **s;
+	uint_t n, n1;
+	char **u, **s, **t;
 	int r;
 
 	/*
@@ -130,10 +132,13 @@ get_cmd_prefs(nd_hdl_t *nhdl, nvlist_t **pref_nvl, uint_t npref)
 	 * 2) "user" property, determining what user id should be used to
 	 * run script;
 	 *
-	 * 3) "script" property, a path to script to be run.
+	 * 3) "script" property, a path to script to be run;
+	 *
+	 * 4) "timeout" property, timeout in seconds for script execution.
 	 *
 	 * "active" will be set to true, if it is true in either set;
 	 * other properties will be taken from the first set.
+	 * "user" and "timeout" properties are optional.
 	 */
 
 	r = nvlist_lookup_boolean_array(pref_nvl[0], "active", &a1, &n);
@@ -142,8 +147,7 @@ get_cmd_prefs(nd_hdl_t *nhdl, nvlist_t **pref_nvl, uint_t npref)
 		    &n);
 	}
 
-	r += nvlist_lookup_string_array(pref_nvl[0], "user", &u, &n1);
-	r += nvlist_lookup_string_array(pref_nvl[0], "script", &s, &n2);
+	r += nvlist_lookup_string_array(pref_nvl[0], "script", &s, &n1);
 	if (r != 0) {
 		nd_debug(nhdl, "Malformed cmd notification "
 		    "preferences");
@@ -155,7 +159,25 @@ get_cmd_prefs(nd_hdl_t *nhdl, nvlist_t **pref_nvl, uint_t npref)
 		return (-1);
 	}
 
-	(void) strncpy(user, u[0], LOGIN_NAME_MAX);
+	r = nvlist_lookup_string_array(pref_nvl[0], "user", &u, &n1);
+	if (r != 0) {
+		(void) strcpy(user, DEFAULT_USER);
+	} else {
+		(void) strncpy(user, u[0], LOGIN_NAME_MAX);
+	}
+
+	r = nvlist_lookup_string_array(pref_nvl[0], "timeout", &t, &n1);
+	if (r != 0) {
+		timeout = DEFAULT_TIMEOUT;
+	} else {
+		errno = 0;
+		timeout = strtol(t[0], (char **)NULL, 10);
+		if (errno != 0 || timeout <= 0) {
+			timeout = DEFAULT_TIMEOUT;
+		}
+	}
+	nd_debug(nhdl, "timeout was set to %d\n", timeout);
+
 	(void) strncpy(script, s[0], PATH_MAX);
 	return (0);
 }
@@ -215,11 +237,11 @@ call_handler_script(notify_env_t *t)
 		(void) time(&t);
 		(void) time(&cur);
 		while (waitpid(pid, &ret, WNOHANG) != pid &&
-		    (cur - t < TIMEOUT)) {
+		    (cur - t < timeout)) {
 			(void) sleep(2);
 			(void) time(&cur);
 		}
-		if (cur - t >= TIMEOUT) {
+		if (cur - t >= timeout) {
 			(void) kill(pid, SIGKILL);
 		}
 	} else {

@@ -72,6 +72,7 @@
 				<paramval name='script'
 				    value='/usr/lib/fm/notify/notify-script.sh' />
 				<paramval name='user' value='nobody' />
+				<paramval name='timeout' value='30' />
 			</type>
 			<type name='smtp' active='true'>
 				<paramval name='to' value='root@localhost' />
