@@ -24,6 +24,7 @@
  */
 
 #include <sys/fm/protocol.h>
+#include <sys/queue.h>
 #include <sys/wait.h>
 #include <fm/fmd_msg.h>
 #include <fm/libfmevent.h>
@@ -49,6 +50,17 @@
  */
 #define	SVCNAME		"system/fm/cmd-notify"
 
+struct fault {
+	char *class;
+	char *loc;
+	char *fru;
+	char *asru;
+	char *rsrc;
+	uint8_t pct;
+	char *status;
+	LIST_ENTRY(fault) next_fault;
+};
+
 typedef struct notify_env {
 	char *uuid;
 	char *class;
@@ -61,6 +73,7 @@ typedef struct notify_env {
 	char *to_state;
 	char *reason;
 	char *url;
+	LIST_HEAD(, fault) fh;
 } notify_env_t;
 
 static nd_hdl_t *nhdl;
@@ -81,6 +94,67 @@ usage(const char *pname)
 	    "\t-R  specify alternate root\n");
 
 	return (1);
+}
+
+int
+fill_faults(notify_env_t *nenv, nvlist_t **nva, uint8_t *ba, uint32_t size)
+{
+	int i;
+	
+	LIST_INIT(&nenv->fh);
+	
+	for (i = 0; i < size; i++) {
+		struct fault *fl;
+//		nvlist_t *asru, *fru, *rsrc;
+
+		fl = malloc(sizeof (struct fault));
+		if (!fl) {
+			nd_error(nhdl, "Failed to alloc memory for fault record");
+			return (-1);
+		}
+		(void) bzero(fl, sizeof (struct fault));
+		
+		(void) nvlist_lookup_uint8(nva[i], FM_FAULT_CERTAINTY, &(fl->pct));
+		(void) nvlist_lookup_string(nva[i], FM_CLASS, &(fl->class));
+		
+//		if (nvlist_lookup_nvlist(nva[i], FM_FAULT_FRU, &fru) == 0)
+//		        fl->fru = fmdump_nvl2str(fru);
+//		
+//		if (nvlist_lookup_nvlist(nva[i], FM_FAULT_ASRU, &asru) == 0)
+//		        fl->asru = fmdump_nvl2str(asru);
+//		
+//		if (nvlist_lookup_nvlist(nva[i], FM_FAULT_RESOURCE, &rsrc) == 0)
+//		        fl->rsrc = fmdump_nvl2str(rsrc);
+		
+		if (nvlist_lookup_string(nva[i], FM_FAULT_LOCATION, &fl->loc)
+		    == 0) {
+		        if (fl->fru && strncmp(fl->fru, FM_FMRI_LEGACY_HC_PREFIX,
+		            sizeof (FM_FMRI_LEGACY_HC_PREFIX)) == 0)
+		                fl->loc = fl->fru + sizeof (FM_FMRI_LEGACY_HC_PREFIX);
+		}
+		
+		
+		if (ba[i] & FM_SUSPECT_FAULTY)
+		        fl->status = "FM_SUSPECT_FAULTY";
+		else if (ba[i] & FM_SUSPECT_NOT_PRESENT)
+		        fl->status = "FM_SUSPECT_NOT_PRESENT";
+		else if (ba[i] & FM_SUSPECT_REPLACED)
+		        fl->status = "FM_SUSPECT_REPLACED";
+		else if (ba[i] & FM_SUSPECT_REPAIRED)
+		        fl->status = "FM_SUSPECT_REPAIRED";
+		else if (ba[i] & FM_SUSPECT_ACQUITTED)
+		        fl->status = "FM_SUSPECT_ACQUITTED";
+		else
+		        fl->status = "";
+		
+		LIST_INSERT_HEAD(&nenv->fh, fl, next_fault);
+		nd_debug(nhdl, "Inserted in fault list: "
+		    "class: %s, percent %d, loc %s, status %s",
+		    fl->class, fl->pct, fl->loc, fl->status);
+		
+        }
+	
+	return (0);
 }
 
 /*
@@ -355,6 +429,10 @@ list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 	}
 
 	if (strcmp(ev_info->ei_url, ND_UNKNOWN) != 0) {
+		uint32_t size;
+		nvlist_t **nva;
+		uint8_t *ba;
+
 		bzero(&nenv, sizeof (struct notify_env));
 
 		nenv.class = (char *) ev_info->ei_class;
@@ -366,6 +444,19 @@ list_cb(fmev_t ev, const char *class, nvlist_t *nvl, void *arg)
 		nenv.tstamp = (time_t)fmev_time_sec(ev);
 		nenv.url = ev_info->ei_url;
 		nenv.uuid = ev_info->ei_uuid;
+
+		/* Extract embedded faults info, if present */
+		(void) nvlist_lookup_uint32(ev_info->ei_payload, FM_SUSPECT_FAULT_SZ, &size);
+		if (size != 0) {
+			(void) nvlist_lookup_nvlist_array(ev_info->ei_payload, FM_SUSPECT_FAULT_LIST,
+			    &nva, &size);
+			(void) nvlist_lookup_uint8_array(ev_info->ei_payload, FM_SUSPECT_FAULT_STATUS,
+			    &ba, &size);
+			if (fill_faults(&nenv, nva, ba, size) != 0) {
+				goto listcb_done;
+			}
+		}
+		
 		call_handler_script(&nenv);
 	} else
 		nd_error(nhdl, "failed to format url for %s", ev_info->ei_uuid);
