@@ -23,7 +23,6 @@
 #
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
-# Copyright 2016 Joyent, Inc.
 #
 
 #
@@ -60,8 +59,6 @@ include $(UTSBASE)/intel/Makefile.intel
 ALL_TARGET	= $(BINARY)
 LINT_TARGET	= $(MODULE).lint
 INSTALL_TARGET	= $(BINARY) $(ROOTMODULE)
-
-INC_PATH	+= -I$(UTSBASE)/intel/ia32
 
 #
 # For now, disable these lint checks; maintainers should endeavor

@@ -3828,7 +3828,6 @@ zsched(void *arg)
 	PTOU(pp)->u_argc = 0;
 	PTOU(pp)->u_argv = NULL;
 	PTOU(pp)->u_envp = NULL;
-	PTOU(pp)->u_commpagep = NULL;
 	closeall(P_FINFO(pp));
 
 	/*

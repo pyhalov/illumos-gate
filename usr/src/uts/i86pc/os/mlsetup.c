@@ -23,7 +23,6 @@
  *
  * Copyright (c) 1993, 2010, Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2011 by Delphix. All rights reserved.
- * Copyright 2016 Joyent, Inc.
  */
 /*
  * Copyright (c) 2010, Intel Corporation.
@@ -62,7 +61,6 @@
 #include <sys/promif.h>
 #include <sys/pci_cfgspace.h>
 #include <sys/bootvfs.h>
-#include <sys/tsc.h>
 #ifdef __xpv
 #include <sys/hypervisor.h>
 #else
@@ -229,15 +227,15 @@ mlsetup(struct regs *rp)
 	 */
 	if ((get_hwenv() & HW_XEN_HVM) == 0 &&
 	    is_x86_feature(x86_featureset, X86FSET_TSCP))
-		patch_tsc_read(TSC_TSCP);
+		patch_tsc_read(X86_HAVE_TSCP);
 	else if (cpuid_getvendor(CPU) == X86_VENDOR_AMD &&
 	    cpuid_getfamily(CPU) <= 0xf &&
 	    is_x86_feature(x86_featureset, X86FSET_SSE2))
-		patch_tsc_read(TSC_RDTSC_MFENCE);
+		patch_tsc_read(X86_TSC_MFENCE);
 	else if (cpuid_getvendor(CPU) == X86_VENDOR_Intel &&
 	    cpuid_getfamily(CPU) <= 6 &&
 	    is_x86_feature(x86_featureset, X86FSET_SSE2))
-		patch_tsc_read(TSC_RDTSC_LFENCE);
+		patch_tsc_read(X86_TSC_LFENCE);
 
 #endif	/* !__xpv */
 
@@ -248,7 +246,7 @@ mlsetup(struct regs *rp)
 	 * return 0.
 	 */
 	if (!is_x86_feature(x86_featureset, X86FSET_TSC))
-		patch_tsc_read(TSC_NONE);
+		patch_tsc_read(X86_NO_TSC);
 #endif	/* __i386 && !__xpv */
 
 #if defined(__amd64) && !defined(__xpv)

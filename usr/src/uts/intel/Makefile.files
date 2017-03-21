@@ -36,7 +36,6 @@
 #
 CORE_OBJS +=		\
 	arch_kdi.o	\
-	comm_page_util.o \
 	copy.o		\
 	copy_subr.o	\
 	cpc_subr.o	\
