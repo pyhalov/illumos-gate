@@ -927,15 +927,19 @@ usr/lib/sparcv9/llib-lvrrpadm.ln	sparc
 #
 # This is only used during the -t tools build
 #
+opt/onbld/bin/i386/localedef	i386
+opt/onbld/bin/sparc/localedef	sparc
 opt/onbld/bin/i386/mandoc	i386
 opt/onbld/bin/sparc/mandoc	sparc
-
+opt/onbld/bin/i386/tic		i386
+opt/onbld/bin/sparc/tic		sparc
+opt/onbld/bin/i386/zic		i386
+opt/onbld/bin/sparc/zic		sparc
 #
 # Private libdwarf
 #
 opt/onbld/lib/i386/libdwarf.so	i386
 opt/onbld/lib/sparc/libdwarf.so	sparc
-
 #
 # Private socket filter API
 #
