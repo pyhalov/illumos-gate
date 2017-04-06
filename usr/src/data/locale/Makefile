@@ -111,7 +111,7 @@ $(LOCDIRS):	locale
 
 # Strip LC_CTYPE contents for UTF-8 locales and replace them
 # with UTF-8.ct we compiled.
-locale/%.UTF-8/stamp: data/%.UTF-8.src data/UTF-8.cm data/UTF-8.ct
+locale/%.UTF-8/stamp: data/%.UTF-8.src data/UTF-8.cm data/UTF-8.ct locale
 		$(SED) '/^LC_CTYPE/,/^END LC_CTYPE/d;$$r data/UTF-8.ct' $< | \
 		$(LCDEF) -U -w data/widths.txt -f data/UTF-8.cm $(@D)
 		$(TOUCH) $@
