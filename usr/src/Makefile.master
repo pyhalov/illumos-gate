@@ -182,6 +182,7 @@ PYTHON_VERSION=	2.7
 PYTHON_PKGVERS=	-27
 PYTHON=		/usr/bin/python$(PYTHON_VERSION)
 SORT=		/usr/bin/sort
+TR=		/usr/bin/tr
 TOUCH=		/usr/bin/touch
 WC=		/usr/bin/wc
 XARGS=		/usr/bin/xargs

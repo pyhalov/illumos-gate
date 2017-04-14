@@ -14,6 +14,7 @@
 #
 
 SUBDIRS=	hwdata \
+		iconv \
 		locale \
 		terminfo \
 		zoneinfo
