@@ -76,9 +76,9 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 	char *ip, ic;
 	size_t ileft;
 	size_t retval;
-	unsigned int index;
 	char		*op;
 	size_t		oleft;
+	unsigned int index = 0;
 
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
@@ -361,7 +361,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 		} else if (!(ic & CMSB)) {
 			if ((cset == CS_0) || (cset == CS_2)){
 				if (cset == CS_0) {
-					index = (int)_jfp_tbl_jisx0201roman_to_ucs2[ic];
+					index = (int)_jfp_tbl_jisx0201roman_to_ucs2[(int)ic];
 				} else if (cset == CS_2) {
 					index = 
 					(int)_jfp_tbl_jisx0201kana_to_ucs2[(ic - 0x21)];
@@ -447,7 +447,6 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 ret:
 	*inbuf = ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = (char *)op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;

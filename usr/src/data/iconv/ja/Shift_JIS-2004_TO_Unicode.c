@@ -162,7 +162,6 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 {
 	unsigned int	u32;		/* UTF-32 */
 	unsigned short	e16;		/* 16-bit EUC */
-	unsigned int	index;		/* index for table lookup */
 	unsigned char	ic1, ic2;	/* 1st and 2nd bytes of a char */
 	size_t		rv = (size_t)0;	/* return value of this function */
 

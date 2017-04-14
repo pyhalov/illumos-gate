@@ -240,7 +240,6 @@ ill_ibm:
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = (char *)op;
 	*outbytesleft = oleft;
 

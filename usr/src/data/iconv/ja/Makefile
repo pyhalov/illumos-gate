@@ -30,7 +30,7 @@ include $(SRC)/Makefile.master
 
 include Makefile.iconv
 
-ICONV_DIR = $(FILEROOT)/usr/lib/iconv
+ICONV_DIR = $(ROOT)/usr/lib/iconv
 
 LIB = $(MODULES:%.c=%.so)
 LIB64 = $(MODULES:%.c=$(MACH64)/%.so)
@@ -301,11 +301,11 @@ UTF-32BE_TO_ISO-2022-JP-2004.c UTF-32LE_TO_ISO-2022-JP-2004.c:
 	$(SYMLINK) ./Unicode_TO_ISO-2022-JP-2004.c $@
 
 $(MACH64):
-	$(INSDIR) $(MACH64)
+	$(INS.dir) $(MACH64)
 
 $(ICONV_DIR): 
-	$(INSDIR) $(FILEROOT)/usr/lib/iconv
-	$(INSDIR) $(FILEROOT)/usr/lib/iconv/$(MACH64)
+	$(INS.dir) $(ROOT)/usr/lib/iconv
+	$(INS.dir) $(ROOT)/usr/lib/iconv/$(MACH64)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<

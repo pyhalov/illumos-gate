@@ -37,7 +37,7 @@ CFLAGS64	+= $(XREGSFLAG64) -KPIC -G -dy -D_REENTRANT
 LDFLAGS		= -G -z defs
 LDLIBS		= -lc
 
-ROOT_DIR		= $(FILEROOT)/usr/lib/iconv
+ROOT_DIR		= $(ROOT)/usr/lib/iconv
 ROOT_DIR64		= $(ROOT_DIR)/$(MACH64)
 
 .NO_PARALLEL:
@@ -60,7 +60,7 @@ install: all $(ROOT_DIR) $(ROOT_DIR64)
 
 
 $(ROOT_DIR) $(ROOT_DIR64) $(MACH64): FRC
-	/usr/bin/test -d $@ || $(INSDIR) $@
+	/usr/bin/test -d $@ || $(INS.dir) $@
 
 $(ALL_SOS): $(MACH64) euro.h euro.c tbl.h
 	TABLE=`echo $@ | $(TR) -d "-" | /usr/bin/cut -d. -f1` ; \

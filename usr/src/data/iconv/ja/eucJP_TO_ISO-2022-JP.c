@@ -324,7 +324,6 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;

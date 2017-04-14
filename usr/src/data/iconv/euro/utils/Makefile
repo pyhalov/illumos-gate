@@ -33,7 +33,7 @@ CFLAGS_sparcv9 = $(CFLAGS) -m64 -dalign -xprefetch
 
 CFLAGS_amd64 = $(CFLAGS) -m64 -Ui386 -U__i386 -dalign -xprefetch -W0,-y-xmodel=kernel
 
-ICONV_DIR = $(FILEROOT)/usr/lib/iconv
+ICONV_DIR = $(ROOT)/usr/lib/iconv
 
 MODULES = 646%8859.c 646da%8859.c 646de%8859.c 646en%8859.c 646es%8859.c 646fr%8859.c 646it%8859.c 646sv%8859.c \
 8859%646.c 8859%646da.c 8859%646de.c 8859%646en.c 8859%646es.c 8859%646fr.c 8859%646it.c 8859%646sv.c 8859-1%IBM-037.c \
@@ -67,31 +67,31 @@ all:$(MACH64) $(LIB)
 
 install: $(BINTABLES) $(ICONV_DIR) all 
 	for i in $(LIB); do \
-		$(INS) $(FILEROOT)/usr/lib/iconv $$i ; \
-		$(INS) $(FILEROOT)/usr/lib/iconv/$(MACH64) $(MACH64)/$$i ; \
+		$(INS) $(ROOT)/usr/lib/iconv $$i ; \
+		$(INS) $(ROOT)/usr/lib/iconv/$(MACH64) $(MACH64)/$$i ; \
 	done
 
 $(MACH64):
-	$(INSDIR) $(MACH64)
+	$(INS.dir) $(MACH64)
 
 $(ICONV_DIR): 
-	$(INSDIR) $(FILEROOT)/usr/lib/iconv
-	$(INSDIR) $(FILEROOT)/usr/lib/iconv/$(MACH64)
+	$(INS.dir) $(ROOT)/usr/lib/iconv
+	$(INS.dir) $(ROOT)/usr/lib/iconv/$(MACH64)
 
 %.so: %.c
 	$(CC) $(CFLAGS) -o $@ $<
 	$(CC) $(CFLAGS_$(MACH64)) -o $(MACH64)/$@ $<
 
 $(BINTABLES): FRC
-	$(INSDIR) $(FILEROOT)/usr/lib/iconv/geniconvtbl/binarytables
-	$(INS) $(FILEROOT)/usr/lib/iconv/geniconvtbl/binarytables $@
+	$(INS.dir) $(ROOT)/usr/lib/iconv/geniconvtbl/binarytables
+	$(INS) $(ROOT)/usr/lib/iconv/geniconvtbl/binarytables $@
 
 clean: 
 	$(RM) -r $(LIB) 
 	$(RM) -r $(MACH64)/*.so
-	$(RM) -r $(FILEROOT)/usr/lib/iconv/$(LIB) 
-	$(RM) -r $(FILEROOT)/usr/lib/iconv/$(LIB64)
-	$(RM) $(FILEROOT)/usr/lib/iconv/geniconvtbl/binarytables/*.bt
+	$(RM) -r $(ROOT)/usr/lib/iconv/$(LIB) 
+	$(RM) -r $(ROOT)/usr/lib/iconv/$(LIB64)
+	$(RM) $(ROOT)/usr/lib/iconv/geniconvtbl/binarytables/*.bt
 
 FRC:
 

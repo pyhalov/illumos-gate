@@ -61,6 +61,8 @@ enum _CSTATE { S_BASIC, S_ATR, S_EXT, S_NONE };
 #define have_EXT(isc_type) ( EXT_type[isc_type] != NULL )
 #define FIRST_CHAR  0xA0
 
+static int copy_to_outbuf(ucs_t uniid, char *buf, size_t buflen);
+
 static ucs_t
 get_nukta(uchar iscii, int type)
 {

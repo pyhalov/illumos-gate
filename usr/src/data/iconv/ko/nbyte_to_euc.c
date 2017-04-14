@@ -45,6 +45,7 @@ static struct _cv_state {
 	int  flush_obuf;
 };
 
+static int _johap_to_wansung(unsigned short* wcode, unsigned short code);
 
 /****  _ I C V _ O P E N  ****/
 
