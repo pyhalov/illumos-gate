@@ -45,7 +45,6 @@ hcode_type _874_to_838(hcode_type euc_code)
         hcode_table *node_ptr, node;
 	hcode_type utf_code;
 	int	udc_index;
-        static int node_compare(const void *, const void *);
 
 	/* User Definable Area Check */
 	/* For Thai, this if statement will not be used.*/

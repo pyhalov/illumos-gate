@@ -50,7 +50,7 @@ typedef struct _icv_state {
 enum _USTATE	{ U0, U1, U2, U3, U4, U5, U6, U7 };
 
 int get_gbk_by_unicode(unsigned long, int*, unsigned long*);
-
+static int binsearch(unsigned long x, table_t v[], int n);
 
 /*
  * Open; called from iconv_open()

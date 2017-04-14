@@ -37,6 +37,7 @@
 /* Forward reference the functions constrained to the scope of this file */
 static int chinese_to_euc( _iconv_st*, unsigned char**, size_t*, int);
 static int gb_to_big5( _iconv_st*, unsigned char**, size_t*);
+static int gb_to_euc( _iconv_st *st, unsigned char **outbuf, size_t *outbytesleft);
 
 
 extern int errno;

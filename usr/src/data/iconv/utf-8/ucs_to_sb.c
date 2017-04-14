@@ -236,9 +236,9 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		*ob++ = (unsigned char)u4;
 		ib += (u4_2) ? ICV_FETCH_UCS_SIZE_TWO : ICV_FETCH_UCS_SIZE;
 	}
-
+#if defined(UCS_2) || defined(UCS_4) || defined(UTF_16) || defined(UTF_32)
 need_more_input_err:
-illegal_char_err:
+#endif
 	*inbuf = (char *)ib;
 	*inbufleft = ibtail - ib;
 	*outbuf = (char *)ob;

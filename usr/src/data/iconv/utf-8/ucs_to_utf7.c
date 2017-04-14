@@ -80,7 +80,9 @@ _icv_iconv(utf7_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	signed char sz;
 	signed char new_bits_count;
 	signed char new_remnant_count;
+#if defined(UCS_2) || defined(UCS_4)
 	register int i;
+#endif
 
 	if (! cd) {
 		errno = EBADF;

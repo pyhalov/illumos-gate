@@ -99,7 +99,9 @@ _icv_iconv(utf7_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	while (ib < ibtail) {
 		uint_t temp_remnant;
 		uint_t u4;
+#if defined(UCS_2) || defined(UCS_4)
 		signed char obsz;
+#endif
 
 		u4 = ICV_U7_UCS4_OUTOFUTF16;
 		if (cd->in_the_middle_of_utf7_sequence) {

@@ -246,8 +246,8 @@ PROGS += UCS-2LE%GBK.so UCS-2BE%GBK.so UCS-4LE%GBK.so UCS-4BE%GBK.so
 
 install: all $(TARGETDIRS)
 	for i in $(PROGS); do \
-		$(INS) $(ICONV_DIR) -m 644 -u bin -g bin $$i; \
-		$(INS) $(ICONV_DIR_64) -m 644 -u bin -g bin $(MACH64)/$$i; \
+		$(INS) -f $(ICONV_DIR) -m 644 $$i; \
+		$(INS) -f $(ICONV_DIR_64) -m 644 $(MACH64)/$$i; \
 	done
 
 all: $(MACH64) $(PROGS)

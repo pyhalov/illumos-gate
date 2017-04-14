@@ -69,6 +69,11 @@ enum _CSTATE	{ C0, C1, C2, C3 };
 
 static unsigned long gbk_to_unicode (_iconv_st *);
 
+static int binsearch(unsigned long x, table_t v[], int n);
+static int gbk_2nd_byte(char inbuf);
+
+#include "uni_common.c"
+
 /*
  * Open; called from iconv_open()
  */
@@ -281,8 +286,7 @@ _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
  * Return: = 0 - valid GBK2 2nd byte
  *         = 1 - invalid GBK2 2nd byte
  */
-static int gbk_2nd_byte(inbuf)
-char inbuf;
+static int gbk_2nd_byte(char inbuf)
 {
 	unsigned int	buf = (unsigned int) (inbuf & ONEBYTE);
 
@@ -344,8 +348,6 @@ static int binsearch(unsigned long x, table_t v[], int n)
 	}
 	return (-1);	/* no match */
 }
-
-#include "uni_common.c"
 
 /*
 vi:ts=8:ai:expandtab 

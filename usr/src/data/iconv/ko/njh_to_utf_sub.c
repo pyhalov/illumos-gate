@@ -44,7 +44,6 @@ hcode_type _johap92_to_utf8(hcode_type njh_code)
         hcode_table *node_ptr, node;
 	hcode_type utf_code;
 	int	udc_index;
-        static int node_compare(const void *, const void *);
 
 	/* User Definable Area Check */
 	if (njh_code.byte.byte3 == NJH_UDC_SEG) {

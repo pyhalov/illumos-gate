@@ -84,7 +84,6 @@ _icv_iconv(int *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		uint_t u4;
 		uint_t first_byte;
 		signed char sz;
-		signed char obsz;
 
 		sz = number_of_bytes_in_utf8_char[*ib];
 		if (sz == ICV_TYPE_ILLEGAL_CHAR) {
