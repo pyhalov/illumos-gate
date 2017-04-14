@@ -29,6 +29,7 @@
 #include "ktable.h"
 #include "hangulcode.h"
 
+static unsigned short _wansung_to_johap92(unsigned short code);
 
 /****  _ I C V _ O P E N  ****/
 
@@ -89,7 +90,6 @@ size_t _icv_iconv(int* cd, char** inbuf, size_t* inbufleft,
 		else
 		{
 			unsigned short code;
-			unsigned short _wansung_to_johap92(unsigned short);
 
 			if ((ibtail - ib) < 2)
 			{

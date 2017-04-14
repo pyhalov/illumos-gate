@@ -39,7 +39,7 @@
 KCHAR c2p();
 
 
-static struct _cv_state {
+struct _cv_state {
 	char **my_outbuf;
 	size_t *my_outbytesleft;
 	int invalid;
@@ -50,6 +50,8 @@ static struct _cv_state {
 	char temp_ibuf[1];
 	int ibuf_left;
 };
+
+static unsigned short _wansung_to_johap(unsigned short code);
 
 /****  _ I C V _ O P E N  ****/
 
@@ -110,7 +112,6 @@ size_t _icv_iconv(int* cd, char** inbuf, size_t* inbufleft,
 		else
 		{
 			unsigned short code;
-			unsigned short _wansung_to_johap(unsigned short);
 
 			if ((ibtail - ib) < 2)
 			{

@@ -27,8 +27,8 @@ include $(SRC)/Makefile.master
 
 #
 # Prototype directory:
-ROOT_DIR		= $(FILEROOT)/usr/lib/iconv
-BTS_DIR			= $(FILEROOT)/usr/lib/iconv/geniconvtbl/binarytables
+ROOT_DIR		= $(ROOT)/usr/lib/iconv
+BTS_DIR			= $(ROOT)/usr/lib/iconv/geniconvtbl/binarytables
 
 # geniconvtbl loadmodule
 GENICONVTBL= /usr/bin/geniconvtbl
@@ -73,11 +73,11 @@ install: all $(ROOT_DIR) $(BTS_DIR) $(ALLOTHERFILES)
 
 
 $(ROOT_DIR) :
-	/usr/bin/test -d $@ || $(INSDIR) $@
-	/usr/bin/test -d $@/$(MACH64) || $(INSDIR) $@/$(MACH64)
+	/usr/bin/test -d $@ || $(INS.dir) $@
+	/usr/bin/test -d $@/$(MACH64) || $(INS.dir) $@/$(MACH64)
 
 $(BTS_DIR) $(MACH64):
-	/usr/bin/test -d $@ || $(INSDIR) $@
+	/usr/bin/test -d $@ || $(INS.dir) $@
 
 clean:
 	$(RM) *.o core *.s

@@ -36,7 +36,8 @@ dummy: all
 
 include ../Makefile.asian
 
-CFLAG_OPT	+=	-I./include
+CFLAGS += -I./include
+CFLAGS_64 += -I./include
 
 install: all $(TARGETDIRS)
 	for i in $(PROGS); do \

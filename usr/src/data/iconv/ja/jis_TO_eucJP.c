@@ -423,7 +423,6 @@ text:
 ret:
 	*inbuf = ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = (char *)op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;

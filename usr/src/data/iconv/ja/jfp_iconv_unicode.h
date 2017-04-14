@@ -166,7 +166,9 @@ read_unicode(
 	size_t		rv = (size_t)0; /* return value */
 	unsigned char	ic1, ic2;	/* bytes read */
 	unsigned int	u32;		/* resulted UTF-32 */
+#ifndef	JFP_ICONV_FROMCODE_UCS2
 	unsigned int	losur;		/* low surrogate */
+#endif
 
 	NGET(ic1, "UTF16-1");	/* read 1st byte */
 	NGET(ic2, "UTF16-2");	/* read 2nd byte */

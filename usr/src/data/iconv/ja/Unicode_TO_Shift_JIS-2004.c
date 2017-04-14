@@ -152,8 +152,6 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 	char		*op;
         size_t		oleft;
 
-	boolean_t	little = B_FALSE;	/* for now */
-
 	/*
 	 * If inbuf and/or *inbuf are NULL, reset conversion descriptor
 	 * and put escape sequence if needed.

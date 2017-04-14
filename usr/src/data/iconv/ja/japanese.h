@@ -99,7 +99,7 @@ static const char	*debugmsg = "<empty>";
 	} else if (ucs2 <= 0x7ff) {\
 		NPUT((unsigned char)((((ucs2)>>6) & 0x1f) | 0xc0), msg);\
 		NPUT((unsigned char)((((ucs2)>>0) & 0x3f) | 0x80), msg);\
-	} else if (ucs2 <= 0xffff) {\
+	} else {\
 		NPUT((unsigned char)((((ucs2)>>12) & 0x0f) | 0xe0), msg);\
 		NPUT((unsigned char)((((ucs2)>>6) & 0x3f) | 0x80), msg);\
 		NPUT((unsigned char)((((ucs2)>>0) & 0x3f) | 0x80), msg);\

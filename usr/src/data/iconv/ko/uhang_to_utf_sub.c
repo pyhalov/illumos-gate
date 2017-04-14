@@ -54,7 +54,6 @@ hcode_type _unified_hangul_to_utf8(hcode_type euc_code)
         hcode_table *node_ptr, node, *pnt_ptr;
 	hcode_type utf_code;
 	int	udc_index;
-        static int node_compare(const void *, const void *);
 
         /* User Definable Area Check */
         if ((EUC_UDC_SEG1 == euc_code.byte.byte3) ||

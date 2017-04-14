@@ -365,7 +365,6 @@ ill_ibm:
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;

@@ -226,7 +226,6 @@ _icv_iconv(void *cd, char **inbuf, size_t *inbytesleft,
 ret:
 	*inbuf = (char *)ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = (char *)op;
 	*outbytesleft = oleft;
 

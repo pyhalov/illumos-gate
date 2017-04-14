@@ -43,16 +43,16 @@ CLEANFILES	= *.o *.so.* *.so
 CFLAGS		= -I../inc -I. -I../common -K PIC -G -xO3 $(CFLAG_OPT)
 CFLAGS_64	= -I../inc -I. -I../common -K PIC -G -xO3 $(CFLAG_OPT_64)
 
-ICONV_DIR	= $(FILEROOT)/usr/lib/iconv
+ICONV_DIR	= $(ROOT)/usr/lib/iconv
 ICONV_DIR_64	= $(ICONV_DIR)/$(MACH64)
 
 TARGETDIRS = $(ICONV_DIR) $(ICONV_DIR_64)
 
 $(TARGETDIRS):
-	$(INSDIR) $@
+	$(INS.dir) $@
 
 $(MACH64):
-	$(INSDIR) $(MACH64)
+	$(INS.dir) $(MACH64)
 
 %.so: %.o
 	$(CC) $(CFLAGS) -o $@ $(@:%.so=%.o)

@@ -70,8 +70,10 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 	unsigned char	*op, ic;
 	char		*ip;
 	size_t		ileft, oleft;
-        unsigned short  zenkaku;
 	size_t		retval;
+#ifdef  RFC1468_MODE
+        unsigned short  zenkaku;
+#endif
 
 	/*
 	 * If inbuf or *inbuf is NULL, reset conversion descriptor
@@ -496,7 +498,6 @@ text:
 ret:
 	*inbuf = ip;
 	*inbytesleft = ileft;
-ret2:
 	*outbuf = (char *)op;
 	*outbytesleft = oleft;
 	st->_st_cset = cset;

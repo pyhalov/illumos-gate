@@ -38,7 +38,7 @@
 KCHAR c2p();
 
 
-static struct _cv_state {
+struct _cv_state {
 	char **my_outbuf;
 	size_t *my_outbytesleft;
 	int invalid;
@@ -49,6 +49,11 @@ static struct _cv_state {
 	char temp_ibuf[1];
 	int ibuf_left;
 };
+
+static void echo_vowel(char*, int*);
+static void echo_consonant(char*, int*);
+static int _wansung_to_cvc(unsigned short code,
+	unsigned char* ci_ret, unsigned char* v_ret, unsigned char* cf_ret);
 
 typedef enum { ASCII, WANSUNG } _conv_desc;
 
@@ -87,7 +92,6 @@ void _icv_close(_conv_desc* cd)
 size_t _icv_iconv(_conv_desc* state, char** inbuf, size_t* inbufleft,
 			char** outbuf, size_t* outbufleft)
 {
-	void		echo_vowel(char*, int*), echo_consonant(char*, int*);
 	size_t		ret_val = 0;
 	unsigned char*	ib;
 	unsigned char*	ob;
@@ -149,8 +153,6 @@ size_t _icv_iconv(_conv_desc* state, char** inbuf, size_t* inbufleft,
 			register int	ret, j;
 			int		i;
 			char		c[5];
-			int _wansung_to_cvc(unsigned short, unsigned char*,
-						unsigned char*, unsigned char*);
 
 			if ((ibtail - ib) < 2)
 			{
