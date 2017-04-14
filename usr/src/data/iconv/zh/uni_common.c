@@ -23,12 +23,8 @@
  * All rights reserved.
  */
 
-static int unichr_to_utf8 (st, unichr, buf, buflen, uconv_num)
-_iconv_st *st;
-unsigned long unichr;
-char	*buf;
-size_t	buflen;
-int	*uconv_num;
+static int unichr_to_utf8(_iconv_st *st, unsigned long unichr, char *buf,
+	size_t buflen, int *uconv_num)
 {
         if (unichr < 0x0080) {
                 if (buflen < 1) {

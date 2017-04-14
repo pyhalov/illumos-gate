@@ -67,7 +67,7 @@ install: all $(ROOT_DIR) $(BTS_DIR) $(ALLOTHERFILES)
 	for f in $(ALLOTHERFILES) ; do \
 		echo installing $$f to $(ROOT_DIR) ; \
 		$(RM) $(ROOT_DIR)/$$f ; \
-		$(INS) $(ROOT_DIR) $$f ; \
+		$(INS) -f $(ROOT_DIR) $$f ; \
 	done
 	-@echo "done."
 
@@ -216,19 +216,6 @@ $(CP1257_SOS)		:= CFLAGS64 += -DCP1257
 $(CP1258_SOS)		:= CFLAGS += -DCP1258
 $(CP1258_SOS)		:= CFLAGS64 += -DCP1258
 
-$(ACE_TO_UTF_8_SO)	:= CFLAGS += -DICV_ACE_TO_UTF8
-$(ACE_TO_UTF_8_SO)	:= CFLAGS64 += -DICV_ACE_TO_UTF8
-$(ACE_ALLOW_UNAS_TO_UTF_8_SO)	:= CFLAGS += -DICV_ACE_TO_UTF8 \
-						-DICV_IDN_ALLOW_UNASSIGNED
-$(ACE_ALLOW_UNAS_TO_UTF_8_SO)	:= CFLAGS64 += -DICV_ACE_TO_UTF8 \
-						-DICV_IDN_ALLOW_UNASSIGNED
-$(UTF_8_TO_ACE_SO)	:= CFLAGS += -DICV_UTF8_TO_ACE
-$(UTF_8_TO_ACE_SO)	:= CFLAGS64 += -DICV_UTF8_TO_ACE
-$(UTF_8_TO_ACE_ALLOW_UNAS_SO)	:= CFLAGS += -DICV_UTF8_TO_ACE \
-						-DICV_IDN_ALLOW_UNASSIGNED
-$(UTF_8_TO_ACE_ALLOW_UNAS_SO)	:= CFLAGS64 += -DICV_UTF8_TO_ACE \
-						-DICV_IDN_ALLOW_UNASSIGNED
-
 #
 # Dependencies and actual compilations are defined at below.
 $(SB_TO_UCS_SOS): $(CMN)/common_defs.h $(CMN)/sb_to_ucs.h $(CMN)/sb_to_ucs.c
@@ -313,30 +300,6 @@ $(UTF_EBCDIC_TO_UTF_8_SO): $(CMN)/common_defs.h $(CMN)/utf_ebcdic_to_utf8.h $(CM
 	$(CC) $(CFLAGS) $(CMN)/utf_ebcdic_to_utf8.c -c -o $@.o
 	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS)
 	$(CC) $(CFLAGS64) $(CMN)/utf_ebcdic_to_utf8.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
-
-$(ACE_TO_UTF_8_SO): $(CMN)/ace.h $(CMN)/ace_utf8.c
-	$(CC) $(CFLAGS) $(CMN)/ace_utf8.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS) -ldl
-	$(CC) $(CFLAGS64) $(CMN)/ace_utf8.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
-
-$(ACE_ALLOW_UNAS_TO_UTF_8_SO): $(CMN)/ace.h $(CMN)/ace_utf8.c
-	$(CC) $(CFLAGS) $(CMN)/ace_utf8.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS) -ldl
-	$(CC) $(CFLAGS64) $(CMN)/ace_utf8.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
-
-$(UTF_8_TO_ACE_SO): $(CMN)/ace.h $(CMN)/ace_utf8.c
-	$(CC) $(CFLAGS) $(CMN)/ace_utf8.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS) -ldl
-	$(CC) $(CFLAGS64) $(CMN)/ace_utf8.c -c -o $(MACH64)/$@.o
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
-
-$(UTF_8_TO_ACE_ALLOW_UNAS_SO): $(CMN)/ace.h $(CMN)/ace_utf8.c
-	$(CC) $(CFLAGS) $(CMN)/ace_utf8.c -c -o $@.o
-	$(LD) $(LDFLAGS) -o $@ $@.o $(LDLIBS) -ldl
-	$(CC) $(CFLAGS64) $(CMN)/ace_utf8.c -c -o $(MACH64)/$@.o
 	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$@.o $(LDLIBS)
 
 $(UTF_8_TO_UTF_8_SO): $(CMN)/common_defs.h $(CMN)/utf8.c

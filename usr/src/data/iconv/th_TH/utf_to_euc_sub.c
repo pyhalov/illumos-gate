@@ -45,7 +45,6 @@ hcode_type _utf8_to_eucTH(hcode_type utfcode)
         hcode_table *node_ptr, node;
 	hcode_type eucTH;
 	int udc_index;
-        static int node_compare(const void *, const void *);
 
 	/* User Definable Area Check */
 	if ((udc_index = _utf_to_udcidx(utfcode)) != IDX_UDC_ERROR) {

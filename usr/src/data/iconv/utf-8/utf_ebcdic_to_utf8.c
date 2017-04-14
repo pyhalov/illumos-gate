@@ -83,7 +83,6 @@ _icv_iconv(int *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 		uchar_t *ib_org;
 		uint_t u4;
 		signed char sz; /* must be signed for loop condition */
-		signed char obsz;
 
 		sz = number_of_bytes_in_utf_ebcidc[*ib];
 		if ((sz > UTF_EBCDIC_LEAD_OCTET_MAX) ||

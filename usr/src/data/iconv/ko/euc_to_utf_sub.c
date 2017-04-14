@@ -45,7 +45,6 @@ hcode_type _wansung_to_utf8(hcode_type euc_code)
         hcode_table *node_ptr, node;
 	hcode_type utf_code;
 	int	udc_index;
-        static int node_compare(const void *, const void *);
 
 	/* User Definable Area Check */
 	/* bugid 4701856             */

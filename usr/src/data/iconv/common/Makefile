@@ -32,8 +32,8 @@ dummy: all
 include ../Makefile.asian
 
 install: all $(TARGETDIRS)
-	$(INS) $(ICONV_DIR) -m 644 -u bin -g bin $(PROGS)
-	$(INS) $(ICONV_DIR_64) -m 644 -u bin -g bin $(MACH64)/$(PROGS)
+	$(INS) -f $(ICONV_DIR) -m 644 $(PROGS)
+	$(INS) -f $(ICONV_DIR_64) -m 644 $(MACH64)/$(PROGS)
 
 all: $(MACH64) $(PROGS)
 
