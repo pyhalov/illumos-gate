@@ -15,6 +15,7 @@
 
 SUBDIRS=	consfonts \
 		hwdata \
+		iconv \
 		locale \
 		terminfo \
 		zoneinfo
