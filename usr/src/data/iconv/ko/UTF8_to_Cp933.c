@@ -121,4 +121,4 @@ main()
 
 }
 
-#endif TEST
+#endif /* TEST */

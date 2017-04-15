@@ -329,6 +329,8 @@ clean:
 		$(RM) $(ICONV_DIR)/$$fp ; \
 		$(RM) $(ICONV_DIR)/$(MACH64)/$$fp ; \
 	done
+
+clobber: clean
 	
 
 install: $(ICONV_DIR) all 
