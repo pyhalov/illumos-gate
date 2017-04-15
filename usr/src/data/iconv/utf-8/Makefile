@@ -87,6 +87,8 @@ clean:
 		$(RM) $(BTS_DIR)/`echo $$f | $(TR) "+" "%"` ; \
 	done
 
+clobber: clean
+
 
 LDFLAGS			= -G -z defs
 LDLIBS			= -lc

@@ -504,4 +504,4 @@ OUTPUT: return value 0 ileft 0  oleft 5
 OUTPUT BUFFER:
 */
 
-#endif TEST
+#endif /* TEST */

@@ -330,6 +330,8 @@ clean:
 		$(RM) $(ICONV_DIR)/$(MACH64)/$$fp ; \
 	done
 
+clobber: clean
+
 
 install: $(ICONV_DIR) all
 	for f in $(DYNOBJS); do \

@@ -31,7 +31,7 @@
 #include "kdefs.h"
 #include "ktable.h"
 
-static struct _cv_state {
+struct _cv_state {
 	char temp_ibuf[5];
 	int  ibuf_left;
 	int  istart, iend;

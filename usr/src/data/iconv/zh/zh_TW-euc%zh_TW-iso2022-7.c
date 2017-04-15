@@ -62,7 +62,7 @@ static int get_plane_no_by_char(const char);
 static int cns_to_iso(int, char[], char*, size_t);
 
 static int get_plane_no_by_str(const char *);
-static struct _cv_state {
+struct _cv_state {
 	int	plane_no;
 	int	get_a_mbchar;
 	int	more_bytes;

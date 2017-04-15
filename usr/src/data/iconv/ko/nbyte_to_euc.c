@@ -37,7 +37,7 @@
 extern KCHAR getc_12();
 extern KCHAR packtocomp();
 
-static struct _cv_state {
+struct _cv_state {
 	char temp_ibuf[5];
 	int  ibuf_left;
 	int  istart, iend;
@@ -788,4 +788,4 @@ OUTPUT BUFFER:
 
 */
 
-#endif TEST
+#endif /* TEST */

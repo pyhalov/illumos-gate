@@ -35,7 +35,7 @@
 #define MSB 0x80
 #define	MSB_OFF	0x7f
 
-static struct _cv_state {
+struct _cv_state {
 	int _st_status;
 	int _gstate;
 };

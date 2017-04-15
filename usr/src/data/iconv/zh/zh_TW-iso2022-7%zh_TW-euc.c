@@ -100,7 +100,7 @@ typedef struct TWNiconv {
 
 } TWNiconv;
 
-static struct _cv_state {
+struct _cv_state {
 	TWNiconv * iconvobj;
 };
 
