@@ -34,8 +34,10 @@ ALL_SOS	= 	$(TABLES:%.tbl=%.so)
 CFLAGS		+= $(XREGSFLAG) -KPIC -G -dy -D_REENTRANT
 CFLAGS64	+= $(XREGSFLAG64) -KPIC -G -dy -D_REENTRANT
 
-LDFLAGS		= -G -z defs
+LDFLAGS=       -G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
+		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
 LDLIBS		= -lc
+
 
 ROOT_DIR		= $(ROOT)/usr/lib/iconv
 ROOT_DIR64		= $(ROOT_DIR)/$(MACH64)
@@ -53,8 +55,10 @@ install: all $(ROOT_DIR) $(ROOT_DIR64)
 		echo installing $$TMP to $(ROOT_DIR) ; \
 		$(RM) $(ROOT_DIR)/$$TMP ; \
 		$(CP) $$f $(ROOT_DIR)/$$TMP ; \
+		$(CHMOD) 555 $(ROOT_DIR)/$$TMP ; \
 		echo installing $$TMP to $(ROOT_DIR)/$(MACH64) ; \
 		$(CP) $(MACH64)/$$f $(ROOT_DIR)/$(MACH64)/$$TMP ; \
+		$(CHMOD) 555 $(ROOT_DIR)/$(MACH64)/$$TMP ; \
 	done
 	-@echo "done."
 

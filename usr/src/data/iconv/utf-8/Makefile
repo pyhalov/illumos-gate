@@ -61,8 +61,10 @@ install: all $(ROOT_DIR) $(BTS_DIR) $(ALLOTHERFILES)
 		echo installing $$TMP to $(ROOT_DIR) ; \
 		$(RM) $(ROOT_DIR)/$$TMP ; \
 		$(CP) $$f $(ROOT_DIR)/$$TMP ; \
+		$(CHMOD) 555 $(ROOT_DIR)/$$TMP ; \
 		echo installing $(MACH64)/$$TMP to $(ROOT_DIR)/$(MACH64) ; \
 		$(CP) $(MACH64)/$$f $(ROOT_DIR)/$(MACH64)/$$TMP ; \
+		$(CHMOD) 555 $(ROOT_DIR)/$(MACH64)/$$TMP ; \
 	done
 	for f in $(ALLOTHERFILES) ; do \
 		echo installing $$f to $(ROOT_DIR) ; \
@@ -90,7 +92,9 @@ clean:
 clobber: clean
 
 
-LDFLAGS			= -G -z defs
+LDFLAGS			= -G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
+			$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
+
 LDLIBS			= -lc
 
 $(ALL_SOS)		:= CFLAGS += $(XREGSFLAG) -KPIC -D_REENTRANT \

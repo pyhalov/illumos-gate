@@ -54,8 +54,8 @@ U2C933  = ko_KR-UTF-8%ko_KR-cp933.so
 PROGS	= $(U2E) $(E2U) $(N2U) $(U2N) $(O2U) $(U2O) $(I2U) $(U2I) \
 	  $(C9332U) $(U2C933) 
 
-LDFLAGS = -G -z defs -lc $(CFLAG_OPT)
-LDFLAGS_64 = -G -z defs -lc $(CFLAG_OPT_64)
+LDFLAGS = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT) -G
+LDFLAGS_64 = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT_64) -G
 CFLAGS += -c -I$(COMMON)
 CFLAGS_64 += -c -I$(COMMON)
 

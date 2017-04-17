@@ -43,6 +43,8 @@ U2E	= UTF-8%eucTH.so
 
 PROGS	= $(U2E) $(E2U) $(723) $(327)
 
+LDFLAGS = $(DYNFLAGS) $(LDLIBS)
+
 install: all $(TARGETDIRS)
 	for i in $(PROGS); do \
 		$(INS) -f $(ICONV_DIR) -m 644 $$i; \
@@ -55,18 +57,18 @@ all:	$(MACH64) $(PROGS)
 # Library
 #
 $(E2U): euc_to_utf_main.o euc_to_utf_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) -o $@ euc_to_utf_main.o euc_to_utf_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) -o $@ euc_to_utf_main.o euc_to_utf_sub.o common_utf.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ euc_to_utf_main.o euc_to_utf_sub.o common_utf.o
+	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ euc_to_utf_main.o euc_to_utf_sub.o common_utf.o
 
 $(U2E): utf_to_euc_main.o utf_to_euc_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) -o $@ utf_to_euc_main.o utf_to_euc_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) -o $@ utf_to_euc_main.o utf_to_euc_sub.o common_utf.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ utf_to_euc_main.o utf_to_euc_sub.o common_utf.o
+	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ utf_to_euc_main.o utf_to_euc_sub.o common_utf.o
 
 $(723): 874_to_838_main.o 874_to_838_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) -o $@ 874_to_838_main.o 874_to_838_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) -o $@ 874_to_838_main.o 874_to_838_sub.o common_utf.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ 874_to_838_main.o 874_to_838_sub.o common_utf.o
+	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ 874_to_838_main.o 874_to_838_sub.o common_utf.o
 
 $(327): 838_to_874_main.o 838_to_874_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) -o $@ 838_to_874_main.o 838_to_874_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) -o $@ 838_to_874_main.o 838_to_874_sub.o common_utf.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ 838_to_874_main.o 838_to_874_sub.o common_utf.o
+	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ 838_to_874_main.o 838_to_874_sub.o common_utf.o
 
