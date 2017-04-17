@@ -35,6 +35,10 @@ ICONV_DIR = $(ROOT)/usr/lib/iconv
 LIB = $(MODULES:%.c=%.so)
 LIB64 = $(MODULES:%.c=$(MACH64)/%.so)
 
+DYNFLAGS=	-G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
+		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
+LDLIBS=	-lc
+
 install		:=	TARGET = install
 all		:=	TARGET = all
 lint		:=	TARGET = lint
@@ -312,8 +316,8 @@ $(ICONV_DIR):
 	$(CC) $(CFLAGS64) -o $(MACH64)/$@ -c $<
 
 %.so: %.o
-	$(LD) $(LDFLAGS) -o $@ $<
-	$(LD) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/$<
+	$(LD) $(LDFLAGS) $(DYNFLAGS) $(LDLIBS) -o $@ $<
+	$(LD) $(LDFLAGS) $(DYNFLAGS) $(LDLIBS) -o $(MACH64)/$@ $(MACH64)/$<
 
 
 all: $(MACH64) $(LINKS) $(DYNOBJS)
@@ -339,9 +343,11 @@ install: $(ICONV_DIR) all
 		echo "installing $$f as $(ICONV_DIR)/$$fp ..." ; \
 		$(RM) $(ICONV_DIR)/$$fp ; \
 		$(CP) $$f $(ICONV_DIR)/$$fp ; \
+		$(CHMOD) 555 $(ICONV_DIR)/$$fp ; \
 		echo "instaling $(MACH64)/$$f as $(ICONV_DIR)/$(MACH64)/$$fp ..." ; \
 		$(RM) $(ICONV_DIR)/$(MACH64)/$$fp ; \
 		$(CP) $(MACH64)/$$f $(ICONV_DIR)/$(MACH64)/$$fp ; \
+		$(CHMOD) 555 $(ICONV_DIR)/$(MACH64)/$$fp ; \
 	done
 
 lint:	$(LINTOUTS)

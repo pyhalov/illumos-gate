@@ -25,6 +25,8 @@
 #ident "@(#)Makefile	1.0 06/03/28"
 #
 
+LDFLAGS	=	$(DYNFLAGS) $(LDLIBS)
+
 SRCS		=	UTF-8%zh_CN.iso2022-7.c \
 			UTF-8%zh_CN.euc.c \
 			UTF-8%zh_CN.gbk.c \
@@ -147,40 +149,40 @@ common_utf8.o: ../common/common_utf8.c
 	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ ../common/common_utf8.c
 
 UCS-2LE%cns11643.so: UCS-2LE%cns11643.o common_utf8.o
-	$(CC) $(CFLAGS) -o $@ UCS-2LE%cns11643.o common_utf8.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UCS-2LE%cns11643.o $(MACH64)/common_utf8.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UCS-2LE%cns11643.o common_utf8.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UCS-2LE%cns11643.o $(MACH64)/common_utf8.o
 
 UCS-2LE%BIG5.so: UCS-2LE%BIG5.o common_utf8.o
-	$(CC) $(CFLAGS) -o $@ UCS-2LE%BIG5.o common_utf8.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UCS-2LE%BIG5.o $(MACH64)/common_utf8.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UCS-2LE%BIG5.o common_utf8.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UCS-2LE%BIG5.o $(MACH64)/common_utf8.o
 
 UCS-2LE%Big5-HKSCS.so: UCS-2LE%Big5-HKSCS.o common_utf8.o
-	$(CC) $(CFLAGS) -o $@ UCS-2LE%Big5-HKSCS.o common_utf8.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UCS-2LE%Big5-HKSCS.o $(MACH64)/common_utf8.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UCS-2LE%Big5-HKSCS.o common_utf8.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UCS-2LE%Big5-HKSCS.o $(MACH64)/common_utf8.o
 
 UTF-8%zh_TW-euc.so: UTF-8%zh_TW-euc.o common_utf8.o
-	$(CC) $(CFLAGS) -o $@ UTF-8%zh_TW-euc.o common_utf8.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_TW-euc.o $(MACH64)/common_utf8.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UTF-8%zh_TW-euc.o common_utf8.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_TW-euc.o $(MACH64)/common_utf8.o
 
 UTF-8%zh_TW-big5.so: UTF-8%zh_TW-big5.o common_utf8.o
-	$(CC) $(CFLAGS) -o $@ UTF-8%zh_TW-big5.o common_utf8.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_TW-big5.o $(MACH64)/common_utf8.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UTF-8%zh_TW-big5.o common_utf8.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_TW-big5.o $(MACH64)/common_utf8.o
 
 UTF-8%zh_HK.hkscs.so: UTF-8%zh_HK.hkscs.o common_utf8.o
-	$(CC) $(CFLAGS) -o $@ UTF-8%zh_HK.hkscs.o common_utf8.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_HK.hkscs.o $(MACH64)/common_utf8.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UTF-8%zh_HK.hkscs.o common_utf8.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_HK.hkscs.o $(MACH64)/common_utf8.o
 
 zh_TW-iso2022-CN-EXT.o: zh_TW-iso2022-CN-EXT.c
 	$(CC) $(CFLAGS) -c -o $@ zh_TW-iso2022-CN-EXT.c
 	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ zh_TW-iso2022-CN-EXT.c
 
 zh_TW-iso2022-CN-EXT%zh_TW-big5.so: zh_TW-iso2022-CN-EXT%zh_TW-big5.o zh_TW-iso2022-CN-EXT.o
-	$(CC) $(CFLAGS) -o $@ zh_TW-iso2022-CN-EXT%zh_TW-big5.o zh_TW-iso2022-CN-EXT.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/zh_TW-iso2022-CN-EXT%zh_TW-big5.o $(MACH64)/zh_TW-iso2022-CN-EXT.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ zh_TW-iso2022-CN-EXT%zh_TW-big5.o zh_TW-iso2022-CN-EXT.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/zh_TW-iso2022-CN-EXT%zh_TW-big5.o $(MACH64)/zh_TW-iso2022-CN-EXT.o
 
 zh_TW-iso2022-CN-EXT%zh_TW-euc.so: zh_TW-iso2022-CN-EXT%zh_TW-euc.o zh_TW-iso2022-CN-EXT.o
-	$(CC) $(CFLAGS) -o $@ zh_TW-iso2022-CN-EXT%zh_TW-euc.o zh_TW-iso2022-CN-EXT.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/zh_TW-iso2022-CN-EXT%zh_TW-euc.o $(MACH64)/zh_TW-iso2022-CN-EXT.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ zh_TW-iso2022-CN-EXT%zh_TW-euc.o zh_TW-iso2022-CN-EXT.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/zh_TW-iso2022-CN-EXT%zh_TW-euc.o $(MACH64)/zh_TW-iso2022-CN-EXT.o
 
 utf8%ibm.o: ../common/utf8%ibm.c
 	$(CC) $(CFLAGS) -c -o $@ ../common/utf8%ibm.c
@@ -191,20 +193,20 @@ tab_lookup.o: ../common/tab_lookup.c
 	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ ../common/tab_lookup.c
 
 zh_TW-cp937%UTF-8.so: zh_TW-cp937%UTF-8.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS) -o $@ zh_TW-cp937%UTF-8.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/zh_TW-cp937%UTF-8.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ zh_TW-cp937%UTF-8.o utf8%ibm.o tab_lookup.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/zh_TW-cp937%UTF-8.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
 
 UTF-8%zh_CN-cp935.so: UTF-8%zh_CN-cp935.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS) -o $@ UTF-8%zh_CN-cp935.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_CN-cp935.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UTF-8%zh_CN-cp935.o utf8%ibm.o tab_lookup.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_CN-cp935.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
 
 zh_CN-cp935%UTF-8.so: zh_CN-cp935%UTF-8.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS) -o $@ zh_CN-cp935%UTF-8.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/zh_CN-cp935%UTF-8.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ zh_CN-cp935%UTF-8.o utf8%ibm.o tab_lookup.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/zh_CN-cp935%UTF-8.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
 
 UTF-8%zh_TW-cp937.so: UTF-8%zh_TW-cp937.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS) -o $@ UTF-8%zh_TW-cp937.o utf8%ibm.o tab_lookup.o
-	$(CC) $(CFLAGS_64) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_TW-cp937.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UTF-8%zh_TW-cp937.o utf8%ibm.o tab_lookup.o
+	$(CC) $(CFLAGS_64) $(LDFLAGS) -o $(MACH64)/$@ $(MACH64)/UTF-8%zh_TW-cp937.o $(MACH64)/utf8%ibm.o $(MACH64)/tab_lookup.o
 
 include ../Makefile.asian
 
@@ -246,8 +248,10 @@ PROGS += UCS-2LE%GBK.so UCS-2BE%GBK.so UCS-4LE%GBK.so UCS-4BE%GBK.so
 
 install: all $(TARGETDIRS)
 	for i in $(PROGS); do \
-		$(INS) -f $(ICONV_DIR) -m 644 $$i; \
-		$(INS) -f $(ICONV_DIR_64) -m 644 $(MACH64)/$$i; \
+		$(RM) $(ICONV_DIR)/$$i; \
+		$(INS) -f $(ICONV_DIR) -m 555 $$i; \
+		$(RM) $(ICONV_DIR_64)/$$i; \
+		$(INS) -f $(ICONV_DIR_64) -m 555 $(MACH64)/$$i; \
 	done
 
 all: $(MACH64) $(PROGS)

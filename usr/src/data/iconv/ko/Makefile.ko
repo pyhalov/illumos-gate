@@ -59,8 +59,8 @@ UH2UCS2BE = ko_KR-cp949%UCS-2BE.so
 PROGS	= $(E2I) $(I2E) $(E2J92) $(J922E) $(E2J) $(J2E) $(E2NB) $(NB2E) \
 	  $(U2UH) $(UH2U) $(UH2UCS2LE) $(UCS2LE2UH) $(UH2UCS2BE) $(UCS2BE2UH)
 
-LDFLAGS = -G -z defs -lc $(CFLAG_OPT)
-LDFLAGS_64 = -G -z defs -lc $(CFLAG_OPT_64)
+LDFLAGS = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT)
+LDFLAGS_64 = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT_64)
 CFLAGS += -c -I$(COMMON)
 CFLAGS_64 += -c -I$(COMMON)
 
@@ -80,36 +80,36 @@ all: $(MACH64) $(PROGS)
 # libraries
 #
 $(E2I): euc_to_iso2022-7.o
-	$(CC) $(LDFLAGS) -G -O -o $@ euc_to_iso2022-7.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ euc_to_iso2022-7.o
+	$(CC) $(LDFLAGS) -O -o $@ euc_to_iso2022-7.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ euc_to_iso2022-7.o
 
 $(I2E): iso2022-7_to_euc.o
-	$(CC) $(LDFLAGS) -G -O -o $@ iso2022-7_to_euc.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ iso2022-7_to_euc.o
+	$(CC) $(LDFLAGS) -O -o $@ iso2022-7_to_euc.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ iso2022-7_to_euc.o
 
 $(E2J92): euc_to_johap92.o ktable.o comp_to_pack.o c2p.o
-	$(CC) $(LDFLAGS) -G -O -o $@ comp_to_pack.o c2p.o euc_to_johap92.o ktable.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ comp_to_pack.o c2p.o euc_to_johap92.o ktable.o
+	$(CC) $(LDFLAGS) -O -o $@ comp_to_pack.o c2p.o euc_to_johap92.o ktable.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ comp_to_pack.o c2p.o euc_to_johap92.o ktable.o
 
 $(J922E): johap92_to_euc.o ktable.o
-	$(CC) $(LDFLAGS) -G -O -o $@ johap92_to_euc.o ktable.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ johap92_to_euc.o ktable.o
+	$(CC) $(LDFLAGS) -O -o $@ johap92_to_euc.o ktable.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ johap92_to_euc.o ktable.o
 
 $(E2J): euc_to_johap.o ktable.o comp_to_pack.o c2p.o
-	$(CC) $(LDFLAGS) -G -O -o $@ euc_to_johap.o ktable.o comp_to_pack.o c2p.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ euc_to_johap.o ktable.o comp_to_pack.o c2p.o
+	$(CC) $(LDFLAGS) -O -o $@ euc_to_johap.o ktable.o comp_to_pack.o c2p.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ euc_to_johap.o ktable.o comp_to_pack.o c2p.o
 
 $(J2E): johap_to_euc.o ktable.o pack_to_comp.o
-	$(CC) $(LDFLAGS) -G -O -o $@ johap_to_euc.o ktable.o pack_to_comp.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ johap_to_euc.o ktable.o pack_to_comp.o
+	$(CC) $(LDFLAGS) -O -o $@ johap_to_euc.o ktable.o pack_to_comp.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ johap_to_euc.o ktable.o pack_to_comp.o
 
 $(E2NB): euc_to_nbyte.o comb_to_byte.o
-	$(CC) $(LDFLAGS) -G -O -o $@ euc_to_nbyte.o comb_to_byte.o c2p.o ktable.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ euc_to_nbyte.o comb_to_byte.o c2p.o ktable.o
+	$(CC) $(LDFLAGS) -O -o $@ euc_to_nbyte.o comb_to_byte.o c2p.o ktable.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ euc_to_nbyte.o comb_to_byte.o c2p.o ktable.o
 
 $(NB2E): nbyte_to_euc.o byte_to_comb.o
-	$(CC) $(LDFLAGS) -G -O -o $@ nbyte_to_euc.o byte_to_comb.o c2p.o ktable.o pack_to_comp.o
-	cd $(MACH64); $(CC) $(LDFLAGS_64) -G -O -o $@ nbyte_to_euc.o byte_to_comb.o c2p.o ktable.o pack_to_comp.o
+	$(CC) $(LDFLAGS) -O -o $@ nbyte_to_euc.o byte_to_comb.o c2p.o ktable.o pack_to_comp.o
+	cd $(MACH64); $(CC) $(LDFLAGS_64) -O -o $@ nbyte_to_euc.o byte_to_comb.o c2p.o ktable.o pack_to_comp.o
 
 $(U2UH): utf_to_uhang_main.o utf_to_uhang_sub.o common_utf.o common_utf8.o common_def.h
 	 $(CC) $(LDFLAGS) -o $@ utf_to_uhang_main.o utf_to_uhang_sub.o common_utf.o common_utf8.o
