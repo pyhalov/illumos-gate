@@ -40,9 +40,7 @@ PROGS		= $(OBJS:%.o=%.so)
 
 CLEANFILES	= *.o *.so.* *.so
 
-CFLAGS		= -I../inc -I. -I../common -K PIC -G -xO3 $(CFLAG_OPT)
-CFLAGS_64	= -I../inc -I. -I../common -K PIC -G -xO3 $(CFLAG_OPT_64)
-
+CFLAGS		+= -I../inc -I. -I../common -K PIC -G
 
 DYNFLAGS=	-G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
@@ -50,36 +48,41 @@ DYNFLAGS=	-G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 LDLIBS=		-lc
 
 ICONV_DIR	= $(ROOT)/usr/lib/iconv
-ICONV_DIR_64	= $(ICONV_DIR)/$(MACH64)
 
-TARGETDIRS = $(ICONV_DIR) $(ICONV_DIR_64)
+ICONV_DIR_64 	= $(ROOT)/usr/lib/iconv/$(MACH64)
 
-$(TARGETDIRS):
+ICONV_LIBS	= $(PROGS:%=$(ICONV_DIR)/%)
+
+ICONV_LIBS_64	= $(PROGS:%=$(ICONV_DIR_64)/%)
+
+$(ICONV_LIBS) :=      FILEMODE= 555
+
+$(ICONV_LIBS_64) :=      FILEMODE= 555
+
+$(ICONV_DIR) $(ICONV_DIR_64):
 	$(INS.dir) $@
 
-$(MACH64):
-	$(INS.dir) $(MACH64)
+$(ICONV_DIR)/%: %
+	$(INS.file)
+
+$(ICONV_DIR_64)/%: %
+	$(INS.file)
 
 %.so: %.o
 	$(CC) $(CFLAGS) $(DYNFLAGS) $(LDLIBS) -o $@ $(@:%.so=%.o)
-	$(CC) $(CFLAGS_64) $(DYNFLAGS) $(LDLIBS) -o $(MACH64)/$@ $(MACH64)/$(@:%.so=%.o)
+	$(POST_PROCESS_SO)
 
-#
-# don't use follow codes, cause it couldn't deal with the case
-# that filename contains '%' symbol
-#
-#$(OBJS): $$(@:%.o=%.c)
-#	$(CC) $(CFLAGS) -c -o $@ $(@:%.o=%.c)
-#	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ $(@:%.o=%.c)
+%.o: ../%.c
+	$(CC) $(CFLAGS) -c -o $@ $(@:%.o=../%.c)
+	$(POST_PROCESS_O)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $(@:%.o=%.c)
-	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ $(@:%.o=%.c)
+	$(POST_PROCESS_O)
 
 lint: FRC
 
 clobber clean:
 	$(RM) $(CLEANFILES)
-	$(RM) -r $(MACH64)
 
 FRC:
