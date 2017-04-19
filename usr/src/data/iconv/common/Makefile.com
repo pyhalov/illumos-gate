@@ -25,23 +25,12 @@
 #ident "@(#)Makefile	1.4 03/04/11"
 #
 
-include $(SRC)/Makefile.master
+SRCS	=	646%CODESET.c 
 
-SUBDIRS =       $(MACH)
-$(BUILD64)SUBDIRS += $(MACH64)
+dummy: all
 
-all :=          TARGET = all
-clean :=        TARGET = clean
-clobber :=      TARGET = clobber
-install :=      TARGET = install
-lint :=         TARGET = lint
-echo :=         TARGET = echo
+include $(SRC)/data/iconv/Makefile.asian
 
-.KEEP_STATE:
+install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)
 
-all clean clobber install lint echo: $(SUBDIRS)
-
-$(SUBDIRS): FRC
-	@cd $@; pwd; $(MAKE) $(TARGET)
-
-FRC:
+all: $(PROGS)
