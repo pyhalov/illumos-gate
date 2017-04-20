@@ -26,6 +26,8 @@
 
 #include <stdio.h>
 #include <errno.h>
+#include <strings.h>
+#include <stdlib.h>
 #include "pc-iscii.h"
 
 #define MSB          0x80

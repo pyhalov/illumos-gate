@@ -27,6 +27,8 @@
 #include <stdio.h>
 #include <errno.h>
 #include <ctype.h>
+#include <strings.h>
+#include <stdlib.h>
 #include "ea-iscii.h"
 
 #define MSB          0x80
@@ -139,8 +141,8 @@ _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
                  (*outbytesleft)--;
              }
 
-             if ( ea_iscii = traverse_table(isc_eaiscii_tbl, 
-			sizeof(isc_eaiscii_tbl)/sizeof(Entry), c, &type ) ) {
+             if ((ea_iscii = traverse_table(isc_eaiscii_tbl, 
+			sizeof(isc_eaiscii_tbl)/sizeof(Entry), c, &type ))) {
                  switch ( type ) {
                  case MATRA:
                       if ( *outbytesleft < 2 ) {
@@ -203,7 +205,7 @@ _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
                  **outbuf = 0x20;
                  (*outbuf)++;
                  (*outbytesleft)--;
-                 st->context == SPACE;
+                 st->context = SPACE;
              }
  
              if ( *outbytesleft < 1 ) {

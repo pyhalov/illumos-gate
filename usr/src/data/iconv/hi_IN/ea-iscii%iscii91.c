@@ -25,7 +25,10 @@
 #ident "@(#)ea-iscii_to_iscii91.c    1.1 01/11/13 SMI"
 
 #include <stdio.h>
+#include <ctype.h>
 #include <errno.h>
+#include <strings.h>
+#include <stdlib.h>
 #include "ea-iscii.h"
 
 #define MSB          0x80

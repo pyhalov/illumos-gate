@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <strings.h>
 #include "iscii.h"
 
 #define MSB        0x80    /* most significant bit */
@@ -113,7 +114,7 @@ iscii_to_utf8(_iconv_st *st, char *buf, size_t buflen)
     int   nBytes=0;
     ISCII isc_type = isc_TYPE[st->keepc[0] - DEV_ATR];
     Entries en = iscii_table[isc_type];
-    unsigned int  keepc0 = (unsigned int) (st->keepc[0] & ONEBYTE);
+    /* unsigned int  keepc0 = (unsigned int) (st->keepc[0] & ONEBYTE); */
     unsigned int  keepc1 = (unsigned int) (st->keepc[1] & ONEBYTE);
     unsigned int  keepc2 = (unsigned int) (st->keepc[2] & ONEBYTE);
 
@@ -231,7 +232,7 @@ static int
 copy_to_outbuf(ucs_t uniid, char *buf, size_t buflen)
 {
     if (uniid > 0) {
-        if (uniid >= 0x0 && uniid <= 0x7f) {
+        if (uniid <= 0x7f) {
             if (buflen < 1) {
                 errno = E2BIG;
                 return(0);
@@ -268,6 +269,9 @@ copy_to_outbuf(ucs_t uniid, char *buf, size_t buflen)
         *(buf+2) = (char)REPLACE_CHAR3;
         return (3);
     }
+    
+    /* This code shouldn't be reached */
+    return (0);
 }
 
 /*
