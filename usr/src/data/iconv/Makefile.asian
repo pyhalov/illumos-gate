@@ -40,7 +40,7 @@ PROGS		= $(OBJS:%.o=%.so)
 
 CLEANFILES	= *.o *.so.* *.so
 
-CFLAGS		+= -I../inc -I. -I../common -K PIC -G
+CFLAGS		+= -I../../inc -I. -I../../common -K PIC -G
 
 DYNFLAGS=	-G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)

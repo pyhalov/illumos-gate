@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <strings.h>
 #include <sys/types.h>
 #include "iscii.h"
 #include "common_defs.h"
@@ -139,7 +140,6 @@ traverse_table(Entry *entry, int num,  ucs_t ucs, Type *type)
 static int
 ucs_to_iscii(ucs_t uiid, char **outbuf, size_t *outbytesleft, int isc_type, int *halant_context)
 {
-    int i = 0 ;
     int nBytesRet = 0 ;
     Type type = t_NONE;
     int iscii;
@@ -192,6 +192,9 @@ ucs_to_iscii(ucs_t uiid, char **outbuf, size_t *outbytesleft, int isc_type, int 
                 *(*outbuf+1) = (uchar_t) iscii;
                 nBytesRet = 2;
                 break;
+              case t_NONE:
+                /* Not reached */
+                break;
             }
         } else {
             **outbuf = (uchar_t) iscii;
@@ -225,7 +228,7 @@ size_t
 _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
        char **outbuf, size_t *outbytesleft)
 {
-    int      i=0, n=0, len = 0 ;
+    int n=0;
 
     if (st == NULL)    {
         errno = EBADF;

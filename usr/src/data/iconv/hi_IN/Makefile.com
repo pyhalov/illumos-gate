@@ -34,15 +34,10 @@ SRCS	=	iscii91%UTF-8.c \
 
 dummy: all
 
-include ../Makefile.asian
+include $(SRC)/data/iconv/Makefile.asian
 
-CFLAGS += -I./include
-CFLAGS_64 += -I./include
+CFLAGS += -I../include
 
-install: all $(TARGETDIRS)
-	for i in $(PROGS); do \
-		$(INS) -f $(ICONV_DIR) -m 644 $$i; \
-		$(INS) -f $(ICONV_DIR_64) -m 644 $(MACH64)/$$i; \
-	done
+install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)
 
-all: $(MACH64) $(PROGS)
+all: $(PROGS)

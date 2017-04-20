@@ -15,6 +15,6 @@
 
 include $(SRC)/Makefile.master.64
 
-CFLAGS	+= -I../inc -I. -I../common -K PIC -G
+CFLAGS	+= -I../../inc -I. -I../../common -K PIC -G
 
 ICONV_LIBS      = $(PROGS:%=$(ICONV_DIR_64)/%)
