@@ -55,7 +55,7 @@ KCHAR comp2;
 	short 	high = CI_CNT ;
 	short	low  = 0      ;
 
-	int	disp,cnt,k ;
+	int	disp,cnt;
 
 	long	Cfbit ;
 
@@ -102,7 +102,6 @@ KCHAR comp2;
 		{
 			if (Cfbit & BIT_MASK)
 				cnt++ ;
-			else	      ;
 			Cfbit >>= 1   ;
 		}
 
@@ -128,7 +127,7 @@ KCHAR comp2;
 	short 	high = CI_CNT ;
 	short	low  = 0      ;
 
-	int	disp,cnt,k ;
+	int	disp,cnt;
 
 	long	Cfbit ;
 
@@ -175,7 +174,6 @@ KCHAR comp2;
 		{
 			if (Cfbit & BIT_MASK)
 				cnt++ ;
-			else	      ;
 			Cfbit >>= 1   ;
 		}
 

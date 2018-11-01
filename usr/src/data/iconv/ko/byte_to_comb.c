@@ -31,6 +31,8 @@
 #include "kdefs.h"
 #include "ktable.h"
 
+int input_typ(char c);
+
 struct _cv_state {
 	char temp_ibuf[5];
 	int  ibuf_left;
@@ -38,6 +40,12 @@ struct _cv_state {
 	char temp_obuf[1];
 	int  flush_obuf;
 };
+
+KCHAR packtocomp(KCHAR comb2);
+
+#ifndef SUNVIEW
+char vowel_mix(char c1,char c2);
+#endif
 
 /*
  * Hangul 7-bit(KS C 5601) to Standard 2-byte Combination code(87-3)
@@ -229,8 +237,7 @@ struct _cv_state *st;
 	}
 }
 
-input_typ(c)
-register char c;
+int input_typ(char c)
 {
 	switch(c) {
 		case D_DI_GUD:	/* double di-gud	0x48 'H' */
@@ -445,10 +452,9 @@ register int n;
 /* This routine make double vowel from han_buf[2] and input character c */
 
 #ifndef SUNVIEW
-vowel_mix(c1,c2)
-register char c1,c2;
+char vowel_mix(char c1,char c2)
 {
-	register char c;	/* result double vowel */
+	register char c = '\0';	/* result double vowel */
 
 	switch(c1){
 				/* process o-a, o-ae, o-i */

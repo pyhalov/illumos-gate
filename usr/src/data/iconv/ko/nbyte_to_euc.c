@@ -45,6 +45,8 @@ struct _cv_state {
 	int  flush_obuf;
 };
 
+int is_SI(char **inbuf, size_t *inbytesleft, struct _cv_state *st);
+
 static int _johap_to_wansung(unsigned short* wcode, unsigned short code);
 
 /****  _ I C V _ O P E N  ****/
@@ -111,7 +113,6 @@ size_t _icv_iconv(_conv_desc* cd, char** inbuf, size_t* inbufleft,
 	while (ib < ibtail)
 	{
 		int		cur_input, action, state;
-		unsigned long	ci, v, cf;
 		char		result;
 		int		input_conv(char);
 		unsigned short	make_johap_code(int, char*);
@@ -367,9 +368,9 @@ static int _johap_to_wansung(unsigned short* wcode, unsigned short code)
 	v = JOONGSUNG(code) - ((unsigned short)JOONGSUNG(code) / 4 + 2);
 	cf = JONGSUNG(code);
 
-	if (v < 0)
+	if (JOONGSUNG(code) - ((unsigned short)JOONGSUNG(code) / 4 + 2) < 0)
 		*wcode = 0xA4A0 + Y19_32[ci + 1];
-	else if (ci < 0)
+	else if (CHOSUNG(code) - 0x0A < 0)
 	{
 		if (cf <= 1)
 			*wcode = 0xA4BF + v;
@@ -498,7 +499,8 @@ struct _cv_state *st;
 	}
 
 	if (SO_found || st->ibuf_left) {
-	    for (i ; i > 0; i--) {
+	    while (i > 0) {
+		i--;
 	        /* if SI is found */
 	        if (*buf == 0x0f) {
 		    SI_found = 1;

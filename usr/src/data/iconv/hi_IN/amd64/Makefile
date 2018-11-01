@@ -13,8 +13,13 @@
 # Copyright 2017 Alexander Pyhalov
 #
 
-include $(SRC)/Makefile.master.64
+include ../Makefile.com
+include ../../Makefile.asian.64
 
-CFLAGS	+= -I../../inc -I. -I../../common -fpic -G
+CFLAGS +=  -I.. -I../common/ -I../include/
 
-ICONV_LIBS      = $(PROGS:%=$(ICONV_DIR_64)/%)
+ICONV_LIBS      = $(ALL_SOS:%=$(ICONV_DIR)/%)
+
+$(ICONV_LIBS) := FILEMODE= 555
+
+install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)

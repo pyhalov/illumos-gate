@@ -43,7 +43,7 @@ KCHAR c2p();
 KCHAR comptopack(comp)
 KCHAR comp;
 {
-    int	c,i,k;
+    int	c;
     KCHAR code;
     unsigned char cnv_buf[2];
 

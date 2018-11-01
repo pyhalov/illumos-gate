@@ -37,7 +37,6 @@
 
 KCHAR c2p();
 
-
 struct _cv_state {
 	char **my_outbuf;
 	size_t *my_outbytesleft;
@@ -49,6 +48,10 @@ struct _cv_state {
 	char temp_ibuf[1];
 	int ibuf_left;
 };
+
+void AddChar (char Char, struct _cv_state *st);
+int write_21(KCHAR code_2, struct _cv_state *st);
+
 
 static void echo_vowel(char*, int*);
 static void echo_consonant(char*, int*);
@@ -344,8 +347,7 @@ static void echo_consonant(char* c,  int* i)
 static int _wansung_to_cvc(unsigned short code,
 	unsigned char* ci_ret, unsigned char* v_ret, unsigned char* cf_ret)
 {
-	register unsigned short jc1, jc2;
-	register short		h, i, j, l;
+	register short		h, i, l;
 	short			ci, v, cf;
 	short			disp;
 	long			cfbit;
@@ -453,7 +455,7 @@ size_t*inbytesleft;
 char **outbuf;
 size_t*outbytesleft;
 {
-	int	c, d, i;
+	int	c, d;
 	KCHAR	code;
 	size_t save_outbytesleft;
 	char *save_outbuf;
@@ -569,6 +571,7 @@ size_t*outbytesleft;
         return (*inbytesleft);
 }
 
+void
 AddChar (Char, st)
 char Char;
 struct _cv_state *st;

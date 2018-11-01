@@ -97,9 +97,9 @@ LDFLAGS			= -G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 
 LDLIBS			= -lc
 
-$(ALL_SOS)		:= CFLAGS += $(XREGSFLAG) -KPIC -D_REENTRANT \
+$(ALL_SOS)		:= CFLAGS += $(XREGSFLAG) -fpic -D_REENTRANT \
 					-I$(CMN) -I$(CMN)/tbls
-$(ALL_SOS)		:= CFLAGS64 += $(XREGSFLAG64) -KPIC -D_REENTRANT \
+$(ALL_SOS)		:= CFLAGS64 += $(XREGSFLAG64) -fpic -D_REENTRANT \
 					-I$(CMN) -I$(CMN)/tbls
 
 $(UCS_2_SOS)		:= CFLAGS += -DUCS_2

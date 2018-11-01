@@ -33,7 +33,7 @@
  *               1 - success
  */
 int
-convert_utf8_to_ucs4(char *ib, int utf8_len, uint_t *unicode)
+convert_utf8_to_ucs4(uchar_t *ib, int utf8_len, uint_t *unicode)
 {
    uchar_t first_byte = *ib;
    uint_t u4;

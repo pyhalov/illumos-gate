@@ -53,7 +53,6 @@ typedef struct {
 
 } _icv_state_t;
 
-static boolean is_running_in_little_endian ();
 static hcode_type ucs_to_unihan (uint_t ucs_char);
 extern hcode_type _utf8_to_unified_hangul (hcode_type);
 
@@ -252,7 +251,9 @@ _icv_iconv(_icv_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
     ib += ((u4_2) ? ICV_FETCH_UCS_SIZE_TWO : ICV_FETCH_UCS_SIZE);
   }
 
+#if defined(UCS_2) || defined(UCS_4) || defined(UTF_16) || defined(UTF_32)
  need_more_input_err:
+#endif
   *inbuf = (char *)ib;
   *inbufleft = ibtail - ib;
   *outbuf = (char *)ob;
@@ -289,18 +290,4 @@ ucs_to_unihan (uint_t ucs_char)
 
   unihan_char = _utf8_to_unified_hangul (utf8_char);
   return unihan_char;
-}
-
-static boolean
-is_running_in_little_endian ()
-{
-  union {
-    int one;
-    char byte[sizeof (int)];
-  }u;
-  u.one = 1;
-  if (u.byte[0] == 1) /* little-endian */
-    return true;
-  else                /* big-ending     */
-    return false;
 }

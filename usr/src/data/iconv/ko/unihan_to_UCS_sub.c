@@ -43,7 +43,7 @@ node_compare (const void *node1, const void *node2)
 hcode_type
 _unified_hangul_to_UCS2LE (hcode_type euc_code)
 {
-  hcode_table *node_ptr, node, *pnt_ptr;
+  hcode_table *node_ptr, node;
   hcode_type utf_code;
   int	udc_index;
 

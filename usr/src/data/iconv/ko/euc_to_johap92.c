@@ -135,7 +135,7 @@ size_t _icv_iconv(int* cd, char** inbuf, size_t* inbufleft,
 static unsigned short _wansung_to_johap92(unsigned short code)
 {
 	register unsigned short	jc, jc2;
-	register short		h, i, j, l;
+	register short		h, i, l;
 	short			ci, v, cf;
 	short			disp;
 	long			cfbit;

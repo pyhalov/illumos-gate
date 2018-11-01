@@ -38,6 +38,8 @@
 
 KCHAR c2p();
 
+KCHAR packtocomp(KCHAR comb2);
+
 
 struct _cv_state {
 	char **my_outbuf;
@@ -53,6 +55,7 @@ struct _cv_state {
 
 static unsigned short _johap_to_wansung(unsigned short code);
 
+void AddChar (char Char, struct _cv_state *st);
 
 /****  _ I C V _ O P E N  ****/
 
@@ -225,10 +228,8 @@ size_t*inbytesleft;
 char **outbuf;
 size_t*outbytesleft;
 {
-	int	c, d, i;
+	int	c, d;
 	KCHAR	code;
-	size_t save_outbytesleft;
-	char *save_outbuf;
 
         if (inbuf == NULL || *inbuf == NULL) { /* Reset request. */
 		st->invalid = 0;
@@ -303,6 +304,7 @@ size_t*outbytesleft;
         return (*inbytesleft);
 }
 
+void
 AddChar (Char, st)
 char Char;
 struct _cv_state *st;

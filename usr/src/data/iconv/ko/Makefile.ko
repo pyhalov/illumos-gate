@@ -61,8 +61,8 @@ PROGS	= $(E2I) $(I2E) $(E2J92) $(J922E) $(E2J) $(J2E) $(E2NB) $(NB2E) \
 
 LDFLAGS = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT)
 LDFLAGS_64 = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT_64)
-CFLAGS += -c -I$(COMMON)
-CFLAGS_64 += -c -I$(COMMON)
+CFLAGS += -c -I$(COMMON) -I../inc
+CFLAGS_64 += -c -I$(COMMON) -I../inc
 
 install:: all $(TARGETDIRS)
 	for i in $(PROGS); do \
@@ -75,6 +75,9 @@ install:: all $(TARGETDIRS)
 	$(SYMLINK) 646%CODESET.so 646%5601.so
 
 all: $(MACH64) $(PROGS)
+
+$(MACH64):
+	$(MKDIR) $@
 
 #
 # libraries

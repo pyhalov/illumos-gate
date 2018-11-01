@@ -13,8 +13,6 @@
 # Copyright 2017 Alexander Pyhalov
 #
 
-include $(SRC)/Makefile.master.64
+include ../Makefile.com
 
-CFLAGS	+= -I../../inc -I. -I../../common -fpic -G
-
-ICONV_LIBS      = $(PROGS:%=$(ICONV_DIR_64)/%)
+install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)

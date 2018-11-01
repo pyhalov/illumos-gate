@@ -76,7 +76,7 @@ size_t _icv_iconv(int* cd, char** inbuf, size_t* inbufleft,
 	{
 		if (*ib & 0x80)  /* Korean EUC doesn't have CS2 or CS3. */
 		{
-			hcode_type euc_code, ucs_code, utf_code;
+			hcode_type euc_code, utf_code;
 			int flag;
 
 			flag = 0;

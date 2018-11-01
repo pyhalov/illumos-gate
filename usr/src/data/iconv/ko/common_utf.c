@@ -38,7 +38,7 @@ hcode_type _uni_to_utf8(hcode_type unicode)
 	utf8.code = 0;
 
 	/* new code */
-	if(unicode.code >= 0x0000 && unicode.code <= 0x007F){
+	if(unicode.code <= 0x007F){
 		utf8.code = unicode.code;
 	}
 	else if(unicode.code >= 0x0080 && unicode.code <= 0x07FF){

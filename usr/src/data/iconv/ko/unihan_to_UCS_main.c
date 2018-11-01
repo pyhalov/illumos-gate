@@ -99,7 +99,7 @@ _icv_iconv (_icv_state_t *cd, char** inbuf, size_t* inbufleft,
     {
       if (*ib & 0x80)  /* Korean EUC doesn't have CS2 or CS3. */
 	{
-	  hcode_type unihan_code, ucs_code, ucs2_code;
+	  hcode_type unihan_code, ucs2_code;
 	  int flag;
 
 	  flag = 0;

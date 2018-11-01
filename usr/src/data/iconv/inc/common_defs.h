@@ -26,7 +26,7 @@
 #ifndef	COMMON_DEFS_H
 #define	COMMON_DEFS_H
 
-#pragma	ident	"@(#)common_defs.h	1.6 02/06/14 SMI"
+#include <sys/types.h>
 
 /* Following are replacement characters for non-identical character cases. */
 
@@ -208,7 +208,7 @@ static const unsigned char valid_max_2nd_byte[0x100] = {
 /*
  * common utility to convert utf8 string to unicode
  */
-extern  int convert_utf8_to_ucs4(char *, int, unsigned int *);
+extern  int convert_utf8_to_ucs4(uchar_t *, int, unsigned int *);
 
 extern  int is_valid_utf8_string(unsigned char *, int);
 

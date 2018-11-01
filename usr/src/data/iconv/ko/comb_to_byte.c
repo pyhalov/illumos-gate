@@ -40,18 +40,22 @@ struct _cv_state {
         int temp_obuf_cnt;
 };
 
+void AddChar (char Char, struct _cv_state *st);
+void echo_conso(char code, struct _cv_state *st);
+void echo_vowel(char code, struct _cv_state *st);
+
 
 /* write Hangul 7-bit Standard code sequences (KSC 5601)
  * from Standard 2-byte Combination code(87-3).
  * also handles Hangul and English display modes */
 
+int
 write_21(code_2, st)
 KCHAR code_2;
 struct _cv_state *st;
 {
 	register KCHAR buffer;	/* buffer for Hangul code conversion */
 	register char code_1;	/* 1-byte code converted */
-	register char c;	/* temporary character */
 
 	buffer = Y19_32[(short)INITIAL_SOUND(code_2) - 0x09] + BEG_OF_CONSO;
 	code_1 = (char) buffer;
@@ -71,12 +75,9 @@ struct _cv_state *st;
 	return(1);
 }
 
-echo_vowel(code, st)
-register char code;
-struct _cv_state *st;
+void
+echo_vowel(char code, struct _cv_state* st)
 {
-	register char c;
-
 	switch (code) {
 	case O_A:				/* o-a	0x6d */
 		AddChar(O, st);
@@ -120,12 +121,9 @@ struct _cv_state *st;
 	}
 }
 
-echo_conso(code, st)
-register char code;
-struct _cv_state *st;
+void
+echo_conso(char code, struct _cv_state *st)
 {
-	register char c;
-
 	switch (code) {
 	case GIUG_SIOD:				/* gi-ug and si-od	0x43 */
 		AddChar(GI_UG, st);

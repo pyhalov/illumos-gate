@@ -111,7 +111,6 @@
 		{
 			if (Cfbit & BIT_MASK)
 				disp++ ;
-			else           ;
 			Cfbit >>= 1    ;
 		}
 

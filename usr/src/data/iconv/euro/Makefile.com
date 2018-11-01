@@ -30,7 +30,7 @@ TABLES:sh =	cd ../tbls/ && ls *tbl
 
 ALL_SOS:sh =    (cd ../tbls/ && ls *tbl |sed -e s:_:%:g -e 's:\.tbl$:.so:g')
 
-CFLAGS		+= $(INCLUDES) $(XREGSFLAG) -KPIC -G -dy -D_REENTRANT
+CFLAGS		+= $(INCLUDES) $(XREGSFLAG) -fpic -G -dy -D_REENTRANT
 
 LDFLAGS=       -G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)

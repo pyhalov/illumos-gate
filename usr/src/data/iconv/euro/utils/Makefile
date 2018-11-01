@@ -27,7 +27,7 @@
 
 include $(SRC)/Makefile.master
 
-CFLAGS =  -Xa -KPIC -G -xO3 -dy -I. $(XREGSFLAG) -D_REENTRANT
+CFLAGS =  -Xa -fPIC -G -xO3 -dy -I. $(XREGSFLAG) -D_REENTRANT
 
 CFLAGS_sparcv9 = $(CFLAGS) -m64 -dalign -xprefetch
 

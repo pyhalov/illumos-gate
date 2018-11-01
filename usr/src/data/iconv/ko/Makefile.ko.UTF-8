@@ -56,8 +56,9 @@ PROGS	= $(U2E) $(E2U) $(N2U) $(U2N) $(O2U) $(U2O) $(I2U) $(U2I) \
 
 LDFLAGS = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT) -G
 LDFLAGS_64 = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT_64) -G
-CFLAGS += -c -I$(COMMON)
-CFLAGS_64 += -c -I$(COMMON)
+CFLAGS += -c -I$(COMMON) -I../inc
+CFLAGS_64 += -c -I$(COMMON) -I../inc
+
 
 install: all $(TARGETDIRS)
 	for i in $(PROGS); do \
