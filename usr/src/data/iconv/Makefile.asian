@@ -76,6 +76,10 @@ $(ICONV_DIR_64)/%: %
 	$(CC) $(CFLAGS) -c -o $@ $(@:%.o=../%.c)
 	$(POST_PROCESS_O)
 
+%.o: ../common/%.c
+	$(CC) $(CFLAGS) -c -o $@ $(@:%.o=../common/%.c)
+	$(POST_PROCESS_O)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $(@:%.o=%.c)
 	$(POST_PROCESS_O)
