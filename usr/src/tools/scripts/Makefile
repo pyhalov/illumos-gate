@@ -29,7 +29,6 @@ SHELL=/usr/bin/ksh93
 
 SHFILES= \
 	Install \
-	bldenv \
 	build_cscope \
 	bringovercheck \
 	checkpaths \
@@ -37,7 +36,6 @@ SHFILES= \
 	elfcmp \
 	flg.flp \
 	genoffsets \
-	nightly \
 	onu \
 	protocmp.terse \
 	sccscheck \
@@ -76,7 +74,6 @@ SCRIPTLINKS= \
 
 MAN1ONBLDFILES= \
 	Install.1onbld \
-	bldenv.1onbld \
 	bringovercheck.1onbld \
 	cddlchk.1onbld \
 	checkpaths.1onbld \
@@ -90,7 +87,6 @@ MAN1ONBLDFILES= \
 	interface_cmp.1onbld \
 	jstyle.1onbld \
 	mapfilechk.1onbld \
-	nightly.1onbld \
 	onu.1onbld \
 	sccscheck.1onbld \
 	webrev.1onbld \
@@ -114,7 +110,7 @@ EXCEPTFILES= \
 	interface_check \
 	interface_cmp
 
-CLEANFILES = $(SHFILES) $(PERLFILES) $(PYFILES) bldenv.1onbld onu.sh
+CLEANFILES = $(SHFILES) $(PERLFILES) $(PYFILES) onu.sh
 
 include ../Makefile.tools
 
@@ -151,28 +147,6 @@ install: all .WAIT $(ROOTONBLDSHFILES) $(ROOTONBLDPERLFILES)		\
 
 clean:
 	$(RM) $(CLEANFILES)
-
-bldenv: bldenv.sh stdenv.sh
-	$(RM) "$@"
-	sed -e '/# STDENV_START/ r stdenv.sh' bldenv.sh > "$@"
-	# Check for shell lint and fail if we hit warnings
-	shlintout="$$( /usr/bin/ksh93 -n "$@" 2>&1 )" ; \
-		[[ "$${shlintout}" != "" ]] && \
-		{ print -r -- "$${shlintout}" ;	false ; } || true
-	$(CHMOD) +x "$@"
-
-bldenv.1onbld: bldenv
-	$(RM) "$@"
-	(set +o errexit ; ksh93 $? --nroff ; true) 2>&1 | \
-	sed -e 's/\.DS/.nf/g;s/\.DE/.fi/' \
-	-e 's/\.TH BLDENV 1/.TH BLDENV 1ONBLD "September 4, 2018"/' \
-	-e 's/.OP \([a-z]\) - flag -/.OP \\-\1/g' \
-	-e 's/(1)/(1ONBLD)/' > "$@"
-
-nightly: nightly.sh stdenv.sh
-	$(RM) "$@"
-	sed -e '/# STDENV_START/ r stdenv.sh' nightly.sh > nightly
-	$(CHMOD) +x "$@"
 
 #
 # Not run by default: bootstrap...

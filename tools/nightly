@@ -739,10 +739,6 @@ else
 	fi
 fi
 
-# contents of stdenv.sh inserted after next line:
-# STDENV_START
-# STDENV_END
-
 # Check if we have sufficient data to continue...
 [[ -v CODEMGR_WS ]] || fatal_error "Error: Variable CODEMGR_WS not set."
 if  [[ "${NIGHTLY_OPTIONS}" == ~(F)n ]] ; then
@@ -1909,7 +1905,7 @@ if [[ ($build_ok = y) && (($A_FLAG = y) || ($r_FLAG = y)) ]]; then
 		if [[ "$ELF_DATA_BASELINE_DIR" != '' ]]; then
 			base_ifile="$ELF_DATA_BASELINE_DIR/interface"
 
-		       	echo "\n==== Compare versioning and ABI information" \
+			echo "\n==== Compare versioning and ABI information" \
 			    "to baseline ====\n"  | \
 			    tee -a $LOGFILE >> $mail_msg_file
 			echo "Baseline:	 $base_ifile\n" >> $LOGFILE
