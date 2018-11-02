@@ -209,62 +209,77 @@ $(CP1258_SOS)		:= CFLAGS64 += -DCP1258
 $(SB_TO_UCS_SOS): $(COMMON)/common_defs.h $(COMMON)/sb_to_ucs.h $(COMMON)/sb_to_ucs.c
 	$(CC) $(CFLAGS) $(COMMON)/sb_to_ucs.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UCS_TO_SB_SOS): $(COMMON)/common_defs.h $(COMMON)/ucs_to_sb.h $(COMMON)/ucs_to_sb.c
 	$(CC) $(CFLAGS) $(COMMON)/ucs_to_sb.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(SB_TO_UTF_8_SOS): $(COMMON)/common_defs.h $(COMMON)/sb_to_utf8.h $(COMMON)/sb_to_utf8.c
 	$(CC) $(CFLAGS) $(COMMON)/sb_to_utf8.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UTF_8_TO_SB_SOS): $(COMMON)/common_defs.h $(COMMON)/utf8_to_sb.h $(COMMON)/utf8_to_sb.c
 	$(CC) $(CFLAGS) $(COMMON)/utf8_to_sb.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UCS_4_TO_UCS_SOS): $(COMMON)/common_defs.h $(COMMON)/ucs4_to_ucs.h $(COMMON)/ucs4_to_ucs.c
 	$(CC) $(CFLAGS) $(COMMON)/ucs4_to_ucs.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UCS_TO_UCS_4_SOS): $(COMMON)/common_defs.h $(COMMON)/ucs_to_ucs4.h $(COMMON)/ucs_to_ucs4.c
 	$(CC) $(CFLAGS) $(COMMON)/ucs_to_ucs4.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UCS_4_TO_UTF_32_SOS): $(COMMON)/common_defs.h $(COMMON)/ucs4_to_ucs.h $(COMMON)/ucs4_to_ucs.c
 	$(CC) $(CFLAGS) $(COMMON)/ucs4_to_utf32.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UTF_32_TO_UCS_4_SOS): $(COMMON)/common_defs.h $(COMMON)/ucs_to_ucs4.h $(COMMON)/ucs_to_ucs4.c
 	$(CC) $(CFLAGS) $(COMMON)/utf32_to_ucs4.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UCS_TO_UTF_8_SOS): $(COMMON)/common_defs.h $(COMMON)/ucs_to_utf8.h $(COMMON)/ucs_to_utf8.c
 	$(CC) $(CFLAGS) $(COMMON)/ucs_to_utf8.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UTF_8_TO_UCS_SOS): $(COMMON)/common_defs.h $(COMMON)/utf8_to_ucs.h $(COMMON)/utf8_to_ucs.c
 	$(CC) $(CFLAGS) $(COMMON)/utf8_to_ucs.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UCS_TO_UTF_7_SOS): $(COMMON)/common_defs.h $(COMMON)/ucs_to_utf7.h $(COMMON)/ucs_to_utf7.c
 	$(CC) $(CFLAGS) $(COMMON)/ucs_to_utf7.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UTF_7_TO_UCS_SOS): $(COMMON)/common_defs.h $(COMMON)/utf7_to_ucs.h $(COMMON)/utf7_to_ucs.c
 	$(CC) $(CFLAGS) $(COMMON)/utf7_to_ucs.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UTF_8_TO_UTF_EBCDIC_SO): $(COMMON)/common_defs.h $(COMMON)/utf8_to_utf_ebcdic.h $(COMMON)/utf8_to_utf_ebcdic.c
 	$(CC) $(CFLAGS) $(COMMON)/utf8_to_utf_ebcdic.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UTF_EBCDIC_TO_UTF_8_SO): $(COMMON)/common_defs.h $(COMMON)/utf_ebcdic_to_utf8.h $(COMMON)/utf_ebcdic_to_utf8.c
 	$(CC) $(CFLAGS) $(COMMON)/utf_ebcdic_to_utf8.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 $(UTF_8_TO_UTF_8_SO): $(COMMON)/common_defs.h $(COMMON)/utf8.c
 	$(CC) $(CFLAGS) $(COMMON)/utf8.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
 
 
 #
