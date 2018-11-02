@@ -36,9 +36,6 @@ LDFLAGS=       -G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
 LDLIBS		= -lc
 
-CLEANFILES =	*.o *.so core ../common/tbl.h
-
-
 ICONV_DIR		= $(ROOT)/usr/lib/iconv
 
 .NO_PARALLEL:
@@ -49,6 +46,8 @@ ICONV_DIR		= $(ROOT)/usr/lib/iconv
 all: $(ALL_SOS)
 
 include $(SRC)/data/iconv/Makefile.asian
+
+CLEANFILES =	*.o *.so core ../common/tbl.h
 
 $(ALL_SOS): ../common/euro.h ../common/euro.c ../common/tbl.h
 	TABLE=`echo $@ | $(TR) -d "-" | sed -e s:%:_:g | /usr/bin/cut -d. -f1` ; \
