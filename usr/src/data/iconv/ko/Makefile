@@ -22,21 +22,26 @@
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-#ident "@(#)Makefile	1.0 06/03/28"
+#ident "@(#)Makefile	1.4 03/04/11"
 #
 
-install		:=	TARGET = install
-all		:=	TARGET = all
-lint		:=	TARGET = lint
-clean		:=	TARGET = clean
-clobber		:=	TARGET = clobber
+include $(SRC)/Makefile.master
 
-install all lint clean clobber: Makefile.ko Makefile.ko.UTF-8
+SUBDIRS =       $(MACH)
+$(BUILD64)SUBDIRS += $(MACH64)
 
-Makefile.ko: FRC
-	$(MAKE) -f Makefile.ko $(TARGET)
+all :=          TARGET = all
+clean :=        TARGET = clean
+clobber :=      TARGET = clobber
+install :=      TARGET = install
+lint :=         TARGET = lint
+echo :=         TARGET = echo
 
-Makefile.ko.UTF-8: FRC
-	$(MAKE) -f Makefile.ko.UTF-8 $(TARGET)
+.KEEP_STATE:
+
+all clean clobber install lint echo: $(SUBDIRS)
+
+$(SUBDIRS): FRC
+	@cd $@; pwd; $(MAKE) $(TARGET)
 
 FRC:

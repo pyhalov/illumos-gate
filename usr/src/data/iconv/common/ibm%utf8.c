@@ -34,6 +34,8 @@
 
 #include "tab_lookup.h"   	/* table lookup data types */
 
+int bisearch(unsigned long val, _icv_state *st, int n);
+
 #define MSB     0x80    /* most significant bit */
 #define MBYTE   0x8e    /* multi-byte (4 byte character) */
 #define PMASK   0xa0    /* plane number mask */
@@ -47,6 +49,7 @@
 enum _USTATE    { C0, C1, C2 };
 
 
+int ibm_to_utf8(_icv_state *st, char    *buf, size_t  buflen);
 
 
 /*
@@ -62,9 +65,7 @@ _icv_iconv(_icv_state *st, char **inbuf, size_t *inbytesleft,
  * Actual conversion; called from iconv()
  */
 
-        char            c1, c2;
-        int             n, unidx;
-        unsigned long   ibm_code;
+        int             n;
 
 #ifdef DEBUG
     fprintf(stderr, "==========     iconv(): IBM --> UTF8     ==========\n");
@@ -203,7 +204,7 @@ size_t  buflen;
 #endif
 
         if (unidx >= 0) {       /* do Unicode to UTF8 conversion */
-		if (uni_val >= 0x0 && uni_val <= 0x07f) {
+		if (uni_val <= 0x07f) {
 			if (buflen < 1) {
 				errno = E2BIG;
 				return 0;

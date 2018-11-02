@@ -40,7 +40,13 @@
 enum _USTATE    { U0, U1, U11, U2, U3, U4 };
 
 
+int get_ibm_by_utf(_icv_state	*st, char c1, char c2, int *unidx,
+    unsigned long   *ibm_code);
 
+int bisearch(unsigned long val, _icv_state *st, int n);
+
+int utf8_to_ibm(int unidx, unsigned long ibm_code, char *buf,
+    size_t buflen, _icv_state *st);
 
 /*
  * Actual conversion; called from iconv()
@@ -76,7 +82,7 @@ _icv_iconv(_icv_state *st, char **inbuf, size_t *inbytesleft,
  *
  *=========================================================*/
 
-        char            c1, c2;
+        char            c1 = '\0', c2 = '\0';
         int             n, unidx;
         unsigned long   ibm_code;
 
@@ -243,8 +249,6 @@ unsigned long   *ibm_code;
 	    else
                 *ibm_code = st->table[*unidx].left_code;
 	}
-        else
-                ;      /* match from UTF8 to IBM not found */
 #ifdef DEBUG
     fprintf(stderr, "Unicode=%04x, idx=%5d, IBM=%x ", unicode, *unidx, *ibm_code);
 #endif

@@ -34,6 +34,8 @@
 
 #include "tab_lookup.h"   	/* table lookup data types */
 
+int bisearch(unsigned long val, _icv_state *st, int n);
+
 /*
  * Actual conversion; called from iconv().
  * Peforms conversion as per the parameters specified in
@@ -43,7 +45,7 @@ size_t
 _icv_iconv_lu(_icv_state *st, unsigned char **ibuf, size_t *inbytesleft,
                               unsigned char **obuf, size_t *outbytesleft)
 {
-        int     	  n, idx, data_size;
+        int     	  idx, data_size;
 	unsigned  long 	  search_val = 0, match_val;
 	unsigned  char 	  **inbuf, **outbuf;
 
