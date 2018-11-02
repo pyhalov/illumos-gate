@@ -68,6 +68,9 @@ $(ICONV_DIR)/%: %
 $(ICONV_DIR_64)/%: %
 	$(INS.file)
 
+$(ICONV_DIR)/%: ../%
+	$(INS.file)
+
 %.so: %.o
 	$(CC) $(CFLAGS) $(DYNFLAGS) $(LDLIBS) -o $@ $(@:%.so=%.o)
 	$(POST_PROCESS_SO)

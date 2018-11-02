@@ -1400,7 +1400,7 @@ UTF_8_TO_UTF_8		= UTF-8%UTF-8.so
 #
 # Following are groupings:
 #
-ALL_SOS		= $(US_ASCII_TO_UCS_2) \
+DYNOBJS		= $(US_ASCII_TO_UCS_2) \
 		  $(ISO8859_1_TO_UCS_2) \
 		  $(ISO8859_2_TO_UCS_2) \
 		  $(ISO8859_3_TO_UCS_2) \
@@ -2735,8 +2735,6 @@ ALL_SOS		= $(US_ASCII_TO_UCS_2) \
 		  \
 		  $(UTF_8_TO_UTF_8)
 
-
-ROOT_ALL_SOS	= $(ALL_SOS:%.so=$(ROOT_DIR)/%.so)
 
 UCS_2_SOS	= $(US_ASCII_TO_UCS_2) \
 		  $(ISO8859_1_TO_UCS_2) \
@@ -6749,5 +6747,3 @@ INPUTFILES1	= $(CODESETS:%=%+UTF-8.src)
 INPUTFILES2	= $(CODESETS:%=UTF-8+%.src)
 INPUTFILES	= $(INPUTFILES1) $(INPUTFILES2)
 BINARYTABLES	= $(INPUTFILES:%.src=%.bt)
-
-ALLOTHERFILES	= alias
