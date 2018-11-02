@@ -22,12 +22,12 @@
  * Copyright (c) 2008, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident   "@(#)UTF-8_to_viscii.c	1.1 08/07/28"
 
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
+#define __NEED_UNI_2_VISCII__
 #include <unicode_viscii.h>	/* Unicode to viscii mapping table */
 #include "common_defs.h"
 
@@ -107,7 +107,7 @@ size_t
 _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-    char    c1, c2;
+    char    c1 = '\0', c2 = '\0';
     int     uconv_num = 0;
     unsigned long  uni = 0;
     int     utf8_len = 0;

@@ -22,15 +22,17 @@
  * Copyright (c) 2008, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident   "@(#)viscii_to_UCS2.c	1.3 01/01/16"
 
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <unicode_viscii.h>     /* Unicode to viscii mapping table */
+#define __NEED_VISCII_2_TCVN__
+#include <viscii_tcvn.h>     /* VISCII <-> TCVN mapping table */
 #include "common_defs.h"
 
+
+#define NON_ID_CHAR '?'     /* non-identified character */
 
 typedef struct _icv_state {
     int     _errno;     /* internal errno */
@@ -74,10 +76,9 @@ size_t
 _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-    unsigned char   *op = (unsigned char*)*inbuf;
-
+    int     unconv = 0;
 #ifdef DEBUG
-    fprintf(stderr, "==========     iconv(): viscii -->UCS-2   ==========\n");
+    fprintf(stderr, "==========     iconv(): viscii -->tcvn   ==========\n");
 #endif
     if (st == NULL) {
         errno = EBADF;
@@ -92,29 +93,30 @@ _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
     st->_errno = 0;     /* reset internal errno */
     errno = 0;          /* reset external errno */
 
-    /* convert viscii encoding to UCS-2 */
-    while (*inbytesleft > 0 && *outbytesleft > 1) {
-        unsigned long uni = 0;
+    /* convert viscii encoding to tcvn. */
+    while (*inbytesleft > 0 && *outbytesleft > 0) {
+        unsigned char ch = 0;
 
-        viscii_2_uni((unsigned char*)*inbuf, &uni);
-#if defined(UCS_2LE)
-        *(*outbuf)++ = (unsigned char)(uni&0xff);
-        *(*outbuf)++ = (unsigned char)((uni>>8)&0xff);
-#else
-        *(*outbuf)++ = (unsigned char)((uni>>8)&0xff);
-        *(*outbuf)++ = (unsigned char)((uni)&0xff);
-#endif
-        (*outbytesleft) -= 2;
+        viscii_2_tcvn((unsigned char*)*inbuf, &ch);
+        if (**inbuf != 0x0 && ch == 0) {
+            unconv++;
+            ch = NON_ID_CHAR;
+        }
+
+        **outbuf = ch;
+        (*outbuf) += 1;
+        (*outbytesleft) -= 1;
         (*inbuf)++;
         (*inbytesleft)--;
 
     }
 
-    if ( *inbytesleft > 0 && *outbytesleft <= 1 ) {
+    if ( *inbytesleft > 0 && *outbytesleft <= 0 ) {
          errno = E2BIG;
          return ((size_t)-1);
     }
 
-    return ((size_t)(*inbytesleft));
+    return ((size_t)unconv);
+
 
 }

@@ -19,74 +19,29 @@
 # CDDL HEADER END
 #
 #
-# Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-#ident "@(#)Makefile	1.0 08/08/05"
+#ident "@(#)Makefile	1.4 03/04/11"
 #
 
-SRCS		=	tcvn%UCS-2.c \
-            tcvn%UTF-8.c \
-            tcvn%viscii.c \
-            UCS-2%tcvn.c  \
-            UCS-2%viscii.c  \
-            UTF-8%tcvn.c  \
-            UTF-8%viscii.c  \
-            viscii%tcvn.c  \
-            viscii%UCS-2.c  \
-            viscii%UTF-8.c
+include $(SRC)/Makefile.master
 
-dummy: all
+SUBDIRS =       $(MACH)
+$(BUILD64)SUBDIRS += $(MACH64)
 
-tcvn%UCS-2LE.o: tcvn%UCS-2.c
-	$(CC) $(CFLAGS) -DUCS_2LE -c -o $@ $?
-	$(CC) $(CFLAGS_64) -DUCS_2LE -c -o $(MACH64)/$@ $?
+all :=          TARGET = all
+clean :=        TARGET = clean
+clobber :=      TARGET = clobber
+install :=      TARGET = install
+lint :=         TARGET = lint
+echo :=         TARGET = echo
 
-tcvn%UCS-2BE.o: tcvn%UCS-2.c
-	$(CC) $(CFLAGS) -c -o $@ $?
-	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ $?
+.KEEP_STATE:
 
-viscii%UCS-2LE.o: viscii%UCS-2.c
-	$(CC) $(CFLAGS) -DUCS_2LE -c -o $@ $?
-	$(CC) $(CFLAGS_64) -DUCS_2LE -c -o $(MACH64)/$@ $?
+all clean clobber install lint echo: $(SUBDIRS)
 
-viscii%UCS-2BE.o: viscii%UCS-2.c
-	$(CC) $(CFLAGS) -c -o $@ $?
-	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ $?
+$(SUBDIRS): FRC
+	@cd $@; pwd; $(MAKE) $(TARGET)
 
-UCS-2LE%tcvn.o: UCS-2%tcvn.c
-	$(CC) $(CFLAGS) -DUCS_2LE -c -o $@ $?
-	$(CC) $(CFLAGS_64) -DUCS_2LE -c -o $(MACH64)/$@ $?
-
-UCS-2BE%tcvn.o: UCS-2%tcvn.c
-	$(CC) $(CFLAGS) -c -o $@ $?
-	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ $?
-
-UCS-2LE%viscii.o: UCS-2%viscii.c
-	$(CC) $(CFLAGS) -DUCS_2LE -c -o $@ $?
-	$(CC) $(CFLAGS_64) -DUCS_2LE -c -o $(MACH64)/$@ $?
-
-UCS-2BE%viscii.o: UCS-2%viscii.c
-	$(CC) $(CFLAGS) -c -o $@ $?
-	$(CC) $(CFLAGS_64) -c -o $(MACH64)/$@ $?
-
-
-
-include ../Makefile.asian
-
-PROGS  = tcvn%UCS-2LE.so		tcvn%UCS-2BE.so
-PROGS += viscii%UCS-2LE.so		viscii%UCS-2BE.so
-PROGS += UCS-2LE%tcvn.so		UCS-2BE%tcvn.so
-PROGS += UCS-2LE%viscii.so		UCS-2BE%viscii.so
-PROGS += UTF-8%tcvn.so			tcvn%UTF-8.so
-PROGS += UTF-8%viscii.so		viscii%UTF-8.so
-PROGS += tcvn%viscii.so			viscii%tcvn.so
-
-
-install: all $(TARGETDIRS)
-	for i in $(PROGS); do \
-		$(INS) -f $(ICONV_DIR) -m 644 $$i; \
-		$(INS) -f $(ICONV_DIR_64) -m 644 $(MACH64)/$$i; \
-	done
-
-all: $(MACH64) $(PROGS)
+FRC:

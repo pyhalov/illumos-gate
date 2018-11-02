@@ -68,6 +68,7 @@ static const unsigned long tcvn2uni_2[128] = {
     0x1EE9,  0x1EF1,  0x1EF3,  0x1EF7,  0x1EF9,  0x00FD,  0x1EF5,  0x1ED0,
 };
 
+#ifdef __NEED_TCVN_2_UNI__
 static int tcvn_2_uni(const unsigned char *in, unsigned long *out )
 {
     unsigned char c = *in;
@@ -81,6 +82,7 @@ static int tcvn_2_uni(const unsigned char *in, unsigned long *out )
 
     return 1;
 }
+#endif /* __NEED_TCVN_2_UNI__ */
 
 static const unsigned char uni2tcvn_1[280] = {
     0xa0,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,
@@ -142,6 +144,7 @@ static const unsigned char uni2tcvn_3[96] = {
     0x15,  0xfc,  0x00,  0x00,  0x00,  0x00,  0x00,  0x00,
 };
 
+#ifdef __NEED_UNI_2_TCVN__
 static int uni_2_tcvn (unsigned long in,  unsigned char *out)
 {
     unsigned char c = 0;
@@ -166,5 +169,6 @@ static int uni_2_tcvn (unsigned long in,  unsigned char *out)
 
     return 0;
 }
+#endif /* __NEED_UNI_2_TCVN__ */
 
 #endif

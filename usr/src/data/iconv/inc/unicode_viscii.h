@@ -70,6 +70,7 @@ static const unsigned long viscii2uni_2[128] = {
     0x1EE5,  0x00F9,  0x00FA,  0x0169,  0x1EE7,  0x00FD,  0x1EE3,  0x1EEE,
 };
 
+#ifdef __NEED_VISCII_2_UNI__
 static int viscii_2_uni(const unsigned char *in, unsigned long *out )
 {
     unsigned char c = *in;
@@ -81,6 +82,7 @@ static int viscii_2_uni(const unsigned char *in, unsigned long *out )
         *out = (unsigned long) viscii2uni_2[c-0x80];
     return 1;
 }
+#endif /* __NEED_VISCII_2_UNI__ */
 
 static const unsigned char uni2viscii_1[248] = {
     0xc0, 0xc1, 0xc2, 0xc3, 0x00, 0x00, 0x00, 0x00,
@@ -133,6 +135,7 @@ static const unsigned char uni2viscii_2[96] = {
     0x19, 0xdb, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+#ifdef __NEED_UNI_2_VISCII__
 static int uni_2_viscii (unsigned long in,  unsigned char *out)
 {
     unsigned char c = 0;
@@ -155,5 +158,6 @@ static int uni_2_viscii (unsigned long in,  unsigned char *out)
 
     return 0;
 }
+#endif
 
 #endif

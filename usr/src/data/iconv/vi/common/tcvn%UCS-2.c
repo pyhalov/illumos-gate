@@ -22,12 +22,12 @@
  * Copyright (c) 2008, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident   "@(#)tcvn_to_UCS2.c	1.1 08/07/31"
 
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
+#define __NEED_TCVN_2_UNI__
 #include <unicode_tcvn.h>	/* Unicode to tcvn mapping table */
 #include <vi_combine.h>
 #include "common_defs.h"
@@ -87,7 +87,6 @@ size_t
 _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-    unsigned char   *op = NULL;
     int             unidx = -1;
 #ifdef DEBUG
     fprintf(stderr, "==========     iconv(): TCVN5712 -->UCS-2   ==========\n");
@@ -115,8 +114,7 @@ _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
                 /*
                  * Composed characters with combine character
                  */
-                unsigned int k;
-                unsigned int i1, i2;
+                unsigned int k = 0;
                 switch (uni) {
                     case 0x0300: k = 0; break;
                     case 0x0301: k = 1; break;

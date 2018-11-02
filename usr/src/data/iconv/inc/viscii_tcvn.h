@@ -31,7 +31,6 @@
  * Copyright(c) 2008 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)viscii_tcvn.h	1.1 08/08/04"
 #ifndef _VISCII_TCVN_H_
 #define _VISCII_TCVN_H_
 
@@ -69,6 +68,7 @@ static const unsigned char viscii2tcvn_2[128] = {
     0xf4,  0xef,  0xf3,  0xf2,  0xf1,  0xfd,  0xee,  0x06,
 };
 
+#ifdef  __NEED_VISCII_2_TCVN__
 static int viscii_2_tcvn(const unsigned char *in, unsigned char *out )
 {
     unsigned char c = *in;
@@ -80,6 +80,7 @@ static int viscii_2_tcvn(const unsigned char *in, unsigned char *out )
         *out = (unsigned long) viscii2tcvn_2[c-0x80];
     return 1;
 }
+#endif
 
 
 static const unsigned char tcvn2viscii_1[32] = {
@@ -115,6 +116,7 @@ static const unsigned char tcvn2viscii_2[128] = {
 
 };
 
+#ifdef __NEED_TCVN_2_VISCII__
 static int tcvn_2_viscii (unsigned char in,  unsigned char *out)
 {
     if (in < 0x20)
@@ -126,5 +128,6 @@ static int tcvn_2_viscii (unsigned char in,  unsigned char *out)
 
     return 1;
 }
+#endif
 
 #endif

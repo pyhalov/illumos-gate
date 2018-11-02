@@ -22,12 +22,12 @@
  * Copyright (c) 2008, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident   "@(#)tcvn_to_viscii.c	1.1 08/07/31"
 
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
+#define __NEED_TCVN_2_VISCII__
 #include <viscii_tcvn.h>    /* VISCII <-> TCVN mapping table */
 #include <vi_combine.h>
 #include "common_defs.h"
@@ -82,7 +82,6 @@ size_t
 _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-    unsigned char   *op = NULL;
     int     unconv = 0;
     int             idx = -1;
     unsigned char   chout = 0;

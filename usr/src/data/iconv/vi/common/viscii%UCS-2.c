@@ -22,19 +22,19 @@
  * Copyright (c) 2008, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident   "@(#)UCS2_to_tcvn.c	1.1 08/07/31"
+#ident   "@(#)viscii_to_UCS2.c	1.3 01/01/16"
 
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <unicode_tcvn.h>	/* Unicode to TCVN  mapping table */
+#define __NEED_VISCII_2_UNI__
+#include <unicode_viscii.h>     /* Unicode to viscii mapping table */
 #include "common_defs.h"
 
-#define NON_ID_CHAR '?'     /* non-identified character */
 
 typedef struct _icv_state {
-    int     _errno;    /* internal errno */
+    int     _errno;     /* internal errno */
 } _iconv_st;
 
 
@@ -50,7 +50,6 @@ _icv_open()
         errno = ENOMEM;
         return ((void *) -1);
     }
-
     st->_errno = 0;
     return ((void *) st);
 }
@@ -76,11 +75,8 @@ size_t
 _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-    unsigned char    c1, c2;
-    unsigned char    *op = NULL;
-    int              no_id_char_num = 0;
 #ifdef DEBUG
-    fprintf(stderr, "==========     iconv(): UCS-2 --> TCVN5712  ==========\n");
+    fprintf(stderr, "==========     iconv(): viscii -->UCS-2   ==========\n");
 #endif
     if (st == NULL) {
         errno = EBADF;
@@ -92,50 +88,32 @@ _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
         return ((size_t) 0);
     }
 
-    st->_errno = 0; /* Rreset internal errno */
-    errno = 0;      /* Rreset external errno */
+    st->_errno = 0;     /* reset internal errno */
+    errno = 0;          /* reset external errno */
 
-    /* Convert UCS-2 encoding to TCVN5712 */
-    while (*inbytesleft > 0 && *outbytesleft > 0) {
+    /* convert viscii encoding to UCS-2 */
+    while (*inbytesleft > 0 && *outbytesleft > 1) {
         unsigned long uni = 0;
-        unsigned char c1 = 0, c2 = 0;
-        unsigned char ch = 0;
 
-        c1 = **inbuf;
-        if (*inbytesleft <= 1 ) {
-            errno = EINVAL;
-            return ((size_t)-1);
-        }
-        (*inbuf)++;
-        (*inbytesleft) -= 1;
-        c2 = **inbuf;
-        (*inbuf)++;
-        (*inbytesleft) -= 1;
-
+        viscii_2_uni((unsigned char*)*inbuf, &uni);
 #if defined(UCS_2LE)
-        uni |= (unsigned long)c1;
-        uni |= (unsigned long)c2<< 8;
+        *(*outbuf)++ = (unsigned char)(uni&0xff);
+        *(*outbuf)++ = (unsigned char)((uni>>8)&0xff);
 #else
-        uni |= (unsigned long)c1<< 8;
-        uni |= (unsigned long)c2;
+        *(*outbuf)++ = (unsigned char)((uni>>8)&0xff);
+        *(*outbuf)++ = (unsigned char)((uni)&0xff);
 #endif
-        if ( *inbytesleft > 0 && *outbytesleft <= 0 ) {
-             errno = E2BIG;
-             (*inbuf) -= 2;
-             (*inbytesleft) +=2;
-             return ((size_t)-1);
-        }
-
-        if (uni_2_tcvn(uni, &ch) == 1) {
-            **outbuf = ch;
-        } else {
-            **outbuf = NON_ID_CHAR;
-            no_id_char_num += 1;
-        }
-        (*outbuf) += 1;
-        (*outbytesleft) -= 1;
+        (*outbytesleft) -= 2;
+        (*inbuf)++;
+        (*inbytesleft)--;
 
     }
 
-    return ((size_t)no_id_char_num);
+    if ( *inbytesleft > 0 && *outbytesleft <= 1 ) {
+         errno = E2BIG;
+         return ((size_t)-1);
+    }
+
+    return ((size_t)(*inbytesleft));
+
 }

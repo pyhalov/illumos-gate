@@ -28,6 +28,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/types.h>
+#define __NEED_UNI_2_VISCII__
 #include <unicode_viscii.h> /* Unicode to VISCII  mapping table */
 #include "common_defs.h"
 
@@ -76,8 +77,6 @@ size_t
 _icv_iconv(_iconv_st *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-    unsigned char   c1, c2;
-    unsigned char   *op = NULL;
     int             no_id_char_num = 0;
 #ifdef DEBUG
     fprintf(stderr, "==========     iconv(): UCS-2 --> viscii  ==========\n");
