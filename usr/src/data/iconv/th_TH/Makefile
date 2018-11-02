@@ -21,53 +21,25 @@
 #
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
-# @(#)Makefile 1.7     06/03/28 SMI
 #
 
-SRCS	= euc2utf_main.c \
-	  utf2euc_main.c \
-	  874_to_838_main.c \
-	  838_to_874_main.c \
-	  common_utf.c \
-	  euc2utf_sub.c \
-	  utf2euc_sub.c
+include $(SRC)/Makefile.master
 
-dummy: all
+SUBDIRS =       $(MACH)
+$(BUILD64)SUBDIRS += $(MACH64)
 
-include ../Makefile.asian
+all :=          TARGET = all
+clean :=        TARGET = clean
+clobber :=      TARGET = clobber
+install :=      TARGET = install
+lint :=         TARGET = lint
+echo :=         TARGET = echo
 
-E2U	= eucTH%UTF-8.so
-U2E	= UTF-8%eucTH.so
-723	= IBM-874%IBM-838.so
-327	= IBM-838%IBM-874.so
+.KEEP_STATE:
 
-PROGS	= $(U2E) $(E2U) $(723) $(327)
+all clean clobber install lint echo: $(SUBDIRS)
 
-LDFLAGS = $(DYNFLAGS) $(LDLIBS)
+$(SUBDIRS): FRC
+	@cd $@; pwd; $(MAKE) $(TARGET)
 
-install: all $(TARGETDIRS)
-	for i in $(PROGS); do \
-		$(INS) -f $(ICONV_DIR) -m 644 $$i; \
-		$(INS) -f $(ICONV_DIR_64) -m 644 $(MACH64)/$$i; \
-	done
-
-all:	$(MACH64) $(PROGS)
-
-#
-# Library
-#
-$(E2U): euc_to_utf_main.o euc_to_utf_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ euc_to_utf_main.o euc_to_utf_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ euc_to_utf_main.o euc_to_utf_sub.o common_utf.o
-
-$(U2E): utf_to_euc_main.o utf_to_euc_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ utf_to_euc_main.o utf_to_euc_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ utf_to_euc_main.o utf_to_euc_sub.o common_utf.o
-
-$(723): 874_to_838_main.o 874_to_838_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ 874_to_838_main.o 874_to_838_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ 874_to_838_main.o 874_to_838_sub.o common_utf.o
-
-$(327): 838_to_874_main.o 838_to_874_sub.o common_utf.o common_def.h
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ 838_to_874_main.o 838_to_874_sub.o common_utf.o
-	cd $(MACH64); $(CC) $(CFLAGS_64) $(LDFLAGS) -o $@ 838_to_874_main.o 838_to_874_sub.o common_utf.o
+FRC:
