@@ -229,6 +229,8 @@ file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-32.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-32BE.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-32LE.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/8859-9%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/ACE%UTF-8.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/ACE-ALLOW-UNASSIGNED%UTF-8.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/CP1250%UCS-2.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/CP1250%UCS-2BE.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/CP1250%UCS-2LE.so mode=0555
@@ -1265,6 +1267,8 @@ file path=usr/lib/iconv/$(ARCH64)/UTF-8%8859-6.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%8859-7.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%8859-8.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%8859-9.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%ACE-ALLOW-UNASSIGNED.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/UTF-8%ACE.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%CP1250.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%CP1251.so mode=0555
 file path=usr/lib/iconv/$(ARCH64)/UTF-8%CP1252.so mode=0555
@@ -1522,6 +1526,8 @@ file path=usr/lib/iconv/8859-9%UTF-32.so mode=0555
 file path=usr/lib/iconv/8859-9%UTF-32BE.so mode=0555
 file path=usr/lib/iconv/8859-9%UTF-32LE.so mode=0555
 file path=usr/lib/iconv/8859-9%UTF-8.so mode=0555
+file path=usr/lib/iconv/ACE%UTF-8.so mode=0555
+file path=usr/lib/iconv/ACE-ALLOW-UNASSIGNED%UTF-8.so mode=0555
 file path=usr/lib/iconv/CP1250%UCS-2.so mode=0555
 file path=usr/lib/iconv/CP1250%UCS-2BE.so mode=0555
 file path=usr/lib/iconv/CP1250%UCS-2LE.so mode=0555
@@ -2558,6 +2564,8 @@ file path=usr/lib/iconv/UTF-8%8859-6.so mode=0555
 file path=usr/lib/iconv/UTF-8%8859-7.so mode=0555
 file path=usr/lib/iconv/UTF-8%8859-8.so mode=0555
 file path=usr/lib/iconv/UTF-8%8859-9.so mode=0555
+file path=usr/lib/iconv/UTF-8%ACE-ALLOW-UNASSIGNED.so mode=0555
+file path=usr/lib/iconv/UTF-8%ACE.so mode=0555
 file path=usr/lib/iconv/UTF-8%CP1250.so mode=0555
 file path=usr/lib/iconv/UTF-8%CP1251.so mode=0555
 file path=usr/lib/iconv/UTF-8%CP1252.so mode=0555

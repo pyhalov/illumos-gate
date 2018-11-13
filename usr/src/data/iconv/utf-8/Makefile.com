@@ -138,6 +138,12 @@ $(CP1256_SOS)		:= CFLAGS += -DCP1256
 $(CP1257_SOS)		:= CFLAGS += -DCP1257
 $(CP1258_SOS)		:= CFLAGS += -DCP1258
 
+$(ACE_TO_UTF_8_SO)	:= CFLAGS += -DICV_ACE_TO_UTF8
+$(ACE_ALLOW_UNAS_TO_UTF_8_SO)	:= CFLAGS += -DICV_ACE_TO_UTF8 \
+						-DICV_IDN_ALLOW_UNASSIGNED
+$(UTF_8_TO_ACE_SO)	:= CFLAGS += -DICV_UTF8_TO_ACE
+$(UTF_8_TO_ACE_ALLOW_UNAS_SO)	:= CFLAGS += -DICV_UTF8_TO_ACE \
+                                               -DICV_IDN_ALLOW_UNASSIGNED
 #
 # Dependencies and actual compilations are defined at below.
 $(SB_TO_UCS_SOS): $(COMMON)/common_defs.h $(COMMON)/sb_to_ucs.h $(COMMON)/sb_to_ucs.c
@@ -208,6 +214,26 @@ $(UTF_8_TO_UTF_EBCDIC_SO): $(COMMON)/common_defs.h $(COMMON)/utf8_to_utf_ebcdic.
 $(UTF_EBCDIC_TO_UTF_8_SO): $(COMMON)/common_defs.h $(COMMON)/utf_ebcdic_to_utf8.h $(COMMON)/utf_ebcdic_to_utf8.c
 	$(CC) $(CFLAGS) $(COMMON)/utf_ebcdic_to_utf8.c -c -o $@.o
 	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
+
+$(ACE_TO_UTF_8_SO): $(COMMON)/ace.h $(COMMON)/ace_utf8.c
+	$(CC) $(CFLAGS) $(COMMON)/ace_utf8.c -c -o $@.o
+	$(CC) $(LDFLAGS) $(CFLAGS)  -o  $@ $@.o
+	$(POST_PROCESS_SO)
+
+$(ACE_ALLOW_UNAS_TO_UTF_8_SO): $(COMMON)/ace.h $(COMMON)/ace_utf8.c
+	$(CC) $(CFLAGS) $(COMMON)/ace_utf8.c -c -o $@.o
+	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $@.o
+	$(POST_PROCESS_SO)
+
+$(UTF_8_TO_ACE_SO): $(COMMON)/ace.h $(COMMON)/ace_utf8.c
+	$(CC) $(CFLAGS) $(COMMON)/ace_utf8.c -c -o $@.o
+	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $@.o
+	$(POST_PROCESS_SO)
+
+$(UTF_8_TO_ACE_ALLOW_UNAS_SO): $(COMMON)/ace.h $(COMMON)/ace_utf8.c
+	$(CC) $(CFLAGS) $(COMMON)/ace_utf8.c -c -o $@.o
+	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $@.o
 	$(POST_PROCESS_SO)
 
 $(UTF_8_TO_UTF_8_SO): $(COMMON)/common_defs.h $(COMMON)/utf8.c
