@@ -16,7 +16,8 @@
 include ../Makefile.com
 include ../../Makefile.asian.64
 
-echo:
-	echo $(ICONV_DIR)
+ICONV_LIBS      = $(ALL_SOS:%=$(ICONV_DIR_64)/%)
+
+$(ICONV_LIBS) := FILEMODE= 555
 
 install: all $(ICONV_DIR_64) .WAIT $(ICONV_LIBS)

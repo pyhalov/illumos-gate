@@ -17,7 +17,7 @@ include ../Makefile.com
 
 CFLAGS +=  -I.. -I../common/ -I../include/
 
-ICONV_LIBS      = $(ALL_SOS:%=$(ICONV_DIR)/%)
+ICONV_LIBS      = $(PROGS:%=$(ICONV_DIR)/%)
 
 $(ICONV_LIBS) := FILEMODE= 555
 

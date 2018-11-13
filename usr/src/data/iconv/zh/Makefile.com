@@ -248,6 +248,4 @@ ALL_SOS += zh_TW-iso2022-CN-EXT%zh_TW-euc.so zh_TW-iso2022-CN-EXT%zh_TW-big5.so
 ALL_SOS += GBK%UCS-2LE.so GBK%UCS-2BE.so GBK%UCS-4LE.so GBK%UCS-4BE.so
 ALL_SOS += UCS-2LE%GBK.so UCS-2BE%GBK.so UCS-4LE%GBK.so UCS-4BE%GBK.so
 
-install: all $(ICONV_LIBS)
-
 all: $(ALL_SOS)

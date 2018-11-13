@@ -72,6 +72,4 @@ ALL_SOS += UTF-8%viscii.so		viscii%UTF-8.so
 ALL_SOS += tcvn%viscii.so			viscii%tcvn.so
 
 
-install: all $(ICONV_LIBS)
-
 all: $(ALL_SOS)

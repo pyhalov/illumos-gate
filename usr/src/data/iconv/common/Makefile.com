@@ -22,15 +22,13 @@
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-#ident "@(#)Makefile	1.4 03/04/11"
-#
 
 SRCS	=	646%CODESET.c
+
+ALL_SOS =	646%CODESET.so
 
 dummy: all
 
 include $(SRC)/data/iconv/Makefile.asian
 
-install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)
-
-all: $(PROGS)
+all: $(ALL_SOS)

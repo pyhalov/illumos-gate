@@ -38,6 +38,4 @@ include $(SRC)/data/iconv/Makefile.asian
 
 CFLAGS += -I../include
 
-install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)
-
 all: $(PROGS)
