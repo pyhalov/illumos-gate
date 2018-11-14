@@ -40,7 +40,7 @@ file path=usr/lib/iconv/$(ARCH64)/646es%8859-1.so
 file path=usr/lib/iconv/$(ARCH64)/646fr%8859-1.so
 file path=usr/lib/iconv/$(ARCH64)/646it%8859-1.so
 file path=usr/lib/iconv/$(ARCH64)/646sv%8859-1.so
-file path=usr/lib/iconv/$(ARCH64)/8859-1%646.so mode=0555
+file path=usr/lib/iconv/$(ARCH64)/8859-1%646.so
 file path=usr/lib/iconv/$(ARCH64)/8859-1%646da.so
 file path=usr/lib/iconv/$(ARCH64)/8859-1%646de.so
 file path=usr/lib/iconv/$(ARCH64)/8859-1%646en.so
@@ -108,7 +108,7 @@ file path=usr/lib/iconv/646es%8859-1.so
 file path=usr/lib/iconv/646fr%8859-1.so
 file path=usr/lib/iconv/646it%8859-1.so
 file path=usr/lib/iconv/646sv%8859-1.so
-file path=usr/lib/iconv/8859-1%646.so mode=0555
+file path=usr/lib/iconv/8859-1%646.so
 file path=usr/lib/iconv/8859-1%646da.so
 file path=usr/lib/iconv/8859-1%646de.so
 file path=usr/lib/iconv/8859-1%646en.so

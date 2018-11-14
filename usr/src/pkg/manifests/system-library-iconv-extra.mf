@@ -32,7 +32,7 @@ dir path=usr group=sys
 dir path=usr/lib
 dir path=usr/lib/iconv
 dir path=usr/lib/iconv/$(ARCH64)
-file path=usr/lib/iconv/$(ARCH64)/646%CODESET.so mode=0644
+file path=usr/lib/iconv/$(ARCH64)/646%CODESET.so
 file path=usr/lib/iconv/$(ARCH64)/HZ-GB-2312%zh_CN.euc.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP%PCK.so
 file path=usr/lib/iconv/$(ARCH64)/ISO-2022-JP%eucJP.so
@@ -98,7 +98,7 @@ file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-7%zh_TW-big5.so
 file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-7%zh_TW-euc.so
 file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-CN-EXT%zh_TW-big5.so
 file path=usr/lib/iconv/$(ARCH64)/zh_TW-iso2022-CN-EXT%zh_TW-euc.so
-file path=usr/lib/iconv/646%CODESET.so mode=0644
+file path=usr/lib/iconv/646%CODESET.so
 file path=usr/lib/iconv/HZ-GB-2312%zh_CN.euc.so
 file path=usr/lib/iconv/ISO-2022-JP%PCK.so
 file path=usr/lib/iconv/ISO-2022-JP%eucJP.so

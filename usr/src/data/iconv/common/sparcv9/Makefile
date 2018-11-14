@@ -18,6 +18,6 @@ include ../../Makefile.asian.64
 
 ICONV_LIBS      = $(ALL_SOS:%=$(ICONV_DIR_64)/%)
 
-$(ICONV_LIBS) := FILEMODE= 555
+$(ICONV_LIBS) := FILEMODE= 755
 
 install: all $(ICONV_DIR_64) .WAIT $(ICONV_LIBS)

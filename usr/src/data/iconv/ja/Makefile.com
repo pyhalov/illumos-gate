@@ -319,7 +319,7 @@ install: $(ICONV_DIR) all
 		echo "installing $$f as $(ICONV_DIR)/$$fp ..." ; \
 		$(RM) $(ICONV_DIR)/$$fp ; \
 		$(CP) $$f $(ICONV_DIR)/$$fp ; \
-		$(CHMOD) 555 $(ICONV_DIR)/$$fp ; \
+		$(CHMOD) 755 $(ICONV_DIR)/$$fp ; \
 	done
 
 lint:	$(LINTOUTS)

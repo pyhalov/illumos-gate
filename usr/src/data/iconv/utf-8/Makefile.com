@@ -59,7 +59,7 @@ install: all $(ICONV_DIR) $(BTS_DIR) $(ICONV_DIR)/alias
 		echo installing $$TMP to $(ICONV_DIR) ; \
 		$(RM) $(ICONV_DIR)/$$TMP ; \
 		$(CP) $$f $(ICONV_DIR)/$$TMP ; \
-		$(CHMOD) 555 $(ICONV_DIR)/$$TMP ; \
+		$(CHMOD) 755 $(ICONV_DIR)/$$TMP ; \
 	done
 	-@echo "done."
 
@@ -68,6 +68,8 @@ $(BTS_DIR):
 	$(INS.dir) $@
 
 clobber: clean
+
+$(ICONV_DIR)/alias:=	FILEMODE=0444
 
 LDLIBS			= -lc
 
