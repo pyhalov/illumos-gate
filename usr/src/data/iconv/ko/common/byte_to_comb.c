@@ -438,7 +438,7 @@ register int n;
 
 				/* initialize Hangul buffer */
 	if(n != 2)
-		for(i = 0; i <= 5; i++){
+		for(i = 0; i < 5; i++){
 			han_buf[i] = 0;
 		}
 

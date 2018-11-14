@@ -457,8 +457,6 @@ size_t*outbytesleft;
 {
 	int	c, d;
 	KCHAR	code;
-	size_t save_outbytesleft;
-	char *save_outbuf;
 
         if (inbuf == NULL || *inbuf == NULL) { /* Reset request. */
 		st->invalid = 0;
@@ -510,9 +508,6 @@ size_t*outbytesleft;
 			(*inbuf)++, (*inbytesleft)--;
 			code = c<<8|d;
 
-			/* save previous values */
-			save_outbytesleft = *(st->my_outbytesleft);
-			save_outbuf = *(st->my_outbuf);
 
 				/* output hangul character */
 			if (iskorea2(code&BYTE_MASK) && !ishanja(c)) {
@@ -549,10 +544,6 @@ size_t*outbytesleft;
 
 			if (st->invalid) { /* ran out of outbuf space */
 				st->invalid = 0;
-				/**inbytesleft = *inbytesleft + 2;
-				(*inbuf)--; (*inbuf)--;
-				*(st->my_outbytesleft) = save_outbytesleft;
-				*(st->my_outbuf) = save_outbuf;*/
 				return(*inbytesleft);
 			}
 

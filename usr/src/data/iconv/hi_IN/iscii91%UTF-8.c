@@ -22,8 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)iscii91_to_UTF-8.c    1.1 01/10/09 SMI"
-
 
 #include <stdio.h>
 #include <errno.h>
@@ -192,6 +190,7 @@ iscii_to_utf8(_iconv_st *st, char *buf, size_t buflen)
 		  }
 
 		/* fall into default case, convert the DANDA if it isn't DOUBLE_DANDA */
+		/* FALLTHRU */
 	      default:
 
 		uniid = traverse_table(en.entry, en.items, keepc1);

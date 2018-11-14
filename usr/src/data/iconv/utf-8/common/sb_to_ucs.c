@@ -89,7 +89,9 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	unsigned char *ibtail;
 	unsigned char *obtail;
 	unsigned int u4;
+#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
 	unsigned int u4_2;
+#endif
 	signed char obsz;
 
 
@@ -112,7 +114,9 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 
 	while (ib < ibtail) {
 		u4 = sb_u4_tbl[*ib].u8;
+#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
 		u4_2 = 0;
+#endif
 
 		if (sb_u4_tbl[*ib].size == ICV_TYPE_ILLEGAL_CHAR) {
 			errno = EILSEQ;

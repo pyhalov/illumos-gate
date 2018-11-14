@@ -598,7 +598,7 @@ int iso_to_utf8(_iconv_st * st, char* buf, size_t buflen) {
 					(st->_keepc[1] & 0xff) - 0x21;
 			if (unidx < 0 || unidx >= GBMAX) {
 				st->_errno = EILSEQ;
-				return 0;
+				return (0);
 			}
 			unicode = Unicode[unidx];
 			break;
@@ -611,6 +611,8 @@ int iso_to_utf8(_iconv_st * st, char* buf, size_t buflen) {
 				unicode = cns1_utf_tab[unidx].value;
 				break;
 			}
+			st->_errno = EILSEQ;
+			return (0);
 		case 2:
 			iso_val = ((st->_keepc[0] & MSB_OFF) << 8) + \
 					(st->_keepc[1] & MSB_OFF);
@@ -619,15 +621,17 @@ int iso_to_utf8(_iconv_st * st, char* buf, size_t buflen) {
 				unicode = cns2_utf_tab[unidx].value;
 				break;
 			}
+			st->_errno = EILSEQ;
+			return (0);
 		default:
 			st->_errno = EILSEQ;
-			return 0;
+			return (0);
 	}
 	if (unidx >=0) {
 		if (unicode > 0x0080 && unicode <= 0x07ff) {
 			if (buflen < 2) {
 				st->_errno = E2BIG;
-				return 0;
+				return (0);
 			}
 			*buf = (char)((unicode >> 6) & 0x1f) | 0xc0;
 			*(buf+1) = (char)(unicode & 0x3f) | 0x80;
@@ -636,7 +640,7 @@ int iso_to_utf8(_iconv_st * st, char* buf, size_t buflen) {
 		if (unicode > 0x0800 && unicode <= 0xffff) {
 			if (buflen < 3) {
 				st->_errno = E2BIG;
-				return(0);
+				return (0);
 			}
 			*buf = (char)((unicode >> 12) & 0xf) | 0xe0;
 			*(buf+1) = (char)((unicode >>6) & 0x3f) | 0x80;
@@ -646,13 +650,13 @@ int iso_to_utf8(_iconv_st * st, char* buf, size_t buflen) {
 	}
 	if (buflen < 3) {
 		st->_errno = E2BIG;
-		return 0;
+		return (0);
 	}
 
 	*buf = (char)UTF8_NON_ID_CHAR1;
 	*(buf + 2) = (char)UTF8_NON_ID_CHAR2;
 	*(buf + 2) = (char)UTF8_NON_ID_CHAR3;
-	return 3;
+	return (3);
 }
 
 /* binsearch: find x in v[0] <= v[1] <= ... <= v[n-1] */

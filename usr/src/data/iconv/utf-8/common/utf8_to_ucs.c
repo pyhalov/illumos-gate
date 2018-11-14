@@ -102,7 +102,9 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 	while (ib < ibtail) {
 		uchar_t *ib_org;
 		uint_t u4;
+#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
 		uint_t u4_2;
+#endif
 		uint_t first_byte;
 		signed char sz;
 		signed char obsz;
@@ -161,7 +163,9 @@ _icv_iconv(ucs_state_t *cd, char **inbuf, size_t *inbufleft, char **outbuf,
 			goto ILLEGAL_CHAR_ERR;
 		}
 
+#if defined(UTF_16) || defined(UTF_16BE) || defined(UTF_16LE)
 		u4_2 = 0;
+#endif
 
 		if (u4 == ICV_BOM_IN_BIG_ENDIAN) {
 			cd->bom_written = true;
