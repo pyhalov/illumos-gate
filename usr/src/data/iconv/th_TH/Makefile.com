@@ -58,12 +58,16 @@ all:	$(ALL_SOS)
 #
 $(E2U): euc_to_utf_main.o euc_to_utf_sub.o common_utf.o $(COMMON)common_def.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ euc_to_utf_main.o euc_to_utf_sub.o common_utf.o
+	$(POST_PROCESS_SO)
 
 $(U2E): utf_to_euc_main.o utf_to_euc_sub.o common_utf.o $(COMMON)common_def.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ utf_to_euc_main.o utf_to_euc_sub.o common_utf.o
+	$(POST_PROCESS_SO)
 
 $(723): 874_to_838_main.o 874_to_838_sub.o common_utf.o $(COMMON)common_def.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ 874_to_838_main.o 874_to_838_sub.o common_utf.o
+	$(POST_PROCESS_SO)
 
 $(327): 838_to_874_main.o 838_to_874_sub.o common_utf.o $(COMMON)common_def.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ 838_to_874_main.o 838_to_874_sub.o common_utf.o
+	$(POST_PROCESS_SO)
