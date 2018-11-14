@@ -152,7 +152,7 @@ common_utf8.o: $(ICONV_COMMON)/common_utf8.c
 
 UCS-2LE%cns11643.so: UCS-2LE%cns11643.o common_utf8.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UCS-2LE%cns11643.o common_utf8.o
-	$(POST_PROCESS_O)
+	$(POST_PROCESS_SO)
 
 UCS-2LE%BIG5.so: UCS-2LE%BIG5.o common_utf8.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ UCS-2LE%BIG5.o common_utf8.o
