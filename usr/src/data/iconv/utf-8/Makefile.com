@@ -52,6 +52,7 @@ install: all $(ICONV_DIR) $(BTS_DIR) $(ICONV_DIR)/alias
 		echo installing $$TMP to $(BTS_DIR) ; \
 		$(RM) $(BTS_DIR)/$$TMP ; \
 		$(CP) $$f $(BTS_DIR)/$$TMP ; \
+		$(CHMOD) 444 $(BTS_DIR)/$$TMP ; \
 	done
 	for f in $(DYNOBJS) ; do \
 		TMP=`echo $$f | $(TR) "+" "%"` ; \
