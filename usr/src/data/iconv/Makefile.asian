@@ -40,6 +40,8 @@ PROGS		= $(OBJS:%.o=%.so)
 
 CLEANFILES	= *.o *.so.* *.so
 
+PROTOCLEANFILES = $(ICONV_LIBS) $(ICONV_LIBS_64)
+
 CFLAGS		+= -I../../inc -I. -I../../common -fpic -G
 
 DYNFLAGS=	-G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
@@ -89,7 +91,10 @@ $(ICONV_DIR)/%: ../%
 
 lint: FRC
 
-clobber clean:
+clean:
 	$(RM) $(CLEANFILES)
+
+clobber: clean
+	$(RM) $(PROTOCLEANFILES)
 
 FRC:

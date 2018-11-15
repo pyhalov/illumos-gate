@@ -35,6 +35,13 @@ SRCS		=	tcvn%UCS-2.c \
             viscii%UTF-8.c
 COMMON = ../common/
 
+CREATE_LINKS = .links_created
+
+LINK_TARGETS  = UCS-2BE%tcvn.so tcvn%UCS-2BE.so
+LINK_TARGETS += UCS-2BE%viscii.so viscii%UCS-2BE.so
+
+ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
+
 dummy: all
 
 tcvn%UCS-2LE.o: $(COMMON)tcvn%UCS-2.c
@@ -63,6 +70,17 @@ UCS-2BE%viscii.o: $(COMMON)UCS-2%viscii.c
 
 include $(SRC)/data/iconv/Makefile.asian
 
+$(ICONV_LINK_TARGETS) :=      FILEMODE= 755
+
+$(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
+	$(SYMLINK) -f tcvn%UCS-2BE.so $(ICONV_DIR)/tcvn%UCS-2.so
+	$(SYMLINK) -f UCS-2BE%tcvn.so $(ICONV_DIR)/UCS-2%tcvn.so
+	$(SYMLINK) -f UCS-2BE%viscii.so $(ICONV_DIR)/UCS-2%viscii.so
+	$(SYMLINK) -f viscii%UCS-2BE.so $(ICONV_DIR)/viscii%UCS-2.so
+	$(TOUCH) $@
+
+CLEANFILES += $(CREATE_LINKS)
+
 ALL_SOS  = tcvn%UCS-2LE.so		tcvn%UCS-2BE.so
 ALL_SOS += viscii%UCS-2LE.so		viscii%UCS-2BE.so
 ALL_SOS += UCS-2LE%tcvn.so		UCS-2BE%tcvn.so
@@ -70,6 +88,5 @@ ALL_SOS += UCS-2LE%viscii.so		UCS-2BE%viscii.so
 ALL_SOS += UTF-8%tcvn.so			tcvn%UTF-8.so
 ALL_SOS += UTF-8%viscii.so		viscii%UTF-8.so
 ALL_SOS += tcvn%viscii.so			viscii%tcvn.so
-
 
 all: $(ALL_SOS)
