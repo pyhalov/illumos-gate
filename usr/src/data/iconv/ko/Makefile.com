@@ -92,6 +92,14 @@ ALL_SOS   = $(E2I) $(I2E) $(E2J92) $(J922E) $(E2J) $(J2E) $(E2NB) $(NB2E) \
 LDFLAGS = $(DYNFLAGS) $(LDLIBS) $(CFLAG_OPT)
 CFLAGS += -I$(ICONV_COMMON) -I../inc
 
+LINK_TARGETS = $(U2UH) $(C9332U) $(UH2U) $(E2U) $(I2U) $(O2U) $(N2U) \
+	$(E2I) $(E2J) $(E2J92) $(E2NB) $(I2E) $(J2E) $(J922E) $(NVBE) \
+	$(UCS2BE2UH) $(U2LE2UH) $(U2C933) $(U2E) $(U2I) $(U2O) $(U2N) \
+	$(UH2UCS2BE) $(UH2UCS2LE)
+
+ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
+
+$(ICONV_LINK_TARGETS) :=      FILEMODE= 755
 
 all: $(ALL_SOS)
 
@@ -245,4 +253,59 @@ UTF8_to_Cp933.o: $(COMMON)UTF8_to_Cp933.c $(ICONV_COMMON)tab_lookup.h $(COMMON)u
 	$(CC) -c $(CFLAGS) $(COMMON)UTF8_to_Cp933.c -o $@
 	$(POST_PROCESS_O)
 
+#
+# Proto area symlinks
+#
+$(CREATE_LINKS):	$(ICONV_LINK_TARGETS)
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-cp949.so $(ICONV_DIR)/ko_KR-UTF-8%UnifiedHangul.so
+	$(SYMLINK) -f ko_KR-cp933%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-cp933%UTF-8.so
+	$(SYMLINK) -f ko_KR-cp949%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-cp949%UTF-8.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-euc%UTF-8.so
+	$(SYMLINK) -f ko_KR-iso2022-7%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-iso2022-7%UTF-8.so
+	$(SYMLINK) -f ko_KR-johap%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-johap%UTF-8.so
+	$(SYMLINK) -f ko_KR-johap92%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR-johap92%UTF-8.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR.EUC%UTF-8.so
+	$(SYMLINK) -f ko_KR-cp933%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR.cp933%UTF-8.so
+	$(SYMLINK) -f ko_KR-cp949%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR.cp949%UTF-8.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR.euc%UTF-8.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-iso2022-7.so $(ICONV_DIR)/ko_KR.euc%ko_KR.iso2022-7.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-johap.so $(ICONV_DIR)/ko_KR.euc%ko_KR.johap.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-johap92.so $(ICONV_DIR)/ko_KR.euc%ko_KR.johap92.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-nbyte.so $(ICONV_DIR)/ko_KR.euc%ko_KR.nbyte.so
+	$(SYMLINK) -f ko_KR-iso2022-7%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR.iso2022-7%UTF-8.so
+	$(SYMLINK) -f ko_KR-iso2022-7%ko_KR-euc.so $(ICONV_DIR)/ko_KR.iso2022-7%ko_KR.euc.so
+	$(SYMLINK) -f ko_KR-johap%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR.johap%UTF-8.so
+	$(SYMLINK) -f ko_KR-johap%ko_KR-euc.so $(ICONV_DIR)/ko_KR.johap%ko_KR.euc.so
+	$(SYMLINK) -f ko_KR-johap92%ko_KR-UTF-8.so $(ICONV_DIR)/ko_KR.johap92%UTF-8.so
+	$(SYMLINK) -f ko_KR-johap92%ko_KR-euc.so $(ICONV_DIR)/ko_KR.johap92%ko_KR.euc.so
+	$(SYMLINK) -f ko_KR-nbyte%ko_KR-euc.so $(ICONV_DIR)/ko_KR.nbyte%ko_KR.euc.so
+	$(SYMLINK) -f ko_KR-cp949%UCS-2BE.so $(ICONV_DIR)/5601%UCS-2BE.so
+	$(SYMLINK) -f ko_KR-cp949%UCS-2LE.so $(ICONV_DIR)/5601%UCS-2LE.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-UTF-8.so $(ICONV_DIR)/5601%UTF-8.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-UTF-8.so $(ICONV_DIR)/EUC-KR%UTF-8.so
+	$(SYMLINK) -f ko_KR-iso2022-7%ko_KR-UTF-8.so $(ICONV_DIR)/ISO-2022-KR%UTF-8.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-UTF-8.so $(ICONV_DIR)/KSC5601%UTF-8.so
+	$(SYMLINK) -f ko_KR-euc%ko_KR-UTF-8.so $(ICONV_DIR)/KSX1001%UTF-8.so
+	$(SYMLINK) -f UCS-2BE%ko_KR-cp949.so $(ICONV_DIR)/UCS-2BE%5601.so
+	$(SYMLINK) -f UCS-2LE%ko_KR-cp949.so $(ICONV_DIR)/UCS-2LE%5601.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-euc.so $(ICONV_DIR)/UTF-8%5601.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-euc.so $(ICONV_DIR)/UTF-8%EUC-KR.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-iso2022-7.so $(ICONV_DIR)/UTF-8%ISO-2022-KR.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-euc.so $(ICONV_DIR)/UTF-8%KSC5601.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-euc.so $(ICONV_DIR)/UTF-8%KSX1001.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-cp933.so $(ICONV_DIR)/UTF-8%ko_KR-cp933.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-cp949.so $(ICONV_DIR)/UTF-8%ko_KR-cp949.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-euc.so $(ICONV_DIR)/UTF-8%ko_KR-euc.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-iso2022-7.so $(ICONV_DIR)/UTF-8%ko_KR-iso2022-7.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-johap.so $(ICONV_DIR)/UTF-8%ko_KR-johap.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-johap92.so $(ICONV_DIR)/UTF-8%ko_KR-johap92.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-euc.so $(ICONV_DIR)/UTF-8%ko_KR.EUC.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-cp933.so $(ICONV_DIR)/UTF-8%ko_KR.cp933.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-cp949.so $(ICONV_DIR)/UTF-8%ko_KR.cp949.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-euc.so $(ICONV_DIR)/UTF-8%ko_KR.euc.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-iso2022-7.so $(ICONV_DIR)/UTF-8%ko_KR.iso2022-7.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-johap.so $(ICONV_DIR)/UTF-8%ko_KR.johap.so
+	$(SYMLINK) -f ko_KR-UTF-8%ko_KR-johap92.so $(ICONV_DIR)/UTF-8%ko_KR.johap92.so
+	$(SYMLINK) -f ko_KR-cp949%ko_KR-UTF-8.so $(ICONV_DIR)/UnifiedHangul%ko_KR-UTF-8.so
+	$(TOUCH) $@
 FRC:
