@@ -79,7 +79,7 @@ size_t
 _icv_iconv(int* cd, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
-	unsigned char	*ip, ic, *op, offset;
+	unsigned char	*ip, ic, *op;
 	size_t			ileft, oleft;
 	size_t			retval = 0;
 
@@ -124,7 +124,6 @@ _icv_iconv(int* cd, char **inbuf, size_t *inbytesleft,
 	op = (unsigned char *)*outbuf;
 	ileft = *inbytesleft;
 	oleft = *outbytesleft;
-	offset = 0;
 
 	/*
 	 * Main loop; basically 1 loop per 1 input byte

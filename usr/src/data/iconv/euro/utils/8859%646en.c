@@ -79,7 +79,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
 	int				cset, stat;
-	unsigned char	*op, ic, offset;
+	unsigned char	*op, ic;
 	char			*ip;
 	size_t			ileft, oleft;
 	size_t			retval;
@@ -104,7 +104,6 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 	op = (unsigned char *)*outbuf;
 	ileft = *inbytesleft;
 	oleft = *outbytesleft;
-	offset = 0;
 	/* Everything down to here was taken unchanged from  @(#)ISO-2022-JP%SJIS.
 	   =======================================================================
 
@@ -126,8 +125,8 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				ic = '_';
 		else if ( ic == 163 )
 				ic = '\043';
-				if (ic > 127)
-					ic = '_';
+		if (ic > 127)
+				ic = '_';
 
 
 

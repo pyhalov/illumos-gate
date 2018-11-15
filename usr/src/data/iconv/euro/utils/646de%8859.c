@@ -23,8 +23,6 @@
  * Copyright (c) 1994, Nihon Sun Microsystems K.K.
  */
 
-#ident	"@(#)ISO-2022-JP%SJIS.c	1.2	94/07/18 SMI"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -79,7 +77,7 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 				char **outbuf, size_t *outbytesleft)
 {
 	int				cset, stat;
-	unsigned char	*op, ic, offset;
+	unsigned char	*op, ic;
 	char			*ip;
 	size_t			ileft, oleft;
 	size_t			retval;
@@ -104,7 +102,6 @@ _icv_iconv(struct _icv_state *st, char **inbuf, size_t *inbytesleft,
 	op = (unsigned char *)*outbuf;
 	ileft = *inbytesleft;
 	oleft = *outbytesleft;
-	offset = 0;
 	/* Everything down to here was taken unchanged from  @(#)ISO-2022-JP%SJIS.
 	   =======================================================================
 

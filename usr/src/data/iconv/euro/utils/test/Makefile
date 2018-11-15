@@ -147,3 +147,5 @@ geninput: ../gentbl/geninput.c
 
 clean:
 	$(RM) -r *out input geninput
+
+clobber:
