@@ -36,7 +36,9 @@ LDFLAGS=       -G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
 LDLIBS		= -lc
 
-ICONV_DIR		= $(ROOT)/usr/lib/iconv
+LINK_TARGETS =	646%8859-1.so
+
+ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
 
 .NO_PARALLEL:
 
@@ -47,7 +49,7 @@ all: $(ALL_SOS)
 
 include $(SRC)/data/iconv/Makefile.asian
 
-CLEANFILES =	*.o *.so core ../common/tbl.h
+CLEANFILES +=	core ../common/tbl.h
 
 $(ALL_SOS): ../common/euro.h ../common/euro.c ../common/tbl.h
 	TABLE=`echo $@ | $(TR) -d "-" | sed -e s:%:_:g | /usr/bin/cut -d. -f1` ; \
@@ -57,5 +59,20 @@ $(ALL_SOS): ../common/euro.h ../common/euro.c ../common/tbl.h
 
 ../common/tbl.h: ../genincl $(TABLES:%=../tbls/%)
 	cd ..; ./genincl > common/tbl.h
+
+$(ICONV_LINK_TARGETS) :=	FILEMODE= 755
+
+$(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-15.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-2.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-4.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-5.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-6.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-7.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-8.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-9.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%CP1251.so
+	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%KOI8-R.so
+	$(TOUCH) $@
 
 FRC:

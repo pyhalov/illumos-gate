@@ -21,4 +21,4 @@ ICONV_LIBS      = $(ALL_SOS:%=$(ICONV_DIR)/%)
 
 $(ICONV_LIBS) := FILEMODE= 755
 
-install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)
+install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS) $(CREATE_LINKS)
