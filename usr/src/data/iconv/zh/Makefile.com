@@ -248,4 +248,113 @@ ALL_SOS += zh_TW-iso2022-CN-EXT%zh_TW-euc.so zh_TW-iso2022-CN-EXT%zh_TW-big5.so
 ALL_SOS += GBK%UCS-2LE.so GBK%UCS-2BE.so GBK%UCS-4LE.so GBK%UCS-4BE.so
 ALL_SOS += UCS-2LE%GBK.so UCS-2BE%GBK.so UCS-4LE%GBK.so UCS-4BE%GBK.so
 
+LINK_TARGETS  = GBK%UCS-2BE.so GBK%UCS-2LE.so GBK%UCS-4BE.so GBK%UCS-4LE.so
+LINK_TARGETS += HZ-GB-2312%zh_CN.euc.so UCS-2BE%GBK.so UCS-2LE%GBK.so UCS-4BE%GBK.so
+LINK_TARGETS += UCS-4LE%GBK.so UTF-8%zh_CN.euc.so UTF-8%zh_CN.gbk.so
+LINK_TARGETS += UTF-8%zh_CN.iso2022-7.so UTF-8%zh_HK.hkscs.so UTF-8%zh_TW-big5.so
+LINK_TARGETS += UTF-8%zh_TW-big5p.so UTF-8%zh_TW-cp937.so UTF-8%zh_TW-euc.so
+LINK_TARGETS += UTF-8%zh_TW-iso2022-7.so zh_CN.euc%UTF-8.so
+LINK_TARGETS += zh_CN.euc%zh_CN.iso2022-CN.so zh_CN.gbk%UTF-8.so
+LINK_TARGETS += zh_CN.gbk%zh_CN.iso2022-CN.so zh_CN.gbk%zh_HK.hkscs.so
+LINK_TARGETS += zh_CN.gbk%zh_TW-big5.so zh_CN.gbk%zh_TW-big5p.so
+LINK_TARGETS += zh_CN.iso2022-7%UTF-8.so zh_CN.iso2022-CN%zh_CN.euc.so
+LINK_TARGETS += zh_HK.hkscs%UTF-8.so zh_HK.hkscs%zh_CN.gbk.so
+LINK_TARGETS += zh_HK.hkscs%zh_TW-big5p.so zh_TW-big5%UTF-8.so
+LINK_TARGETS += zh_TW-big5%zh_CN.gbk.so zh_TW-big5%zh_TW-euc.so
+LINK_TARGETS += zh_TW-big5%zh_TW-iso2022-7.so zh_TW-big5%zh_TW-iso2022-CN-EXT.so
+LINK_TARGETS += zh_TW-big5p%UTF-8.so zh_TW-big5p%zh_CN.gbk.so
+LINK_TARGETS += zh_TW-big5p%zh_HK.hkscs.so zh_TW-cp937%UTF-8.so zh_TW-euc%UTF-8.so
+LINK_TARGETS += zh_TW-euc%zh_TW-big5.so zh_TW-euc%zh_TW-iso2022-7.so
+LINK_TARGETS += zh_TW-euc%zh_TW-iso2022-CN-EXT.so zh_TW-iso2022-7%UTF-8.so
+LINK_TARGETS += zh_TW-iso2022-7%zh_TW-big5.so zh_TW-iso2022-7%zh_TW-euc.so
+LINK_TARGETS += zh_TW-iso2022-CN-EXT%zh_TW-big5.so zh_TW-iso2022-CN-EXT%zh_TW-euc.so
+
+ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
+
+$(ICONV_LINK_TARGETS) :=	FILEMODE= 755
+
 all: $(ALL_SOS)
+
+#
+# Proto area symlinks
+#
+$(CREATE_LINKS):        $(ICONV_LINK_TARGETS)
+	$(SYMLINK) -f GBK%UCS-2BE.so $(ICONV_DIR)/GB18030%UCS-2BE.so
+	$(SYMLINK) -f GBK%UCS-2LE.so $(ICONV_DIR)/GB18030%UCS-2LE.so
+	$(SYMLINK) -f GBK%UCS-4BE.so $(ICONV_DIR)/GB18030%UCS-4BE.so
+	$(SYMLINK) -f GBK%UCS-4LE.so $(ICONV_DIR)/GB18030%UCS-4LE.so
+	$(SYMLINK) -f HZ-GB-2312%zh_CN.euc.so $(ICONV_DIR)/HZ-GB-2312%zh_CN.gbk.so
+	$(SYMLINK) -f UCS-2BE%GBK.so $(ICONV_DIR)/UCS-2BE%GB18030.so
+	$(SYMLINK) -f UCS-2LE%GBK.so $(ICONV_DIR)/UCS-2LE%GB18030.so
+	$(SYMLINK) -f UCS-4BE%GBK.so $(ICONV_DIR)/UCS-4BE%GB18030.so
+	$(SYMLINK) -f UCS-4LE%GBK.so $(ICONV_DIR)/UCS-4LE%GB18030.so
+	$(SYMLINK) -f UTF-8%zh_CN.euc.so $(ICONV_DIR)/UTF-8%gb2312.so
+	$(SYMLINK) -f UTF-8%zh_CN.gbk.so $(ICONV_DIR)/UTF-8%GB18030.so
+	$(SYMLINK) -f UTF-8%zh_CN.gbk.so $(ICONV_DIR)/UTF-8%GBK.so
+	$(SYMLINK) -f UTF-8%zh_CN.gbk.so $(ICONV_DIR)/UTF-8%zh_CN.gb18030.so
+	$(SYMLINK) -f UTF-8%zh_CN.iso2022-7.so $(ICONV_DIR)/UTF-8%iso2022.so
+	$(SYMLINK) -f UTF-8%zh_HK.hkscs.so $(ICONV_DIR)/UTF-8%Big5-HKSCS.so
+	$(SYMLINK) -f UTF-8%zh_HK.hkscs.so $(ICONV_DIR)/UTF-8%zh_HK-big5hk.so
+	$(SYMLINK) -f UTF-8%zh_HK.hkscs.so $(ICONV_DIR)/UTF-8%zh_HK.big5hk.so
+	$(SYMLINK) -f UTF-8%zh_TW-big5.so $(ICONV_DIR)/UTF-8%BIG5.so
+	$(SYMLINK) -f UTF-8%zh_TW-big5.so $(ICONV_DIR)/UTF-8%zh_TW.big5.so
+	$(SYMLINK) -f UTF-8%zh_TW-big5p.so $(ICONV_DIR)/UTF-8%BIG5P.so
+	$(SYMLINK) -f UTF-8%zh_TW-big5p.so $(ICONV_DIR)/UTF-8%zh_TW.big5p.so
+	$(SYMLINK) -f UTF-8%zh_TW-cp937.so $(ICONV_DIR)/UTF-8%zh_TW.cp937.so
+	$(SYMLINK) -f UTF-8%zh_TW-euc.so $(ICONV_DIR)/UTF-8%cns11643.so
+	$(SYMLINK) -f UTF-8%zh_TW-euc.so $(ICONV_DIR)/UTF-8%zh_TW.euc.so
+	$(SYMLINK) -f UTF-8%zh_TW-iso2022-7.so $(ICONV_DIR)/UTF-8%zh_TW.iso2022-7.so
+	$(SYMLINK) -f zh_CN.euc%UTF-8.so $(ICONV_DIR)/gb2312%UTF-8.so
+	$(SYMLINK) -f zh_CN.euc%zh_CN.iso2022-CN.so $(ICONV_DIR)/gb2312%iso2022.so
+	$(SYMLINK) -f zh_CN.euc%zh_CN.iso2022-CN.so $(ICONV_DIR)/zh_CN.euc%zh_CN.iso2022-7.so
+	$(SYMLINK) -f zh_CN.gbk%UTF-8.so $(ICONV_DIR)/GB18030%UTF-8.so
+	$(SYMLINK) -f zh_CN.gbk%UTF-8.so $(ICONV_DIR)/GBK%UTF-8.so
+	$(SYMLINK) -f zh_CN.gbk%UTF-8.so $(ICONV_DIR)/zh_CN.gb18030%UTF-8.so
+	$(SYMLINK) -f zh_CN.gbk%zh_CN.iso2022-CN.so $(ICONV_DIR)/zh_CN.gb18030%zh_CN.iso2022-CN.so
+	$(SYMLINK) -f zh_CN.gbk%zh_HK.hkscs.so $(ICONV_DIR)/zh_CN.gb18030%zh_HK-big5hk.so
+	$(SYMLINK) -f zh_CN.gbk%zh_HK.hkscs.so $(ICONV_DIR)/zh_CN.gb18030%zh_HK.big5hk.so
+	$(SYMLINK) -f zh_CN.gbk%zh_HK.hkscs.so $(ICONV_DIR)/zh_CN.gb18030%zh_HK.hkscs.so
+	$(SYMLINK) -f zh_CN.gbk%zh_HK.hkscs.so $(ICONV_DIR)/zh_CN.gbk%zh_HK-big5hk.so
+	$(SYMLINK) -f zh_CN.gbk%zh_HK.hkscs.so $(ICONV_DIR)/zh_CN.gbk%zh_HK.big5hk.so
+	$(SYMLINK) -f zh_CN.gbk%zh_TW-big5.so $(ICONV_DIR)/zh_CN.gb18030%zh_TW-big5.so
+	$(SYMLINK) -f zh_CN.gbk%zh_TW-big5p.so $(ICONV_DIR)/zh_CN.gb18030%zh_TW-big5p.so
+	$(SYMLINK) -f zh_CN.iso2022-7%UTF-8.so $(ICONV_DIR)/iso2022%UTF-8.so
+	$(SYMLINK) -f zh_CN.iso2022-CN%zh_CN.euc.so $(ICONV_DIR)/iso2022%gb2312.so
+	$(SYMLINK) -f zh_CN.iso2022-CN%zh_CN.euc.so $(ICONV_DIR)/zh_CN.iso2022-7%zh_CN.euc.so
+	$(SYMLINK) -f zh_HK.hkscs%UTF-8.so $(ICONV_DIR)/Big5-HKSCS%UTF-8.so
+	$(SYMLINK) -f zh_HK.hkscs%UTF-8.so $(ICONV_DIR)/zh_HK-big5hk%UTF-8.so
+	$(SYMLINK) -f zh_HK.hkscs%UTF-8.so $(ICONV_DIR)/zh_HK.big5hk%UTF-8.so
+	$(SYMLINK) -f zh_HK.hkscs%zh_CN.gbk.so $(ICONV_DIR)/zh_HK-big5hk%zh_CN.gb18030.so
+	$(SYMLINK) -f zh_HK.hkscs%zh_CN.gbk.so $(ICONV_DIR)/zh_HK-big5hk%zh_CN.gbk.so
+	$(SYMLINK) -f zh_HK.hkscs%zh_CN.gbk.so $(ICONV_DIR)/zh_HK.big5hk%zh_CN.gb18030.so
+	$(SYMLINK) -f zh_HK.hkscs%zh_CN.gbk.so $(ICONV_DIR)/zh_HK.big5hk%zh_CN.gbk.so
+	$(SYMLINK) -f zh_HK.hkscs%zh_CN.gbk.so $(ICONV_DIR)/zh_HK.hkscs%zh_CN.gb18030.so
+	$(SYMLINK) -f zh_HK.hkscs%zh_TW-big5p.so $(ICONV_DIR)/zh_HK-big5hk%zh_TW-big5p.so
+	$(SYMLINK) -f zh_HK.hkscs%zh_TW-big5p.so $(ICONV_DIR)/zh_HK.big5hk%zh_TW-big5p.so
+	$(SYMLINK) -f zh_TW-big5%UTF-8.so $(ICONV_DIR)/BIG5%UTF-8.so
+	$(SYMLINK) -f zh_TW-big5%UTF-8.so $(ICONV_DIR)/zh_TW.big5%UTF-8.so
+	$(SYMLINK) -f zh_TW-big5%zh_CN.gbk.so $(ICONV_DIR)/zh_TW-big5%zh_CN.gb18030.so
+	$(SYMLINK) -f zh_TW-big5%zh_TW-euc.so $(ICONV_DIR)/zh_TW.big5%zh_TW.euc.so
+	$(SYMLINK) -f zh_TW-big5%zh_TW-iso2022-7.so $(ICONV_DIR)/zh_TW-big5%zh_TW-iso2022-CN.so
+	$(SYMLINK) -f zh_TW-big5%zh_TW-iso2022-7.so $(ICONV_DIR)/zh_TW.big5%zh_TW.iso2022-7.so
+	$(SYMLINK) -f zh_TW-big5%zh_TW-iso2022-7.so $(ICONV_DIR)/zh_TW.big5%zh_TW.iso2022-CN.so
+	$(SYMLINK) -f zh_TW-big5%zh_TW-iso2022-CN-EXT.so $(ICONV_DIR)/zh_TW.big5%zh_TW.iso2022-CN-EXT.so
+	$(SYMLINK) -f zh_TW-big5p%UTF-8.so $(ICONV_DIR)/BIG5P%UTF-8.so
+	$(SYMLINK) -f zh_TW-big5p%UTF-8.so $(ICONV_DIR)/zh_TW.big5p%UTF-8.so
+	$(SYMLINK) -f zh_TW-big5p%zh_CN.gbk.so $(ICONV_DIR)/zh_TW-big5p%zh_CN.gb18030.so
+	$(SYMLINK) -f zh_TW-big5p%zh_HK.hkscs.so $(ICONV_DIR)/zh_TW-big5p%zh_HK-big5hk.so
+	$(SYMLINK) -f zh_TW-big5p%zh_HK.hkscs.so $(ICONV_DIR)/zh_TW-big5p%zh_HK.big5hk.so
+	$(SYMLINK) -f zh_TW-cp937%UTF-8.so $(ICONV_DIR)/zh_TW.cp937%UTF-8.so
+	$(SYMLINK) -f zh_TW-euc%UTF-8.so $(ICONV_DIR)/cns11643%UTF-8.so
+	$(SYMLINK) -f zh_TW-euc%UTF-8.so $(ICONV_DIR)/zh_TW.euc%UTF-8.so
+	$(SYMLINK) -f zh_TW-euc%zh_TW-big5.so $(ICONV_DIR)/zh_TW.euc%zh_TW.big5.so
+	$(SYMLINK) -f zh_TW-euc%zh_TW-iso2022-7.so $(ICONV_DIR)/zh_TW.euc%zh_TW.iso2022-7.so
+	$(SYMLINK) -f zh_TW-euc%zh_TW-iso2022-CN-EXT.so $(ICONV_DIR)/zh_TW.euc%zh_TW.iso2022-CN-EXT.so
+	$(SYMLINK) -f zh_TW-iso2022-7%UTF-8.so $(ICONV_DIR)/zh_TW.iso2022-7%UTF-8.so
+	$(SYMLINK) -f zh_TW-iso2022-7%zh_TW-big5.so $(ICONV_DIR)/zh_TW-iso2022-CN%zh_TW-big5.so
+	$(SYMLINK) -f zh_TW-iso2022-7%zh_TW-big5.so $(ICONV_DIR)/zh_TW.iso2022-7%zh_TW.big5.so
+	$(SYMLINK) -f zh_TW-iso2022-7%zh_TW-big5.so $(ICONV_DIR)/zh_TW.iso2022-CN%zh_TW.big5.so
+	$(SYMLINK) -f zh_TW-iso2022-7%zh_TW-euc.so $(ICONV_DIR)/zh_TW.iso2022-7%zh_TW.euc.so
+	$(SYMLINK) -f zh_TW-iso2022-CN-EXT%zh_TW-big5.so $(ICONV_DIR)/zh_TW.iso2022-CN-EXT%zh_TW.big5.so
+	$(SYMLINK) -f zh_TW-iso2022-CN-EXT%zh_TW-euc.so $(ICONV_DIR)/zh_TW.iso2022-CN-EXT%zh_TW.euc.so
+	$(TOUCH) $@
