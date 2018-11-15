@@ -15,4 +15,4 @@
 
 include ../Makefile.com
 
-install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)
+install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS) $(CREATE_LINKS)
