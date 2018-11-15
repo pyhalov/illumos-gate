@@ -35,8 +35,6 @@ SRCS		=	tcvn%UCS-2.c \
             viscii%UTF-8.c
 COMMON = ../common/
 
-CREATE_LINKS = .links_created
-
 LINK_TARGETS  = UCS-2BE%tcvn.so tcvn%UCS-2BE.so
 LINK_TARGETS += UCS-2BE%viscii.so viscii%UCS-2BE.so
 
@@ -78,8 +76,6 @@ $(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
 	$(SYMLINK) -f UCS-2BE%viscii.so $(ICONV_DIR)/UCS-2%viscii.so
 	$(SYMLINK) -f viscii%UCS-2BE.so $(ICONV_DIR)/viscii%UCS-2.so
 	$(TOUCH) $@
-
-CLEANFILES += $(CREATE_LINKS)
 
 ALL_SOS  = tcvn%UCS-2LE.so		tcvn%UCS-2BE.so
 ALL_SOS += viscii%UCS-2LE.so		viscii%UCS-2BE.so

@@ -22,9 +22,6 @@
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-#ident	"@(#)Makefile	1.9	07/01/11 SMI"
-#
-#
 
 include $(SRC)/Makefile.master
 
@@ -38,6 +35,9 @@ LIB64 = $(MODULES:%.c=$(MACH64)/%.so)
 DYNFLAGS=	-G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
 		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
 LDLIBS=	-lc
+
+INSTALL_MODULES = .modules_installed
+CLEANFILES += $(INSTALL_MODULES)
 
 install		:=	TARGET = install
 all		:=	TARGET = all
@@ -304,16 +304,13 @@ UTF-32_TO_ISO-2022-JP-2004.c \
 UTF-32BE_TO_ISO-2022-JP-2004.c UTF-32LE_TO_ISO-2022-JP-2004.c: ../common/Unicode_TO_ISO-2022-JP-2004.c
 	$(RM) $@; $(SYMLINK) ../common/Unicode_TO_ISO-2022-JP-2004.c $@
 
-#ALL_SOS.cmd= print $(DYNOBJS) | sed -e s:_TO_:%:
-#ALL_SOS= $(ALL_SOS.cmd:sh)
-
-all: $(LINKS) $(DYNOBJS)
+all: $(LINKS) .WAIT $(DYNOBJS)
 
 CLEANFILES += $(LINKS)  $(DYNOBJS) $(ALL_SOS)
 
 clobber: clean
 
-install: $(ICONV_DIR) all
+$(INSTALL_MODULES):	$(DYNOBJS)
 	for f in $(DYNOBJS); do \
 		fp=`echo $$f | $(SED) -e 's/_TO_/%/'`; \
 		echo "installing $$f as $(ICONV_DIR)/$$fp ..." ; \
@@ -321,6 +318,64 @@ install: $(ICONV_DIR) all
 		$(CP) $$f $(ICONV_DIR)/$$fp ; \
 		$(CHMOD) 755 $(ICONV_DIR)/$$fp ; \
 	done
+	$(TOUCH) $@
+
+$(CREATE_LINKS):	$(INSTALL_MODULES)
+	$(SYMLINK) -f EUC-JIS-2004%UTF-32.so $(ICONV_DIR)/EUC-JIS-2004%UCS-4.so
+	$(SYMLINK) -f EUC-JIS-2004%UTF-32BE.so $(ICONV_DIR)/EUC-JIS-2004%UCS-4BE.so
+	$(SYMLINK) -f EUC-JIS-2004%UTF-32LE.so $(ICONV_DIR)/EUC-JIS-2004%UCS-4LE.so
+	$(SYMLINK) -f ISO-2022-JP%PCK.so $(ICONV_DIR)/ISO-2022-JP%SJIS.so
+	$(SYMLINK) -f ISO-2022-JP-2004%UTF-32.so $(ICONV_DIR)/ISO-2022-JP-2004%UCS-4.so
+	$(SYMLINK) -f ISO-2022-JP-2004%UTF-32BE.so $(ICONV_DIR)/ISO-2022-JP-2004%UCS-4BE.so
+	$(SYMLINK) -f ISO-2022-JP-2004%UTF-32LE.so $(ICONV_DIR)/ISO-2022-JP-2004%UCS-4LE.so
+	$(SYMLINK) -f ISO-2022-JP%eucJP.so $(ICONV_DIR)/JIS7%eucJP.so
+	$(SYMLINK) -f PCK%UTF-32.so $(ICONV_DIR)/PCK%UCS-4.so
+	$(SYMLINK) -f PCK%UTF-32BE.so $(ICONV_DIR)/PCK%UCS-4BE.so
+	$(SYMLINK) -f PCK%UTF-32LE.so $(ICONV_DIR)/PCK%UCS-4LE.so
+	$(SYMLINK) -f PCK%ISO-2022-JP.so $(ICONV_DIR)/SJIS%ISO-2022-JP.so
+	$(SYMLINK) -f PCK%UTF-8.so $(ICONV_DIR)/SJIS%UTF-8.so
+	$(SYMLINK) -f PCK%eucJP.so $(ICONV_DIR)/SJIS%eucJP.so
+	$(SYMLINK) -f PCK%jis.so $(ICONV_DIR)/SJIS%jis.so
+	$(SYMLINK) -f Shift_JIS-2004%UTF-32.so $(ICONV_DIR)/Shift_JIS-2004%UCS-4.so
+	$(SYMLINK) -f Shift_JIS-2004%UTF-32BE.so $(ICONV_DIR)/Shift_JIS-2004%UCS-4BE.so
+	$(SYMLINK) -f Shift_JIS-2004%UTF-32LE.so $(ICONV_DIR)/Shift_JIS-2004%UCS-4LE.so
+	$(SYMLINK) -f UTF-32%EUC-JIS-2004.so $(ICONV_DIR)/UCS-4%EUC-JIS-2004.so
+	$(SYMLINK) -f UTF-32%ISO-2022-JP-2004.so $(ICONV_DIR)/UCS-4%ISO-2022-JP-2004.so
+	$(SYMLINK) -f UTF-32%PCK.so $(ICONV_DIR)/UCS-4%PCK.so
+	$(SYMLINK) -f UTF-32%Shift_JIS-2004.so $(ICONV_DIR)/UCS-4%Shift_JIS-2004.so
+	$(SYMLINK) -f UTF-32%eucJP-ms.so $(ICONV_DIR)/UCS-4%eucJP-ms.so
+	$(SYMLINK) -f UTF-32%eucJP.so $(ICONV_DIR)/UCS-4%eucJP.so
+	$(SYMLINK) -f UTF-32%ms932.so $(ICONV_DIR)/UCS-4%ms932.so
+	$(SYMLINK) -f UTF-32BE%EUC-JIS-2004.so $(ICONV_DIR)/UCS-4BE%EUC-JIS-2004.so
+	$(SYMLINK) -f UTF-32BE%ISO-2022-JP-2004.so $(ICONV_DIR)/UCS-4BE%ISO-2022-JP-2004.so
+	$(SYMLINK) -f UTF-32BE%PCK.so $(ICONV_DIR)/UCS-4BE%PCK.so
+	$(SYMLINK) -f UTF-32BE%Shift_JIS-2004.so $(ICONV_DIR)/UCS-4BE%Shift_JIS-2004.so
+	$(SYMLINK) -f UTF-32BE%eucJP-ms.so $(ICONV_DIR)/UCS-4BE%eucJP-ms.so
+	$(SYMLINK) -f UTF-32BE%eucJP.so $(ICONV_DIR)/UCS-4BE%eucJP.so
+	$(SYMLINK) -f UTF-32BE%ms932.so $(ICONV_DIR)/UCS-4BE%ms932.so
+	$(SYMLINK) -f UTF-32LE%EUC-JIS-2004.so $(ICONV_DIR)/UCS-4LE%EUC-JIS-2004.so
+	$(SYMLINK) -f UTF-32LE%ISO-2022-JP-2004.so $(ICONV_DIR)/UCS-4LE%ISO-2022-JP-2004.so
+	$(SYMLINK) -f UTF-32LE%PCK.so $(ICONV_DIR)/UCS-4LE%PCK.so
+	$(SYMLINK) -f UTF-32LE%Shift_JIS-2004.so $(ICONV_DIR)/UCS-4LE%Shift_JIS-2004.so
+	$(SYMLINK) -f UTF-32LE%eucJP-ms.so $(ICONV_DIR)/UCS-4LE%eucJP-ms.so
+	$(SYMLINK) -f UTF-32LE%eucJP.so $(ICONV_DIR)/UCS-4LE%eucJP.so
+	$(SYMLINK) -f UTF-32LE%ms932.so $(ICONV_DIR)/UCS-4LE%ms932.so
+	$(SYMLINK) -f UTF-8%PCK.so $(ICONV_DIR)/UTF-8%SJIS.so
+	$(SYMLINK) -f eucJP%ISO-2022-JP.so $(ICONV_DIR)/eucJP%JIS7.so
+	$(SYMLINK) -f eucJP%PCK.so $(ICONV_DIR)/eucJP%SJIS.so
+	$(SYMLINK) -f eucJP%UTF-32.so $(ICONV_DIR)/eucJP%UCS-4.so
+	$(SYMLINK) -f eucJP%UTF-32BE.so $(ICONV_DIR)/eucJP%UCS-4BE.so
+	$(SYMLINK) -f eucJP%UTF-32LE.so $(ICONV_DIR)/eucJP%UCS-4LE.so
+	$(SYMLINK) -f eucJP-ms%UTF-32.so $(ICONV_DIR)/eucJP-ms%UCS-4.so
+	$(SYMLINK) -f eucJP-ms%UTF-32BE.so $(ICONV_DIR)/eucJP-ms%UCS-4BE.so
+	$(SYMLINK) -f eucJP-ms%UTF-32LE.so $(ICONV_DIR)/eucJP-ms%UCS-4LE.so
+	$(SYMLINK) -f jis%PCK.so $(ICONV_DIR)/jis%SJIS.so
+	$(SYMLINK) -f ms932%UTF-32.so $(ICONV_DIR)/ms932%UCS-4.so
+	$(SYMLINK) -f ms932%UTF-32BE.so $(ICONV_DIR)/ms932%UCS-4BE.so
+	$(SYMLINK) -f ms932%UTF-32LE.so $(ICONV_DIR)/ms932%UCS-4LE.so
+	$(TOUCH) $@
+
+install: $(ICONV_DIR) all $(INSTALL_MODULES) $(CREATE_LINKS)
 
 lint:	$(LINTOUTS)
 

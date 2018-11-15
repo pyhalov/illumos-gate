@@ -18,54 +18,11 @@
 #
 # CDDL HEADER END
 #
-#
-#ident	"@(#)Makefile.iconv	1.26	07/01/11 SMI"
-#
 # Copyright 2007 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-# jos/lib/iconv/Makefile.iconv
-#
 
 SRCDIR=			.
-
-# Symbolic links in proto directory
-
-LINKS_TO_JFPMODS_all=
-LINKS_TO_JFPMODS_base_source= \
-		UTF-8_TO_SJIS.so		SJIS_TO_UTF-8.so \
-		eucJP_TO_SJIS.so		SJIS_TO_eucJP.so \
-		SJIS_TO_ISO-2022-JP.so		ISO-2022-JP_TO_SJIS.so \
-		SJIS_TO_jis.so			jis_TO_SJIS.so \
-		eucJP_TO_JIS7.so		JIS7_TO_eucJP.so
-LINKS_TO_JFPMODS_jfp_source=
-LINKS_TO_JFPMODS_= \
-		$(LINKS_TO_JFPMODS_base_source) \
-		$(LINKS_TO_JFPMODS_jfp_source)
-LINKS_TO_JFPMODS= \
-		$(LINKS_TO_JFPMODS_all) \
-		$(LINKS_TO_JFPMODS_$(PRODUCT))
-
-LINKS_TO_CODESET_all=
-LINKS_TO_CODESET_base_source= \
-		646_TO_eucJP.so \
-		646_TO_PCK.so \
-		646_TO_SJIS.so
-LINKS_TO_CODESET_jfp_source=
-LINKS_TO_CODESET_= \
-		$(LINKS_TO_CODESET_base_source) \
-		$(LINKS_TO_CODESET_jfp_source)
-LINKS_TO_CODESET= \
-		$(LINKS_TO_CODESET_all) \
-		$(LINKS_TO_CODESET_$(PRODUCT))
-
-# Currently those links are not created in proto directory.
-# When we discovered another workaround and can use real module names
-# (which contain '%'), we may create the symlinks in proto again.
-#LINKS=		$(LINKS_TO_JFPMODS) $(LINKS_TO_CODESET)
-#LINKS64=	$(LINKS_TO_JFPMODS)
-#LINKS=
-#LINKS64=
 
 # Real modules without .so suffix
 MODULES_all=

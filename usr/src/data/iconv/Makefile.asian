@@ -38,7 +38,9 @@ clobber :=	TARGET= clobber
 OBJS		= $(SRCS:%.c=%.o)
 PROGS		= $(OBJS:%.o=%.so)
 
-CLEANFILES	= *.o *.so.* *.so
+CREATE_LINKS = .links_created
+
+CLEANFILES	= *.o *.so.* *.so $(CREATE_LINKS)
 
 PROTOCLEANFILES = $(ICONV_LIBS) $(ICONV_LIBS_64)
 
