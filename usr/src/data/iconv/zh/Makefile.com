@@ -269,10 +269,6 @@ LINK_TARGETS += zh_TW-euc%zh_TW-iso2022-CN-EXT.so zh_TW-iso2022-7%UTF-8.so
 LINK_TARGETS += zh_TW-iso2022-7%zh_TW-big5.so zh_TW-iso2022-7%zh_TW-euc.so
 LINK_TARGETS += zh_TW-iso2022-CN-EXT%zh_TW-big5.so zh_TW-iso2022-CN-EXT%zh_TW-euc.so
 
-ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
-
-$(ICONV_LINK_TARGETS) :=	FILEMODE= 755
-
 all: $(ALL_SOS)
 
 #
