@@ -38,8 +38,6 @@ LDLIBS		= -lc
 
 LINK_TARGETS =	646%8859-1.so
 
-ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
-
 .NO_PARALLEL:
 
 .PARALLEL: $(ALL_SOS)
@@ -59,8 +57,6 @@ $(ALL_SOS): ../common/euro.h ../common/euro.c ../common/tbl.h
 
 ../common/tbl.h: ../genincl $(TABLES:%=../tbls/%)
 	cd ..; ./genincl > common/tbl.h
-
-$(ICONV_LINK_TARGETS) :=	FILEMODE= 755
 
 $(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
 	$(SYMLINK) -f 646%8859-1.so $(ICONV_DIR)/646%8859-15.so
