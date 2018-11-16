@@ -10,30 +10,16 @@
 #
 
 #
-# Copyright 2017 Nexenta Systems, Inc.
+# Copyright 2017 Alexander Pyhalov
 #
 
-SUBDIRS=	consfonts \
-		hwdata \
-		locale \
-		terminfo \
-		zoneinfo
+include ../Makefile.com
+include ../../Makefile.iconv.64
 
-MSGSUBDIRS= 	zoneinfo
+CFLAGS +=  -I.. -I../common/ -I../include/
 
-all :=		TARGET=all
-clean :=	TARGET=clean
-clobber :=	TARGET=clobber
-install :=	TARGET=install
-_msg :=		TARGET=_msg
+ICONV_LIBS      = $(PROGS:%=$(ICONV_DIR_64)/%)
 
-.KEEP_STATE:
+$(ICONV_LIBS) := FILEMODE= 755
 
-all clean clobber install: $(SUBDIRS)
-
-_msg:		$(MSGSUBDIRS)
-
-$(SUBDIRS):	FRC
-		cd $@; pwd; $(MAKE) $(TARGET)
-
-FRC:
+install: all $(ICONV_DIR) .WAIT $(ICONV_LIBS)
