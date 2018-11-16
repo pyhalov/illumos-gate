@@ -16,6 +16,10 @@
 include ../Makefile.com
 include ../../Makefile.asian.64
 
+ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR_64)/%)
+
+$(ICONV_LINK_TARGETS) :=      FILEMODE= 755
+
 ICONV_LIBS      = $(ALL_SOS:%=$(ICONV_DIR_64)/%)
 
 $(ICONV_LIBS) := FILEMODE= 755

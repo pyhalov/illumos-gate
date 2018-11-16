@@ -29,13 +29,9 @@ ALL_SOS =	646%CODESET.so
 
 LINK_TARGETS  = 646%CODESET.so
 
-ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
-
 dummy: all
 
 include $(SRC)/data/iconv/Makefile.asian
-
-$(ICONV_LINK_TARGETS) :=      FILEMODE= 755
 
 $(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
 	$(SYMLINK) -f 646%CODESET.so $(ICONV_DIR)/646%5601.so
