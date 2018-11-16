@@ -406,8 +406,8 @@ legacy pkg=SUNWiconv-unicode category=system,l10n \
     desc="iconv modules for Unicode" name="iconv modules for Unicode"
 license cr_Sun license=cr_Sun
 license lic_CDDL license=lic_CDDL
-license usr/src/data/iconv/THIRDPARTYLICENSE.unicode \
-    license=usr/src/data/iconv/THIRDPARTYLICENSE.unicode
+license usr/src/lib/iconv_modules/THIRDPARTYLICENSE.unicode \
+    license=usr/src/lib/iconv_modules/THIRDPARTYLICENSE.unicode
 link path=usr/lib/iconv/$(ARCH64)/5601%UCS-2BE.so \
     target=./ko_KR-cp949%UCS-2BE.so
 link path=usr/lib/iconv/$(ARCH64)/5601%UCS-2LE.so \

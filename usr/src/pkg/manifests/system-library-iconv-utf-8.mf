@@ -2711,10 +2711,10 @@ legacy pkg=SUNWuiu8 category=system desc="Iconv modules for UTF-8 Locale" \
     name="Iconv modules for UTF-8 Locale"
 license cr_Sun license=cr_Sun
 license lic_CDDL license=lic_CDDL
-license usr/src/data/iconv/THIRDPARTYLICENSE.icu \
-    license=usr/src/data/iconv/THIRDPARTYLICENSE.icu
-license usr/src/data/iconv/THIRDPARTYLICENSE.unicode \
-    license=usr/src/data/iconv/THIRDPARTYLICENSE.unicode
+license usr/src/lib/iconv_modules/THIRDPARTYLICENSE.icu \
+    license=usr/src/lib/iconv_modules/THIRDPARTYLICENSE.icu
+license usr/src/lib/iconv_modules/THIRDPARTYLICENSE.unicode \
+    license=usr/src/lib/iconv_modules/THIRDPARTYLICENSE.unicode
 link path=usr/lib/iconv/$(ARCH64)/BIG5%UTF-8.so target=./zh_TW-big5%UTF-8.so
 link path=usr/lib/iconv/$(ARCH64)/GB18030%UTF-8.so target=./zh_CN.gbk%UTF-8.so
 link path=usr/lib/iconv/$(ARCH64)/GBK%UTF-8.so target=./zh_CN.gbk%UTF-8.so

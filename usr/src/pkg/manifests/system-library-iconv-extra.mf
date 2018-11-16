@@ -168,8 +168,8 @@ legacy pkg=SUNWiconv-extra category=system,l10n \
     desc="iconv modules extra files" name="iconv modules extra files"
 license cr_Sun license=cr_Sun
 license lic_CDDL license=lic_CDDL
-license usr/src/data/iconv/THIRDPARTYLICENSE.unicode \
-    license=usr/src/data/iconv/THIRDPARTYLICENSE.unicode
+license usr/src/lib/iconv_modules/THIRDPARTYLICENSE.unicode \
+    license=usr/src/lib/iconv_modules/THIRDPARTYLICENSE.unicode
 link path=usr/lib/iconv/$(ARCH64)/646%5601.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%BIG5.so target=./646%CODESET.so
 link path=usr/lib/iconv/$(ARCH64)/646%GBK.so target=./646%CODESET.so
