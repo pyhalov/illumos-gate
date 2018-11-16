@@ -391,4 +391,8 @@ CFLAGS +=	-fpic -D_REENTRANT $(ICONV_DEFS) -I. $(XREGSFLAG)
 CFLAGS64 +=	-fpic -D_REENTRANT $(ICONV_DEFS) -I. $(XREGSFLAG64)
 FILEMODE =	755
 
+
+# jfp_iconv_unicode.h contains definition of static functions
+# which are used by some modules, but not all functions are used
+# by all modules
 CERRWARN += -_gcc=-Wno-unused-function
