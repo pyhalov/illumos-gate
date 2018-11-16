@@ -23,8 +23,6 @@
  * Copyright (c) 1991, Nihon Sun Microsystems K.K.
  */
 
-#ident	"@(#)japanese.h	1.2	94/07/15	SMI"
-
 #define GET(c)		((c) = *ip, ip++, ileft--)
 #define PUT(c)		(*op = (c), op++, oleft--)
 #define UNGET()		(ip--, ileft++)

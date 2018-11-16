@@ -23,8 +23,6 @@
  * Copyright (c) 1994, Nihon Sun Microsystems K.K.
  */
 
-#ident	"@(#)ISO-2022-JP%SJIS.c	1.2	94/07/18 SMI"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

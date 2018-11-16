@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#ident "@(#)hkscs_big5p.h  1.1 01/03/09"
 #ifndef _HKSCS_BIG5P_H_
 
 #define _HKSCS_BIG5P_H_

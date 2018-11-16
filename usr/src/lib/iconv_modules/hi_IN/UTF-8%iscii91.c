@@ -22,8 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)UTF-8_to_iscii91.c	1.5 01/10/29 SMI"
-
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>

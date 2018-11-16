@@ -22,7 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)iscii-dev.h	1.4 02/03/19 SMI"
 
 #ifndef _ISCII_DEV_H_
 #define _ISCII_DEV_H_

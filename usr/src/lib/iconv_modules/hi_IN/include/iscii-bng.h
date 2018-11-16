@@ -22,7 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)iscii-bng.h	1.3 02/03/19 SMI"
 
 #ifndef _ISCII_BNG_H_
 #define _ISCII_BNG_H_

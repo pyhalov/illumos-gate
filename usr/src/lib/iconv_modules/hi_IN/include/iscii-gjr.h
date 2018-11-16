@@ -22,7 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)iscii-gjr.h	1.4 02/04/09 SMI"
 
 #ifndef _ISCII_GJR_H_
 #define _ISCII_GJR_H_

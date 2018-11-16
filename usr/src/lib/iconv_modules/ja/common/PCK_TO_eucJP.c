@@ -23,8 +23,6 @@
  * Use is subject to license terms.
  */
 
-#ident	"@(#)PCK_TO_eucJP.c	1.11	06/12/20 SMI"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

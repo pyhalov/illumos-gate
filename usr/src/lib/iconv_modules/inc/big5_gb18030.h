@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#ident "@(#)big5_gbk.h	1.1 98/10/20"
 #ifndef _BIG5_GBK_H_
 
 #define _BIG5_GBK_H_

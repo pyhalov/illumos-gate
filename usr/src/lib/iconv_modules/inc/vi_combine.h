@@ -31,7 +31,7 @@
  * Copyright(c) 2008 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)vi_combine.h	1.1 08/07/31"
+
 #ifndef _VI_COMBINE_H_
 #define _VI_COMBINE_H_
 

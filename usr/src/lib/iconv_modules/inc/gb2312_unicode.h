@@ -32,8 +32,6 @@
  * All rights reserved.
  */
 
-#ident "@(#)gb2312_unicode.h	1.4 00/05/21"
-
 #ifndef _GB2312_UNICODE_H_
 
 #define _GB2312_UNICODE_H_

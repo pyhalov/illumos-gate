@@ -23,8 +23,6 @@
  *	All rights reserved.
  */
 
-#ident "@(#)big5_gb2312.h	1.14 00/12/26"
-
 #ifndef _BIG5_GB2312_H_
 
 #define _BIG5_GB2312_H_

@@ -22,8 +22,6 @@
  * Copyright (c) 2008, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident   "@(#)UCS2_to_tcvn.c	1.1 08/07/31"
-
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>

@@ -31,7 +31,7 @@
  * Copyright(c) 2008 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)unicode_tcvn.h	1.1 08/07/21"
+
 #ifndef _UNICODE_TCVN_H_
 #define _UNICODE_TCVN_H_
 

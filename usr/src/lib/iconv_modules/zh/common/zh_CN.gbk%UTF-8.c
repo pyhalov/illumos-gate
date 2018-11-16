@@ -23,8 +23,6 @@
  * All rights reserved.
  */
 
-#ident "@(#)zh_CN.gbk_to_UTF-8.c	1.3 01/01/16"
-
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>

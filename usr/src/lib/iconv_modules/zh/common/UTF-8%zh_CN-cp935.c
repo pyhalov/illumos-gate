@@ -22,8 +22,6 @@
  * Copyright(c) 1998 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)UTF-8_to_zh_CN-cp935.c	1.2 04/03/21"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

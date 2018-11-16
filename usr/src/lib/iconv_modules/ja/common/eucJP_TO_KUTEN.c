@@ -23,8 +23,6 @@
  * Use is subject to license terms.
  */
 
-#ident	"@(#)eucJP_TO_KUTEN.c 1.5	06/12/20 SMI"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

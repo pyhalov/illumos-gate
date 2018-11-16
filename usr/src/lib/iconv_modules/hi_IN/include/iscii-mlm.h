@@ -22,7 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)iscii-mlm.h	1.4 02/04/09 SMI"
 
 #ifndef _ISCII_MLM_H_
 #define _ISCII_MLM_H_

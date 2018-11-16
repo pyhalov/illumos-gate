@@ -31,7 +31,7 @@
  * Copyright(c) 1998 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)unicode_gb2312.h	1.3 00/05/21"
+
 #ifndef _UNICODE_GB2312_H_
 #define _UNICODE_GB2312_H_
 

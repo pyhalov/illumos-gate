@@ -23,8 +23,6 @@
  * Use is subject to license terms.
  */
 
-#ident	"@(#)eucJP_TO_ISO-2022-JP.c	1.9	06/12/20 SMI"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

@@ -22,8 +22,6 @@
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
 #
-#ident	"@(#)Makefile.com	1.5 99/07/28 SMI"
-#
 
 
 CODESETS = IBM-037 IBM-273 IBM-277 IBM-278 IBM-280 IBM-284 IBM-285 IBM-297 \

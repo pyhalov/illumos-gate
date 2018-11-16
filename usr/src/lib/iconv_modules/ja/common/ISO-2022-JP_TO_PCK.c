@@ -23,8 +23,6 @@
  * Use is subject to license terms.
  */
 
-#ident	"@(#)ISO-2022-JP_TO_PCK.c	1.15	06/12/20 SMI"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

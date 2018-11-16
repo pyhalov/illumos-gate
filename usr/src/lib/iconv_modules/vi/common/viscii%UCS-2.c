@@ -22,8 +22,6 @@
  * Copyright (c) 2008, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident   "@(#)viscii_to_UCS2.c	1.3 01/01/16"
-
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>

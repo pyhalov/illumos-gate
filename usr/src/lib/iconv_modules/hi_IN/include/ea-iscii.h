@@ -22,7 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#ident "@(#)ea-iscii.h       1.1 01/11/13 SMI"
 
 #ifndef _EA_ISCII_H_
 #define _EA_ISCII_H_
