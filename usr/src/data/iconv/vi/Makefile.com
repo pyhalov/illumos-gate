@@ -38,8 +38,6 @@ COMMON = ../common/
 LINK_TARGETS  = UCS-2BE%tcvn.so tcvn%UCS-2BE.so
 LINK_TARGETS += UCS-2BE%viscii.so viscii%UCS-2BE.so
 
-ICONV_LINK_TARGETS = $(LINK_TARGETS:%=$(ICONV_DIR)/%)
-
 dummy: all
 
 tcvn%UCS-2LE.o: $(COMMON)tcvn%UCS-2.c
@@ -67,8 +65,6 @@ UCS-2BE%viscii.o: $(COMMON)UCS-2%viscii.c
 	$(CC) $(CFLAGS) -c -o $@ $^
 
 include $(SRC)/data/iconv/Makefile.asian
-
-$(ICONV_LINK_TARGETS) :=      FILEMODE= 755
 
 $(CREATE_LINKS):  $(ICONV_LINK_TARGETS)
 	$(SYMLINK) -f tcvn%UCS-2BE.so $(ICONV_DIR)/tcvn%UCS-2.so
