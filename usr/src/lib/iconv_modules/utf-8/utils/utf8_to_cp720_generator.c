@@ -23,7 +23,6 @@
  * Use is subject to license terms.
  */
 
-#pragma	ident	"@(#)utf8_to_cp720_generator.c	1.0	07/12/03 SMI"
 
 
 #include <stdio.h>

@@ -32,7 +32,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)euc_utf_table.h 1.4     98/04/24 SMI"
 
 
 #ifndef	_EUC2UTF_TABLE_H_

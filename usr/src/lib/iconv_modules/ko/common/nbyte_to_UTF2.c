@@ -22,7 +22,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"$Id: nbyte_to_UTF2.c,v 1.11 1998/10/12 16:19:03 hemant Exp $ SMI"
 
 #include <stdlib.h>
 #include <errno.h>

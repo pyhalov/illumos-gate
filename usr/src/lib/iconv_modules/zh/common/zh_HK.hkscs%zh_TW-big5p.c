@@ -22,7 +22,6 @@
  *	Copyright(c) 2001 Sun Microsystems, Inc.
  *	All rights reserved.
  */
-#pragma ident "@(#)zh_HK.hkscs_to_zh_TW-big5p.c	1.1 01/03/09"
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

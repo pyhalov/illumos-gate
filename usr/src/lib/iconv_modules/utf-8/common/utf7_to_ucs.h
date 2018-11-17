@@ -26,7 +26,6 @@
 #ifndef	UTF7_TO_UCS_H
 #define	UTF7_TO_UCS_H
 
-#pragma	ident	"@(#)utf7_to_ucs.h	1.3 99/08/31 SMI"
 
 #include "common_defs.h"
 

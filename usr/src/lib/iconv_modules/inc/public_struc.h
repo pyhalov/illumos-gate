@@ -23,7 +23,6 @@
  *	All rights reserved.
  */
 
-#pragma ident "@(#)public_struc.h	1.1 98/10/20"
 
 #ifndef _PUBLIC_STRUC_H_
 #define _PUBLIC_STRUC_H_

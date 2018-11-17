@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma ident   "@(#)big5_cns.h	1.6 98/08/04 SMI; ALE"
 
 #ifndef _BIG5_CNS_H_
 #define _BIG5_CNS_H_

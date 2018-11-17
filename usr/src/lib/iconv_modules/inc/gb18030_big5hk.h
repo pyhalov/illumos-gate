@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma ident "@(#)gbk2k_hkscs.h        1.1 01/03/09"
 
 #ifndef _GBK2K_HKSCS_H_
 

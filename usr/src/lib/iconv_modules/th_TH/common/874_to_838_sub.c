@@ -22,7 +22,6 @@
  * Copyright (c) 1999 by Sun Microsystems, Inc.
  */
 
-#pragma   ident       "@(#)874_to_838_sub.c 1.3     99/02/22 SMI"
 
 #include <errno.h>
 #include <stdio.h>

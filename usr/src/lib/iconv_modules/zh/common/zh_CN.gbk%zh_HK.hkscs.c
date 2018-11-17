@@ -22,7 +22,6 @@
  *	Copyright(c) 2001, Sun Microsystems, Inc.
  *	All rights reserved.
  */
-#pragma ident "@(#)zh_CN.gbk_to_zh_HK.hkscs.c	1.1 03/03/09"
 
 #include <stdio.h>
 #include <stdlib.h>

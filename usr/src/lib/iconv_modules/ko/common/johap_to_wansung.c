@@ -22,7 +22,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"$Id: johap_to_wansung.c,v 1.6 1998/10/12 16:19:00 hemant Exp $ SMI"
 
 #include <errno.h>
 #include "ktable.h"

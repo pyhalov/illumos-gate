@@ -33,7 +33,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "$Id: utf_iso2022.h,v 1.6 1997/10/31 16:20:24 binz Exp $ SMI"
 
 
 #ifndef	_UTF2ISO2022_H_

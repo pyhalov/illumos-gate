@@ -32,7 +32,6 @@
  * All rights reserved.
  */
 
-#pragma ident   "$Id: utf_cns.h,v 1.1 1998/10/20 15:11:34 jkang Exp $"
 
 #ifndef _UTF_CNS_H_
 #define _UTF_CNS_H_

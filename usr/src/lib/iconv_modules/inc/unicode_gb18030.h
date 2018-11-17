@@ -31,7 +31,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#pragma ident "@(#)unicode_gbk.h        1.4 01/01/16"
 #ifndef _UNICODE_GBK_H_
 #define _UNICODE_GBK_H_
 

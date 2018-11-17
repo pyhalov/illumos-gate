@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"@(#)iso2022-CN_to_big5.c 1.8	02/01/30  SMI"
 
 /*
    Converts From:	ISO2022-CN-EXT encoding.

@@ -23,7 +23,6 @@
  * All Rights Reserved.
  */
 
-#pragma	ident	"$Id: euc_to_nbyte.c,v 1.8 1999/05/03 10:45:50 byuan Exp $ SMI"
 
 #include <stdio.h>
 #include <stdlib.h>

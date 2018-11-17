@@ -22,7 +22,6 @@
  *	Copyright(c)	1997, Sun Microsystems, Inc.
  *	All rights reserved.
  */
-#pragma ident "$Id: gb2312_big5.h,v 1.1 1998/10/20 15:13:57 jkang Exp $"
 
 #ifndef _GB2312_BIG5_H_
 

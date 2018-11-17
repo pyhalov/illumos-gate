@@ -24,7 +24,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"@(#)iso2022-CN.c 1.2	98/08/06  SMI"
 
 /*
    Converts From:	ISO2022-CN-EXT encoding.

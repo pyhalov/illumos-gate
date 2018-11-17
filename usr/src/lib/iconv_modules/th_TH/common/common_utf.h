@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)common_utf.h 1.1     97/11/05 SMI"
 
 
 #ifndef	_COMMON_UTF_H_

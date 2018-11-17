@@ -22,7 +22,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"$Id: UTF2_to_iso2022-7.c,v 1.14 1998/10/12 16:18:26 hemant Exp $ SMI"
 
 #include <stdlib.h>
 #include <errno.h>

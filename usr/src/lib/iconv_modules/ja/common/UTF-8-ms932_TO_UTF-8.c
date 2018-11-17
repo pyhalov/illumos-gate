@@ -31,7 +31,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident  "@(#)UTF-8-ms932_TO_UTF-8.c	1.5	06/12/20 SMI"
 
 #if	defined(DEBUG)
 #include <stdio.h>

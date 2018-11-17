@@ -28,7 +28,6 @@
  * and, UTF-32LE.
  */
 
-#pragma ident	"@(#)ucs_to_ucs4.c	1.5	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

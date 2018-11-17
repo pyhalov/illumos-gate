@@ -31,7 +31,6 @@
  * Copyright (c) 2001 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)utf_cns.h	1.7 98/08/06 SMI; ALE"
 
 /* maxium mapping number from UTF8 to CNS11643 */
 #define MAX_UTF_NUM		55441

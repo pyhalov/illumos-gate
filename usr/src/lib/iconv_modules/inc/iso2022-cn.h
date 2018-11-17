@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"@(#)iso2022-CN.h 1.2	98/08/06  SMI"
 
 /*
     Header file for converting iso2022-CN-EXT to cns11643 and big5

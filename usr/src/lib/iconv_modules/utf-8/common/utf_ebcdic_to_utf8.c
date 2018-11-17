@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma	ident  "@(#)utf_ebcdic_to_utf8.c 1.2     99/08/31 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

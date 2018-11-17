@@ -26,7 +26,6 @@
 #ifndef	SB_TO_UCS_H
 #define	SB_TO_UCS_H
 
-#pragma	ident	"@(#)sb_to_ucs.h	1.6 07/12/03 SMI"
 
 #include "common_defs.h"
 

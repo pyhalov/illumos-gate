@@ -61,7 +61,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"@(#)cp937_to_ucs2.h	1.2 04/04/01 SMI"
 
 #ifndef	_CP937_TO_UCS2_H_
 #define	_CP937_TO_UCS2_H_

@@ -18,7 +18,6 @@
  *
  * CDDL HEADER END
  */
-#pragma ident   "@(#)big5p_to_UTF8.c	1.1 99/10/30 SMI; ALE"
 
 /*
  * Copyright (c) 1995, by Sun Microsystems, Inc.

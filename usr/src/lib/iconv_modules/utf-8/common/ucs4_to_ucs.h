@@ -26,7 +26,6 @@
 #ifndef	UCS4_TO_UCS_H
 #define	UCS4_TO_UCS_H
 
-#pragma	ident	"@(#)ucs4_to_ucs.h	1.1 99/03/04 SMI"
 
 #include "common_defs.h"
 

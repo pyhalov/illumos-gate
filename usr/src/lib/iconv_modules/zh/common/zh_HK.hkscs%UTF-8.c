@@ -18,7 +18,6 @@
  *
  * CDDL HEADER END
  */
-#pragma ident   "@(#)hkscs_to_utf2.c	1.1 03/17/2000 SMI; ALE"
 
 /*
  * Copyright (c) 2000, by Sun Microsystems, Inc.

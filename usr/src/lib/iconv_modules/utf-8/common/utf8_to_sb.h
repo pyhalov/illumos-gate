@@ -26,7 +26,6 @@
 #ifndef	UTF8_TO_SB_H
 #define	UTF8_TO_SB_H
 
-#pragma	ident	"@(#)utf8_to_sb.h	1.6 07/12/03 SMI"
 
 #include "common_defs.h"
 

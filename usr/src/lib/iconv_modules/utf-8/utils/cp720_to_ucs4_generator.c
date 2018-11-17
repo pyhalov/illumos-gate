@@ -23,7 +23,6 @@
  * Use is subject to license terms.
  */
 
-#pragma	ident	"@(#)cp720_to_ucs4_generator.c	1.0	07/12/03 SMI"
 
 
 #include <stdio.h>

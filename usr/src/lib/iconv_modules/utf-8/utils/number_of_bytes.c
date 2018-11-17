@@ -27,7 +27,6 @@
  * character.
  */
 
-#pragma	ident	"@(#)number_of_bytes.c	1.1 99/03/04 SMI"
 
 
 #include <stdio.h>

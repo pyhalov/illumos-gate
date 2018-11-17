@@ -31,7 +31,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident	"@(#)jfp_iconv_unicode.h 1.20 07/05/25 SMI"
 
 #include	<sys/types.h>
 

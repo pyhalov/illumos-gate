@@ -25,7 +25,6 @@
  * This program generates reverse Modified Base 64 values.
  */
 
-#pragma	ident	"@(#)gen_reverse_mbase64_tbl.c	1.1 99/03/04 SMI"
 
 #include <stdio.h>
 

@@ -22,7 +22,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"$Id: iso2022_utf.h,v 1.6 1998/10/12 16:18:50 hemant Exp $ SMI"
 
 #ifndef	_ISO20222UTF_H_
 #define	_ISO20222UTF_H_

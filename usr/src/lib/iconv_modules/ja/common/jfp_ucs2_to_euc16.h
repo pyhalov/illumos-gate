@@ -31,7 +31,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident "@(#)jfp_ucs2_to_euc16.h	1.16	07/05/25 SMI"
 
 #ifndef	_JFP_UCS2_TO_EUC16_H
 #define	_JFP_UCS2_TO_EUC16_H

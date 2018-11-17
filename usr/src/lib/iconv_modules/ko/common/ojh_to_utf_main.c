@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"@(#)ojh2utf_main.c	1.0 96/05/19 SMI"
 
 #include <errno.h>
 #include <widec.h>

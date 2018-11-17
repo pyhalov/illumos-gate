@@ -22,7 +22,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"$Id: nbyte_utf.h,v 1.7 1998/01/23 12:47:45 hemant Exp $ SMI"
 
 
 #ifndef _NBYTE2UTF_H_

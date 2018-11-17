@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma ident	"@(#)sb_to_utf8_test.c 1.3     99/07/19 SMI"
 
 /*
  * This program convert Additional Codeset Characters from 0x00 through 0xff

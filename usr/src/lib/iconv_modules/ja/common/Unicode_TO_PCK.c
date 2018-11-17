@@ -31,7 +31,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident  "@(#)Unicode_TO_PCK.c 1.20     07/05/25 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>

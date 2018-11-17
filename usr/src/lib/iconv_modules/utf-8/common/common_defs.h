@@ -26,7 +26,6 @@
 #ifndef	COMMON_DEFS_H
 #define	COMMON_DEFS_H
 
-#pragma ident	"@(#)common_defs.h	1.9	07/12/03 SMI"
 
 
 #define	MAGIC_NUMBER			201513

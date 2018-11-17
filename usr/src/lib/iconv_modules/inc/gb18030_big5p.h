@@ -22,7 +22,6 @@
  * Copyright(c) 2001 Sun Microsystems, Inc.
  * All rights reserved.
  */
-#pragma ident "@(#)gbk_big5p.h   1.1 01/03/09"
 
 #ifndef _GBK_BIG5P_H_
 

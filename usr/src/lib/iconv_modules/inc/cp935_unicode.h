@@ -61,7 +61,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"@(#)cp935_ucs2.h	1.1 98/10/20"
 
 #ifndef	_CP935_TO_UCS2_H_
 #define	_CP935_TO_UCS2_H_

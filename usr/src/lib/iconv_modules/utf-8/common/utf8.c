@@ -27,7 +27,6 @@
  * and thus potentially harmful bytes.
  */
 
-#pragma ident	"@(#)utf8.c	1.1	04/07/21 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

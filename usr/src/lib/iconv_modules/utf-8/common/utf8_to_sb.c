@@ -26,7 +26,6 @@
  * byte codesets.
  */
 
-#pragma ident	"@(#)utf8_to_sb.c	1.9	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

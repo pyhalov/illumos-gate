@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"@(#)big5_to_iso2022-CN.c 1.9	02/01/30  SMI"
 
 /*
    Converts From:	Taiwanese BIG5 encoding

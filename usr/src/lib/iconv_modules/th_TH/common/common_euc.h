@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)common_euc.h 1.1     97/11/05 SMI"
 
 
 #ifndef	_COMMON_EUC_H_

@@ -29,7 +29,6 @@
  * reason.
  */
 
-#pragma ident	"@(#)ucs_to_utf7.c	1.5	07/12/11 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

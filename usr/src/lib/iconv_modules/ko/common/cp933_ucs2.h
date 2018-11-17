@@ -60,7 +60,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"$Id: cp933_ucs2.h,v 1.1 1998/01/29 10:01:14 hemant Exp $ SMI"
 
 #ifndef	_CP933_TO_UCS2_H_
 #define	_CP933_TO_UCS2_H_

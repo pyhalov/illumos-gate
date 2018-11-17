@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma ident   "@(#)tab_lookup.h	1.3 98/01/29 SMI"
 
 
 typedef struct	_lookup_table {

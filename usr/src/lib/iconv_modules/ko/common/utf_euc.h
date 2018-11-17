@@ -32,7 +32,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "$Id: utf_euc.h,v 1.9 2002/06/13 15:07:18 kp125103 Exp $ SMI"
 
 
 #ifndef _UTF2EUC_H_

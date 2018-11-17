@@ -18,7 +18,6 @@
  *
  * CDDL HEADER END
  */
-#pragma ident "@(#)gb2312_big5.h	1.2 97/12/23 SMI; TDC"
 /*
  *	Copyright(c)	1997, Sun Microsystems, Inc.
  *	All rights reserved.

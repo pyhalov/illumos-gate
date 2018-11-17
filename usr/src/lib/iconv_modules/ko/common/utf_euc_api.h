@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)utf2euc_api.h	1.0 96/04/30 SMI"
 
 
 #ifndef	_UTF2EUC_API_H_

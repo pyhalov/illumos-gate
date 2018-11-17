@@ -23,7 +23,6 @@
  * All Rights Reserved.
  */
 
-#pragma	ident	"$Id: nbyte_euc.h,v 1.5 1997/10/31 16:20:18 binz Exp $ SMI"
 
 
 #ifndef _NBYTE2EUC_H_

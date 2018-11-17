@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)euc2utf_sub.c      1.0 96/04/30 SMI"
 
 #include <errno.h>
 #include <stdio.h>

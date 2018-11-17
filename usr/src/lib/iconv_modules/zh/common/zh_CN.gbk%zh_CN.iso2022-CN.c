@@ -22,7 +22,6 @@
  * Copyright (c) 1995, by Sun Microsystems, Inc.
  * All rights reserved.
  */
-#pragma ident  "@(#)zh_CN.gbk_to_zh_CN.iso2022-CN.c	1.2 01/01/17"
 
 #include <stdio.h>
 #include <stdlib.h>

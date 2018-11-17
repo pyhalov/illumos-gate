@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma	ident	"@(#)mkmnmcstbl.c	1.1 99/07/28 SMI"
 
 
 #include <libgen.h>

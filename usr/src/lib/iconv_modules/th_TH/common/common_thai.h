@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma   ident       "@(#)common_thai.h 1.2     99/02/19 SMI"
 
 #ifndef _COMMON_THAI_H_
 #define	_COMMON_THAI_H_

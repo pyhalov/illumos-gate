@@ -34,7 +34,6 @@
  * UTF-16BE, UTF-16LE, UTF-32, UTF-32BE, and UTF-32LE.
  */
 
-#pragma ident	"@(#)sb_to_ucs.c	1.6	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

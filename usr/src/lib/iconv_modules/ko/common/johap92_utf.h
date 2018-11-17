@@ -32,7 +32,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "$Id: johap92_utf.h,v 1.5 1997/10/31 16:20:08 binz Exp $ SMI"
 
 
 #ifndef	_JOHAP922UTF_H_

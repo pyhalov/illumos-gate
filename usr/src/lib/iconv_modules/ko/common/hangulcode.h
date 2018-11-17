@@ -22,7 +22,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"$Id: hangulcode.h,v 1.8 1999/05/03 13:56:13 byuan Exp $ SMI"
 
 
 #ifndef _HANGULCODE_H_

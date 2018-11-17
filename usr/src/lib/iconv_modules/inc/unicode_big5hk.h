@@ -32,7 +32,6 @@
  * Copyright (c) 2000 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)utf_hkscs.h 1.1 03/17/2000 SMI; ALE"
 
 #undef INVALIDCODEPOINT
 #undef DUPCODEPOINT

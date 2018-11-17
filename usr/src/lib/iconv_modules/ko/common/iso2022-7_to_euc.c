@@ -23,7 +23,6 @@
  * All Rights Reserved.
  */
 
-#pragma	ident	"$Id: iso2022-7_to_euc.c,v 1.8 1999/05/03 10:45:50 byuan Exp $ SMI"
 
 #include <stdio.h>
 #include <libintl.h>

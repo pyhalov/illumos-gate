@@ -26,7 +26,6 @@
  * UCS-4LE to UTF-32, UTF-32BE, and UTF-32LE.
  */
 
-#pragma ident	"@(#)ucs4_to_utf32.c	1.3	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

@@ -35,7 +35,6 @@
  *   encountered the first character as the BOM.
  */
 
-#pragma ident	"@(#)ucs_to_utf8.c	1.4	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

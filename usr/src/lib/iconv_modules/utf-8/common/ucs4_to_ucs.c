@@ -27,7 +27,6 @@
  * UCS-2, UCS-2BE, UCS-2LE, UTF-16, UTF-16BE, and UTF-16LE.
  */
 
-#pragma ident	"@(#)ucs4_to_ucs.c	1.7	04/10/07 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

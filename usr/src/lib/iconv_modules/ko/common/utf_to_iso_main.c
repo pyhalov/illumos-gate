@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"@(#)utf2iso_main.c	1.0 96/05/20 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

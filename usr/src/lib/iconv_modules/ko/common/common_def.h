@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"@(#)common_def.h	1.0 96/04/30 SMI"
 
 #ifndef _COMMON_DEF_H_
 #define	_COMMON_DEF_H_

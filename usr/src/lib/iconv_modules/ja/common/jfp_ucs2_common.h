@@ -23,7 +23,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident "@(#)jfp_ucs2_common.h	1.2	07/05/25 SMI"
 
 #ifndef	_JFP_UCS2_COMMON_H
 #define	_JFP_UCS2_COMMON_H

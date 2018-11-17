@@ -59,7 +59,6 @@
  * Copyright (c) 1999 by Sun Microsystems, Inc.
  */
 
-#pragma   ident       "@(#)ibm_thai_table.h 1.2     99/02/20 SMI"
 
 #ifndef _IBM_THAI_TABLE_H_
 #define _IBM_THAI_TABLE_H_

@@ -23,7 +23,6 @@
  * All Rights Reserved.
  */
 
-#pragma	ident	"$Id: euc_to_johap92.c,v 1.6 1998/10/12 16:18:42 hemant Exp $ SMI"
 
 #include <errno.h>
 #include "ktable.h"

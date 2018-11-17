@@ -23,7 +23,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)common_utf.c 1.1     97/11/05 SMI"
 
 #include "common_thai.h"
 #include "common_utf.h"

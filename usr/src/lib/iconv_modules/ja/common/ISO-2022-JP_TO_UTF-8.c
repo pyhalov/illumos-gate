@@ -23,7 +23,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident  "@(#)ISO-2022-JP_TO_UTF-8.c 1.8     06/12/20 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -28,7 +28,6 @@
  * a significant requirement.
  */
 
-#pragma ident	"@(#)utf7_to_ucs.c	1.2 99/08/31 SMI"
 
 #include <stdio.h>
 #include <stdlib.h>

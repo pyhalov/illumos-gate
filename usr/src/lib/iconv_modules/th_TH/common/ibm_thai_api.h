@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident  "@(#)ibm_thai_api.h 1.1      99/02/22 SMI"
 
 #ifndef	_EUC2UTF_API_H_
 #define	_EUC2UTF_API_H_

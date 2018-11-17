@@ -23,7 +23,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident  "@(#)Unicode_TO_Shift_JIS-2004.c 1.1     07/01/11 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

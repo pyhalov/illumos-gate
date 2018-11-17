@@ -22,7 +22,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"$Id: johap_to_UTF2.c,v 1.11 1998/10/12 16:18:57 hemant Exp $ SMI"
 
 #include <stdlib.h>
 #include <errno.h>

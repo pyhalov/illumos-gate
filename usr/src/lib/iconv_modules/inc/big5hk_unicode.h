@@ -32,7 +32,6 @@
  * Copyright (c) 2000 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)hkscs_utf.h 1.7 03/17/2000 SMI; ALE"
 
 /* maxium mapping number from HKSCS to UTF8 */
 #define MAX_HKSCS_NUM            18279   /* Maximum number of HKSCS-2001 */

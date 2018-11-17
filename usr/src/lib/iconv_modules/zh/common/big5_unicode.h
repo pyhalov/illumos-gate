@@ -31,7 +31,6 @@
  * Copyright (c) 1994 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)big5_utf.h	1.7 98/08/06 SMI; ALE"
 
 /* maxium mapping number from Big-5 to UTF8 */
 #define MAX_BIG5_NUM		13717	/* Maximum number of Big-5 */

@@ -18,7 +18,6 @@
  *
  * CDDL HEADER END
  */
-#pragma ident   "@(#)UTF2_to_iso2022.c	1.15 99/06/04 SMI; ALE"
 
 /*
  * Copyright (c) 1995, by Sun Microsystems, Inc.

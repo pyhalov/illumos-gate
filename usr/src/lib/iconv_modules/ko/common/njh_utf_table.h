@@ -32,7 +32,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)njh2utf_table.h	1.0 96/05/19 SMI"
 
 
 #ifndef	_NJH2UTF_TABLE_H_

@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)ojh2utf_sub.c      1.0 96/05/19 SMI"
 
 #include "common_han.h"
 #include "common_utf.h"

@@ -24,7 +24,6 @@
 
 # Copyright 2006 Sun Microsystems, Inc.  All rights reserved.
 # Use is subject to license terms.
-# ident  "@(#)Makefile	1.5 98/02/10 SMI"
 #
 
 SRCS = tab_lookup.c utf8%ibm.c ibm%utf8.c

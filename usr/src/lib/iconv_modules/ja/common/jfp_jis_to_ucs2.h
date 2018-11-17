@@ -31,7 +31,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident "@(#)jfp_jis_to_ucs2.h	1.15	07/05/25 SMI"
 
 #ifndef	_JFP_JIS_TO_UCS2_H
 #define	_JFP_JIS_TO_UCS2_H

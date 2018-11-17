@@ -32,7 +32,6 @@
  * All rights reserved.
  */
 
-#pragma ident "@(#)gbk_unicode.h        1.1 98/10/20"
 
 #ifndef _GBK_UNICODE_H_
 

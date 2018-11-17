@@ -31,7 +31,6 @@
  * Use is subject to license terms.
  */
 
-#pragma ident	"@(#)japanese.h	1.20	07/05/25 SMI"
 
 #define GET(c)		((c) = *ip, ip++, ileft--)
 #define PUT(c)		(*op = (c), op++, oleft--)

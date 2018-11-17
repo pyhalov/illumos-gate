@@ -32,7 +32,6 @@
  * Copyright (c) 2000 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)ucs_big5p.h	1.0 99/10/31 SMI; ALE"
 
 /* maxium mapping number from Big-5 Plus to UTF8 */
 #define MAX_BIG5P_NUM		21663	/* Maximum number of Big-5 Plus */

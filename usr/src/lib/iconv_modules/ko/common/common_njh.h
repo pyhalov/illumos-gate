@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)common_njh.h	1.0 96/05/19 SMI"
 
 
 #ifndef	_COMMON_NJH_H_

@@ -22,7 +22,6 @@
  * Copyright (c) 1996 by Sun Microsystems, Inc.
  */
 
-#pragma	ident	"@(#)utf_to_euc_main.c 1.5     02/07/21 SMI"
 
 #include <errno.h>
 #include <widec.h>

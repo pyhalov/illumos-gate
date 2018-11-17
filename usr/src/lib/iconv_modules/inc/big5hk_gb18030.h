@@ -22,7 +22,6 @@
  * Copyright (c) 2000 by Sun Microsystems, Inc.
  */
 
-#pragma ident   "@(#)hkscs_gbk2k.h 1.1 03/08/2001 SMI; ALE"
 
 /* maxium mapping number from HKSCS to GB18030 */
 #define MAX_HKSCS_NUM            18158   /* Maximum number of HKSCS */

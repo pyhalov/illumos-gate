@@ -23,7 +23,6 @@
  * All Rights Reserved.
  */
 
-#pragma	ident	"$Id: johap_to_euc.c,v 1.7 1999/05/03 10:45:49 byuan Exp $ SMI"
 
 #include <stdio.h>
 #include <stdlib.h>

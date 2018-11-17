@@ -23,7 +23,6 @@
  * Use is subject to license terms.
  */
 
-#pragma	ident	"@(#)sb_to_ucs4_generator.c	1.5	04/09/13 SMI"
 
 
 #include <stdio.h>

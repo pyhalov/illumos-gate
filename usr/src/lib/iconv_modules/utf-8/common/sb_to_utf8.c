@@ -30,7 +30,6 @@
  * codesets to UTF-8.
  */
 
-#pragma ident	"@(#)sb_to_utf8.c	1.3	04/07/21 SMI"
 
 #include <stdlib.h>
 #include <errno.h>

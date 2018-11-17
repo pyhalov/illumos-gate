@@ -27,7 +27,6 @@
 #ifndef	UTF_EBCDIC_TO_UTF8_H
 #define	UTF_EBCDIC_TO_UTF8_H
 
-#pragma	ident  "@(#)utf_ebcdic_to_utf8.h 1.1     99/07/20 SMI"
 
 #include "common_defs.h"
 

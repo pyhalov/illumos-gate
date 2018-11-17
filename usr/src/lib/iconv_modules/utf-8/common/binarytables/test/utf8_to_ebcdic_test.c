@@ -23,7 +23,6 @@
  * All rights reserved.
  */
 
-#pragma ident	"@(#)utf8_to_ebcdic_test.c 1.4     99/07/19 SMI"
 
 /*
  * For example,
