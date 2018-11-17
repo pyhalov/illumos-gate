@@ -20,10 +20,6 @@
  */
 /* Copyright 1995 by Sun Microsystems, Inc.
  * All rights are reserved.
- *
- * $Id: byte_to_comb.c,v 1.8 1999/05/03 10:44:36 byuan Exp $ SMI
- *
- * Previously: @(#)byte2comb.c	1.6 94/08/08 SMI; ALE
  */
 
 #include <stdio.h>

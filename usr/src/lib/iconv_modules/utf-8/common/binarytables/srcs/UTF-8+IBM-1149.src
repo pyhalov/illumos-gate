@@ -59,7 +59,6 @@
 // Copyright (c) 2000 by Sun Microsystems, Inc.
 // All rights reserved.
 //
-// "@(#)UTF-8+IBM-1149.src	1.1 00/09/06 SMI"
 //
 // This file originally came from UTF-8+IBM-871.src and the only significant
 // change made is a re-mapping of Intl Currency Symbol mapping to euro mapping.

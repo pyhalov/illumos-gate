@@ -20,8 +20,6 @@
  */
 /*
  * Copyright (c) 1994 by Sun Microsystems, Inc.
- *
- * Came from as "@(#)ktable.c	1.6 93/10/01 SMI: ALE"
  */
 
 

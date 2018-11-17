@@ -22,9 +22,6 @@
 /*
  * Copyright (c) 1997, by Sun Microsystems, Inc.
  * All rights reserved.
- *
- * @(#)tab_lookup.c	1.5 98/07/23 SMI
- *
  */
 
 #include <stdio.h>

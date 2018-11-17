@@ -24,8 +24,6 @@
  * Use is subject to license terms.
  */
 
-/* @(#)kctype.h	1.10 97/10/31 SMI; ALE */
-
 /* Definition for hangul character macro added */
 
 #define	_K1	01		/* First byte of Completion code */

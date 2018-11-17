@@ -20,7 +20,6 @@
  */
 /*
  * Copyright (c) 1994 by Sun Microsystems, Inc.
- * @(#)zh_CN.gbk_to_HZ-GB-2312.c	1.1 01/10/12
  */
 
 #include <stdio.h>

@@ -21,9 +21,6 @@
 /*
  * Copyright (c) 1997, by Sun Microsystems, Inc.
  * All rights reserved.
- *
- * @(#)Cp937_to_UTF8.c	1.4 04/03/21 SMI
- *
  */
 
 #include <stdio.h>

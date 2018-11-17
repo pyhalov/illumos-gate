@@ -60,7 +60,6 @@
 // Copyright (c) 2000 by Sun Microsystems, Inc.
 // All rights reserved.
 //
-// "@(#)UTF-8+IBM-871.src	1.2 00/09/01 SMI"
 //
 
 #include <sys/errno.h>

@@ -20,7 +20,6 @@
  */
 /*
  * Copyright (c) 1994 by Sun Microsystems, Inc.
- * @(#)HZ-GB-2312_to_UTF-8.c	1.3 99/06/04
  */
 
 #include <stdio.h>

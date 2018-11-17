@@ -59,7 +59,6 @@
 // Copyright (c) 1999-2000 by Sun Microsystems, Inc.
 // All rights reserved.
 //
-// "@(#)IBM-1148+UTF-8.src	1.1 00/09/06 SMI"
 //
 // This file orginally came from IBM-500+UTF-8.src. The only significant
 // thing changed is the replacement of mapping to Intl Currency Symbol to

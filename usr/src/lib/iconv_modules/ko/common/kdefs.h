@@ -24,8 +24,6 @@
  * Use is subject to license terms.
  */
 
-/* @(#)kdefs.h	1.12 97/10/31 SMI; ALE */
-
 #define GI_UG		0x41	/* gi-ug 		'A' */
 #define D_GI_UG		0x42	/* double gi-ug		'B' */
 #define NI_UN		0x44	/* ni-un		'D' */

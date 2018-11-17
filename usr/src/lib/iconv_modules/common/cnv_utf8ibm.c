@@ -22,9 +22,6 @@
 /*
  * Copyright (c) 1997, by Sun Microsystems, Inc.
  * All rights reserved.
- *
- * @(#)cnv_utf8ibm.c	1.4 98/07/23 SMI
- *
  */
 
 #include <stdio.h>
