@@ -32,8 +32,6 @@ include $(SRC)/lib/iconv_modules/ja/Makefile.iconv
 LIB = $(MODULES:%.c=%.so)
 LIB64 = $(MODULES:%.c=$(MACH64)/%.so)
 
-DYNFLAGS=	-G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
-		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
 LDLIBS=	-lc
 
 INSTALL_MODULES = .modules_installed

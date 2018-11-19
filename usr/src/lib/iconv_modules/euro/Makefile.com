@@ -30,10 +30,6 @@ TABLES:sh =	cd ../tbls/ && ls *tbl
 
 ALL_SOS:sh =    (cd ../tbls/ && ls *tbl |sed -e s:_:%:g -e 's:\.tbl$:.so:g')
 
-CFLAGS		+= $(INCLUDES) $(XREGSFLAG) -fpic -G -dy -D_REENTRANT
-
-LDFLAGS=       -G $(ZTEXT) $(ZDEFS) $(BDIRECT) \
-		$(MAPFILES:%=-M%) $(MAPFILE.PGA:%=-M%) $(MAPFILE.NED:%=-M%)
 LDLIBS		= -lc
 
 LINK_TARGETS =	646%8859-1.so
@@ -42,10 +38,13 @@ LINK_TARGETS =	646%8859-1.so
 
 .PARALLEL: $(ALL_SOS)
 
-
 all: $(ALL_SOS)
 
 include $(SRC)/lib/iconv_modules/Makefile.iconv
+
+LDFLAGS = $(DYNFLAGS) $(LDLIBS)
+
+CFLAGS		+= $(INCLUDES) $(XREGSFLAG) -D_REENTRANT
 
 CLEANFILES +=	core ../common/tbl.h
 
