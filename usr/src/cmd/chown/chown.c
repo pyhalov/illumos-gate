@@ -31,8 +31,6 @@
  * under license from the Regents of the University of California.
  */
 
-#pragma ident	"%Z%%M%	%I%	%E% SMI"
-
 /*
  * chown [-fhR] uid[:gid] file ...
  * chown -R [-f] [-H|-L|-P] uid[:gid] file ...
@@ -76,41 +74,18 @@ static int		isnumber(char *);
 static void		chownr(char *, uid_t, gid_t);
 static void		usage();
 
-#ifdef XPG4
-/*
- * Check to see if we are to follow symlinks specified on the command line.
- * This assumes we've already checked to make sure neither -h or -P was
- * specified, so we are just looking to see if -R -H, or -R -L was specified,
- * or, since -R has the same behavior as -R -L, if -R was specified by itself.
- * Therefore, all we really need to check for is if -R was specified.
- */
-#define	FOLLOW_CL_LINKS	(rflag)
-#else
 /*
  * Check to see if we are to follow symlinks specified on the command line.
  * This assumes we've already checked to make sure neither -h or -P was
  * specified, so we are just looking to see if -R -H, or -R -L was specified.
- * Note: -R by itself will change the ownership of a directory referenced by a
- * symlink however it will now follow the symlink to any other part of the
- * file hierarchy.
  */
 #define	FOLLOW_CL_LINKS	(rflag && (Hflag || Lflag))
-#endif
 
-#ifdef XPG4
-/*
- * Follow symlinks when traversing directories.  Since -R behaves the
- * same as -R -L, we always want to follow symlinks to other parts
- * of the file hierarchy unless -H was specified.
- */
-#define	FOLLOW_D_LINKS	(!Hflag)
-#else
 /*
  * Follow symlinks when traversing directories.  Only follow symlinks
  * to other parts of the file hierarchy if -L was specified.
  */
 #define	FOLLOW_D_LINKS	(Lflag)
-#endif
 
 #define	CHOWN(f, u, g)	if (chown(f, u, g) < 0) { \
 				status += Perror(f); \
@@ -143,6 +118,10 @@ main(int argc, char *argv[])
 
 		case 'R':
 			rflag++;
+			/* Set Pflag by default if no other options were specified */
+			if (Lflag == 0 && Hflag == 0) {
+				Pflag = 1;
+			}
 			break;
 
 		case 'f':
