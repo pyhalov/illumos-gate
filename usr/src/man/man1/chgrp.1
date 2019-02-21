@@ -49,7 +49,7 @@
 .\" Portions Copyright (c) 1992, X/Open Company Limited  All Rights Reserved
 .\" Copyright (c) 2003, Sun Microsystems, Inc.  All Rights Reserved
 .\"
-.TH CHGRP 1 "Jul 11, 2008"
+.TH CHGRP 1 "Feb 21, 2019"
 .SH NAME
 chgrp \- change file group ownership
 .SH SYNOPSIS
@@ -139,7 +139,7 @@ set rstchown = 0
 .sp
 .LP
 The following options are supported.
-.SS "/usr/bin/chgrp and /usr/xpg4/bin/chgrp"
+
 .sp
 .ne 2
 .na
@@ -202,6 +202,19 @@ of the file hierarchy.
 .sp
 .ne 2
 .na
+\fB\fB-R\fR\fR
+.ad
+.RS 6n
+Recursive. \fBchgrp\fR descends through the directory, and any subdirectories,
+setting the specified group \fBID\fR as it proceeds. When a symbolic link is
+encountered, the group of the of the symbolic is changed, unless the
+\fB-H\fR or \fB-L\fR option is specified. Unless the \fB-H\fR, \fB-L\fR,
+or \fB-P\fR option is specified, the \fB-P\fR option is used as the default mode.
+.RE
+
+.sp
+.ne 2
+.na
 \fB\fB-s\fR\fR
 .ad
 .RS 6n
@@ -214,33 +227,6 @@ supports storing SIDs, such as ZFS.
 Specifying more than one of the mutually-exclusive options \fB-H\fR, \fB-L\fR,
 or \fB-P\fR is not considered an error. The last option specified determines
 the behavior of \fBchgrp\fR.
-.SS "/usr/bin/chgrp"
-.sp
-.ne 2
-.na
-\fB\fB-R\fR\fR
-.ad
-.RS 6n
-Recursive. \fBchgrp\fR descends through the directory, and any subdirectories,
-setting the specified group \fBID\fR as it proceeds. When a symbolic link is
-encountered, the group of the target file is changed, unless the \fB-h\fR or
-\fB-P\fR option is specified. However, no recursion takes place, unless the
-\fB-H\fR or \fB-L\fR option is specified.
-.RE
-
-.SS "/usr/xpg4/bin/chgrp"
-.sp
-.ne 2
-.na
-\fB\fB-R\fR\fR
-.ad
-.RS 6n
-Recursive. \fBchgrp\fR descends through the directory, and any subdirectories,
-setting the specified group \fBID\fR as it proceeds. When a symbolic link is
-encountered, the group of the target file is changed, unless the \fB-h\fR or
-\fB-P\fR option is specified. Unless the \fB-H\fR, \fB-L\fR, or \fB-P\fR option
-is specified, the \fB-L\fR option is used as the default mode.
-.RE
 
 .SH OPERANDS
 .sp
@@ -331,23 +317,6 @@ _
 Standard	See \fBstandards\fR(5).
 .TE
 
-.SS "/usr/xpg4/bin/chgrp"
-.sp
-
-.sp
-.TS
-box;
-c | c
-l | l .
-ATTRIBUTE TYPE	ATTRIBUTE VALUE
-_
-CSI	Enabled. See NOTES.
-_
-Interface Stability	Committed
-_
-Standard	See \fBstandards\fR(5).
-.TE
-
 .SH SEE ALSO
 .sp
 .LP
@@ -358,3 +327,7 @@ Standard	See \fBstandards\fR(5).
 .sp
 .LP
 \fBchgrp\fR is CSI-enabled except for the \fIgroup\fR name.
+.sp
+.LP
+In the past the behavior of \fB/usr/xpg4/bin/chgrp\fR and
+\fB/usr/bin/chgrp\fR utilities was different. Now they behave the same way.
