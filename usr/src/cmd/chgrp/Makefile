@@ -43,7 +43,7 @@ $(PROG):	$(EXOBJS)
 
 $(ROOTXPG4LINK):        $(ROOTPROG)
 	-$(RM) $@
-	-$(SYMLINK) ../../bin/chown $@
+	-$(SYMLINK) ../../bin/chgrp $@
 
 install: all $(ROOTPROG) $(ROOTXPG4LINK)
 
