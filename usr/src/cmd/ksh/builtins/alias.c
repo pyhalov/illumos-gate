@@ -68,9 +68,7 @@ bfastpathrec fastpath_builtins[] =
 	/* This list must be alphabetically sorted for |strcmp()| usage */
 	{ "basename",	b_basename	},
 	{ "cat",	b_cat		},
-	{ "chgrp",	b_chgrp		},
 	{ "chmod",	b_chmod		},
-	{ "chown",	b_chown		},
 #ifdef ENABLE_PERFORMANCE_PARADOXON
 	{ "cksum",	b_cksum		},
 #endif /* ENABLE_PERFORMANCE_PARADOXON */
