@@ -128,9 +128,12 @@ main(int argc, char *argv[])
 		switch (c) {
 			case 'R':
 				rflag++;
-				/* Set Pflag by default if no other options were specified */
+				/*
+				 * Set Pflag by default if no other
+				 * options were specified.
+				 */
 				if (Lflag == 0 && Hflag == 0) {
-				        Pflag = 1;
+					Pflag = 1;
 				}
 				break;
 			case 'h':

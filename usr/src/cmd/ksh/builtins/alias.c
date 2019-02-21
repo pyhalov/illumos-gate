@@ -96,7 +96,7 @@ bfastpathrec fastpath_builtins[] =
 	{ "mkfifo",	b_mkfifo	},
 	{ "mktemp",	b_mktemp	},
 	{ "mv",		b_mv		},
-	{ "paste",	b_paste 	},
+	{ "paste",	b_paste		},
 	{ "pathchk",	b_pathchk	},
 	{ "pids",	b_pids		},
 	{ "readlink",	b_readlink	},
@@ -117,7 +117,7 @@ bfastpathrec fastpath_builtins[] =
 	{ "uniq",	b_uniq		},
 	{ "wc",		b_wc		},
 	{ "xgrep",	b_xgrep		},
-	{ NULL, 	(int (*)(int, char **, void *))NULL }
+	{ NULL,		(int (*)(int, char **, void *))NULL }
 };
 
 static inline
