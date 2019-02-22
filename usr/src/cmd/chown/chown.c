@@ -118,13 +118,6 @@ main(int argc, char *argv[])
 
 		case 'R':
 			rflag++;
-			/*
-			 * Set Pflag by default if no other options
-			 * were specified.
-			 */
-			if (Lflag == 0 && Hflag == 0) {
-				Pflag = 1;
-			}
 			break;
 
 		case 'f':
@@ -160,6 +153,13 @@ main(int argc, char *argv[])
 			errflg++;
 			break;
 		}
+	}
+	/*
+	 * Set Pflag by default for recursive operations
+	 * if no other options were specified.
+	 */
+	if (rflag && !(Lflag || Hflag || Pflag || hflag)) {
+		Pflag = 1;
 	}
 	/*
 	 * Check for sufficient arguments
