@@ -98,6 +98,14 @@ export ENABLE_SMB_PRINTING=
 #export PERL_ARCH=i86pc-solaris-thread-multi-64int
 #export PERL_PKGVERS=
 
+# If you use different primary compiler, set these values as neccessary,
+# so that all require-any dependencies on different GCC runtimes are
+# replaced by correct require one.
+#export GCC_RUNTIME_PATTERN='pkg:/system/library/gcc-\d+-runtime@.*'
+#export GXX_RUNTIME_PATTERN='pkg:/system/library/g\+\+-\d+-runtime@.*'
+#export GCC_RUNTIME_PACKAGE='pkg:/system/library/gcc-7-runtime'
+#export GXX_RUNTIME_PACKAGE='pkg:/system/library/g++-7-runtime'
+
 # If your distro uses certain versions of Python, make sure either
 # Makefile.master contains your new defaults OR your .env file sets them.
 #export PYTHON_VERSION=2.7

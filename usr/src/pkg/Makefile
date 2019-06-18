@@ -166,6 +166,7 @@ sparc_ARCH64= sparcv9
 #
 PM_TRANSFORMS= common_actions publish restart_fmri facets defaults \
 	extract_metadata
+POST_RESOLVE_TRANSFORMS= gcc_runtime_dependencies
 PM_INC= transforms manifests
 
 JAVA_7_ONLY=
@@ -199,6 +200,12 @@ PKGMOG_DEFINES= \
 	python3tools_ONLY=$(BUILDPY3TOOLS) \
 	JAVA_8_ONLY=$(JAVA_8_ONLY) \
 	JAVA_7_ONLY=$(JAVA_7_ONLY)
+
+POST_RESOLVE_PKGMOG_DEFINES= \
+	GCC_RUNTIME_PATTERN="$(GCC_RUNTIME_PATTERN)" \
+	GXX_RUNTIME_PATTERN="$(GXX_RUNTIME_PATTERN)" \
+	GCC_RUNTIME_PACKAGE="$(GCC_RUNTIME_PACKAGE)" \
+	GXX_RUNTIME_PACKAGE="$(GXX_RUNTIME_PACKAGE)"
 
 PKGDEP_TOKENS_i386= \
 	'PLATFORM=i86hvm' \
@@ -419,17 +426,17 @@ $(PDIR)/gendeps: $(DEP_SYNTH_PKGS) $(DEP_PKGS)
 		pkgdepend -R $(PKGDEP_RESOLVE_IMAGE) resolve \
 		    -m $(DEP_SYNTH_PKGS) $(DEP_PKGS); \
 		for p in $(DEP_SYNTH_PKGS:%.dep=%) $(DEP_PKGS:%.dep=%); do \
+			TRANSFORMS="$(POST_RESOLVE_TRANSFORMS)"; \
 			if [ "$$(print $$p.metadata.*)" = \
 			     "$$(print $$p.metadata.noincorp.*)" ]; \
 			then \
+				TRANSFORMS="$$TRANSFORMS strip_versions"; \
 				print "Removing dependency versions from $$p"; \
-				$(PKGMOGRIFY) $(PKGMOG_VERBOSE) \
-				    -O $$p.res -I transforms \
-				    strip_versions $$p.dep.res; \
-				$(RM) $$p.dep.res; \
-			else \
-				$(MV) $$p.dep.res $$p.res; \
-			fi; \
+			fi ; \
+			print "Fixing GCC runtime dependencies in $$p"; \
+			$(PKGMOGRIFY) $(PKGMOG_VERBOSE) $(POST_RESOLVE_PKGMOG_DEFINES:%=-D %) \
+			    -O $$p.res -I transforms $$TRANSFORMS $$p.dep.res; \
+			$(RM) $$p.dep.res; \
 		done; \
 	fi
 	$(PKGDEBUG)$(TOUCH) $(@)

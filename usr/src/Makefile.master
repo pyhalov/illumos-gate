@@ -130,6 +130,12 @@ GNUC_ROOT=	/usr/gcc/7
 GCCLIBDIR=	$(GNUC_ROOT)/lib
 GCCLIBDIR64=	$(GNUC_ROOT)/lib/$(MACH64)
 
+# GCC runtime packages
+GCC_RUNTIME_PATTERN=	pkg:/system/library/gcc-\d+-runtime@.*
+GXX_RUNTIME_PATTERN=	pkg:/system/library/g\+\+-\d+-runtime@.*
+GCC_RUNTIME_PACKAGE=	pkg:/system/library/gcc-7-runtime
+GXX_RUNTIME_PACKAGE=	pkg:/system/library/g++-7-runtime
+
 DOCBOOK_XSL_ROOT=	/usr/share/sgml/docbook/xsl-stylesheets
 
 RPCGEN=		/usr/bin/rpcgen

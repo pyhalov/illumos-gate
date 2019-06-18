@@ -1,0 +1,6 @@
+<transform depend type=require-any fmri=$(GCC_RUNTIME_PATTERN) -> \
+    emit depend type=require fmri=$(GCC_RUNTIME_PACKAGE)>
+<transform depend type=require-any fmri=$(GCC_RUNTIME_PATTERN) -> drop>
+<transform depend type=require-any fmri=$(GXX_RUNTIME_PATTERN) -> \
+    emit depend type=require fmri=$(GXX_RUNTIME_PACKAGE)>
+<transform depend type=require-any fmri=$(GXX_RUNTIME_PATTERN) -> drop>
