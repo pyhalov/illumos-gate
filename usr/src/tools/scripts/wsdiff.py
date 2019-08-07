@@ -121,7 +121,17 @@ wsdiff_exceptions = [
 
 def getoutput(cmd):
 	if PY3:
-		return subprocess.getstatusoutput(cmd)
+		import shlex, tempfile
+		f, fpath = tempfile.mkstemp()
+		status = os.system("{ " + cmd + "; } >" + shlex.quote(fpath) + " 2>&1")
+		returncode = os.WEXITSTATUS(status)
+		tfile = os.fdopen(f, "r")
+		output = tfile.read()
+		tfile.close()
+		os.unlink(fpath)
+		if output[-1:] == '\n':
+			output = output[:-1]
+		return returncode, output
 	else:
 		return commands.getstatusoutput(cmd)
 
